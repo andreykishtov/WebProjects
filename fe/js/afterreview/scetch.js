@@ -1,3 +1,4 @@
+//foo
 //creator Andrey
 ///////////////////////////onload function///////////////////
 window.onload = function() {
