@@ -3,3 +3,4 @@
 *~
 *.zip
 *.bak
+node_modules

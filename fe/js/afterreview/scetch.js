@@ -53,7 +53,7 @@ function sketchBoard() {
         newDiv.style.backgroundColor = randomColor();
         newDiv.style.height = randomNumber(window.screen.height / 4) + "px";
         newDiv.style.width = randomNumber(window.screen.width / 4) + "px";
-        newDiv.style.margin = 10;
+        newDiv.style.margin = "10px";
         newDiv.style.maxWidth = window.screen.width + "px";
         newDiv.style.maxHeight = window.screen.height + "px";
         newDiv.style.position = "absolute";
@@ -119,6 +119,7 @@ function sketchBoard() {
         for (var i = 1; i < 5; ++i) {
             innerDiv[i] = document.createElement('div');
             innerDiv[i].className = 'possition' + i;
+            innerDiv[i].style.backgroundColor = "white";
             referenceTODiv.appendChild(innerDiv[i]);
         }
     }
