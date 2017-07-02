@@ -1,3 +1,4 @@
+//creator Andrey
 ///////////////////////////onload function///////////////////
 window.onload = function() {
     sketchBoard();
@@ -7,7 +8,7 @@ function sketchBoard() {
 
     var userStorage = []; //Global storage;
     var domElements = {};
-    
+
     connectDomElements();
 
     registerEvents();
@@ -15,7 +16,7 @@ function sketchBoard() {
 
     function connectDomElements() {
         var ids = ["saveselect", "sketch"];
-        for (i=0; i<ids.length; ++i) {
+        for (i = 0; i < ids.length; ++i) {
             var id = ids[i];
             domElements[id] = document.getElementById(id);
         }
@@ -32,13 +33,13 @@ function sketchBoard() {
         document.getElementById("oval").addEventListener("click", createOval);
 
         document.getElementById("deletedivbutton").addEventListener("click", DeleteDiv);
-        
-        listenToColorButtons();    
+
+        listenToColorButtons();
     }
 
     function listenToColorButtons() {
         var colorButtons = document.querySelectorAll('#colors button');
-        for (var i=0; i<colorButtons.length; ++i) {
+        for (var i = 0; i < colorButtons.length; ++i) {
             colorButtons[i].addEventListener("click", changeColor);
         }
     }
