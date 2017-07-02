@@ -1,0 +1,16 @@
+.sprite {
+    background-image: url(https://i.imgur.com/Q1OQM.png);
+    display: inline-block;
+    width: 77px;
+    height: 143px;
+}
+
+.sprite-faze2:hover {
+    background-position: -78px;
+}
+
+.sprite-faze3:hover {
+    background-position: -145px;
+}
+
+.sprite sprite {}

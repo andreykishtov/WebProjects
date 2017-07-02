@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sketch Book</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="scetch.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1>Sketch Board</h1>
+        <nav>
+            <ul>
+                <li><button id="loadbutton" type="button">Load</button></li>
+                <li class="moveit"><button id="savebutton" type="button">Save</button></li>
+                <li><button id="rectangle" type="button">Rectangle</button></li>
+                <li class="moveit"><button id="oval" type="button">Oval</button></li>
+                <li class="moveit"><button type="button">Color</button>
+                    <ul id="colors">
+                        <li><button id="red" type="button">Red</button></li>
+                        <li><button id="green" type="button">Green</button></li>
+                        <li><button id="blue" type="button">Blue</button></li>
+                        <li><button id="grey" type="button">Grey</button></li>
+                        <li><button id="violet" type="button">Violet</button></li>
+                    </ul>
+                </li>
+                <li class="moveit"><button id="deletedivbutton" type="button">Delete</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="sketch">
+
+    </div>
+    <div id="saveDiv">
+        <h2>Save<span class="close">X</span> </h2>
+        <p>Please give a save name:<input type="text" name="" value="">
+            <button id="savebuttonlocal" type="button">Save</button> </p>
+    </div>
+
+    <div id="loadDiv">
+        <h2>Load<span class="close">X</span> </h2>
+        <p>Please select a saved drawing:<select id="saveselect"></select>
+            <button id="loadbuttonid" type="button">Load</button> </p>
+    </div>
+
+    <div id="savedDiv">
+        <h3 id="hofsaveDiv">Saved</h3>
+    </div>
+
+    <div id="greyDiv">
+
+    </div>
+
+    <script src="scetch.js"></script>
+</body>
+</html>

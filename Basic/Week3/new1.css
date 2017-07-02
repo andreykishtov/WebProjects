@@ -1,0 +1,10 @@
+div {
+    height: 300px;
+    margin-bottom: 50px;
+    border: 2px solid;
+    background: url(https://s-media-cache-ak0.pinimg.com/736x/27/93/6d/27936d52d49f02a7864b69ec662b4a35.jpg);
+}
+
+#a1 {
+    background-repeat: repeat-y;
+}

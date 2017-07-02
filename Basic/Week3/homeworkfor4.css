@@ -1,0 +1,39 @@
+body {
+    box-sizing: border-box;
+}
+
+input[type=checkbox] {
+    display: none;
+}
+
+input[type=checkbox]:checked+div {
+    display: none;
+}
+
+input[type=radio] {
+    display: none;
+}
+
+input[type=radio]:checked+div {
+    display: none;
+}
+
+div {
+    float: left;
+    color: cyan;
+    margin: 10px;
+    width: 20%;
+    background-color: blueviolet;
+}
+
+div div {
+    color: brown;
+    margin: 0px;
+    width: 99%;
+    background-color: yellowgreen;
+    border: 2px dashed rebeccapurple;
+}
+
+div+div>label+input+div>p {
+    color: black;
+}

@@ -1,0 +1,14 @@
+.sprite {
+	background-image: url(social-sprite.png);
+	width: 26px;
+	height: 26px;
+	display: inline-block;
+}
+
+.sprite-behance { background-position: -4px -4px; }
+.sprite-blogger { background-position: -32px -4px; }
+.sprite-deviantart { background-position: -144px -4px; }
+
+.sprite-behance:hover { background-position: -3px -140px; }
+.sprite-blogger:hover { background-position: -31px -66px; }
+.sprite-deviantart:hover { background-position: -144px -67px; }

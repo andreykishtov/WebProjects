@@ -1,0 +1,130 @@
+li {
+    position: relative;
+    min-width: 10em;
+    padding: 10px;
+    margin: 0px;
+}
+
+li li li {
+    left: 95%;
+}
+
+ul {
+    padding: 0px;
+    margin: 0px;
+}
+
+#bodyStuff {
+    background-color: blueviolet;
+}
+
+li ul {
+    display: none;
+    position: absolute;
+}
+
+ul li:hover>ul {
+    display: block;
+}
+
+.menu {
+    display: inline-block;
+    background-color: cornflowerblue;
+    border: 2px solid black;
+}
+
+img {
+    border: 10px solid black;
+    outline: 2px solid #ABC;
+}
+
+#h1id {
+    font-size: 64px;
+    color: green;
+    background-color: darkgreen;
+    margin: 0px 0px 0px 0px;
+    padding: 15px, 30px;
+    background: url(https://s-media-cache-ak0.pinimg.com/originals/cb/15/32/cb1532b03a0ffa6c8c26d0348a7eb60d.jpg);
+    background-position: repeat;
+    background-position: center;
+}
+
+#imageandtable {
+    margin: 0 auto;
+}
+
+head {
+    margin: 0;
+}
+
+h3:hover {
+    display: block;
+}
+
+h2,
+h3,
+h4 {
+    color: darkblue;
+}
+
+h2 {
+    border-top: 5px solid #CCC;
+}
+
+label {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    background: lightyellow;
+    background-color: brown;
+    margin: 0;
+    margin: 0px auto;
+    width: 960px;
+    /*background: #fff;*/
+}
+
+#img111 {
+    width: 30%;
+    height: 30%;
+}
+
+#imageRow1,
+#imageRow2 {
+    border: 3px solid gray;
+    padding: 0;
+    width: 200px;
+    height: 300px;
+}
+
+.enchanced {
+    font-weight: bold;
+}
+
+.crazy {
+    background: black;
+}
+
+.td {
+    color: orangered;
+}
+
+.firstTable {
+    display: inline-block;
+    vertical-align: top;
+}
+
+table {
+    border: 1px solid #666;
+}
+
+#accordion div {
+    display: none;
+}
+
+#accordion:hover div {
+    display: block;
+}

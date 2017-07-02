@@ -1,0 +1,104 @@
+    body {
+        background-color: #EEF5E0;
+        padding-bottom: 2em;
+        margin: 0;
+    }
+    
+    h1 div {
+        width: 960px;
+        margin: 0 auto;
+        padding: 5px 15px;
+    }
+    
+    div {
+        width: 960px;
+        margin: 0px auto;
+        padding: 0px;
+    }
+    
+    h1 {
+        background-image: url("black-paper.png");
+        background-color: #dfa;
+        width: 100%;
+        margin: 0;
+    }
+    
+    h1 img {
+        width: 16%;
+    }
+    
+    nav>ul {
+        margin: 0px;
+        background-image: url("jeans.png");
+        background-color: #074;
+    }
+    
+    li {
+        position: relative;
+        min-width: 200px;
+        min-height: 30px;
+        list-style: none;
+        float: left;
+        background-color: gray;
+        border: 2px solid white;
+        border-radius: 10px;
+        z-index: 1;
+    }
+    
+    li ul {
+        display: none;
+        position: absolute;
+    }
+    
+    ul li:hover>ul {
+        display: block;
+    }
+    
+    ul ul li {
+        top: 14px;
+        right: 42px;
+    }
+    
+    li li li {
+        left: 79%;
+    }
+    
+    div div div {
+        width: 25%;
+        margin: 10px;
+        float: left;
+        border: 2px solid black;
+    }
+    
+    .clearfix:after {
+        clear: left;
+        content: "";
+        display: table;
+    }
+    
+    img {
+        opacity: 0.5;
+        max-size: 200px;
+        width: 100%;
+    }
+    
+    footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        background-color: teal;
+    }
+    
+    h2:hover~img,
+    img:hover {
+        opacity: 1;
+    }
+    
+    h1 img {
+        opacity: 1;
+    }
+    
+    div div {
+        padding: 0px 0px 20px;
+    }

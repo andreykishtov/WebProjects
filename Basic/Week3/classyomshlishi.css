@@ -1,0 +1,52 @@
+#stuffbody {
+    width: 960px;
+    margin: 0 auto;
+    padding: 5px 10px;
+}
+
+#head {
+    width: 100%;
+    background-color: green;
+    height: 200px;
+    margin: 0px -10px;
+    padding: 0px -10px;
+}
+
+#left {
+    background-color: red;
+    float: left;
+    width: 30%;
+    padding: 5px 10px;
+    box-sizing: border-box;
+}
+
+#right {
+    background-color: yellow;
+    float: right;
+    width: 70%;
+    padding: 5px 10px;
+    box-sizing: border-box;
+}
+
+
+/*
+#left:after {
+    clear: both;
+    content: "";
+}
+
+#right:after {
+    clear: both;
+    content: "";
+}*/
+
+#foot:before {
+    clear: both;
+    display: block;
+    content: "";
+}
+
+#foot {
+    color: whitesmoke;
+    background-color: royalblue;
+}

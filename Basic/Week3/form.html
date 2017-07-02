@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Forms</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <form method="GET" action="http://wpwith.us/experis/form/">
+        <label for="firstname">First Name:</label> <input type="text" required name="firstname" id="firstname"><br> Last Name: <input placeholder="Enter your first name" type="text" minlength="4" maxlength="44" required name="lastname"><br> Age:
+        <input type="number" required min="2" max="20" name="age"><br> do yowant to go home?:
+        <input type="radio" id="home-OK" value="OK" name="home"> <label for="home-OK">Yes</label>
+        <input type="radio" id="home-NOT-OK" value="NOT-OK" name="home"> <label for="home-NOT-OK">No</label><br>
+        <input type="checkbox" checked value="OK" name="agree"> Do you agree?<br>
+        <textarea placeholder="message" name="message" cols="40" rows="5"></textarea>
+        <input type="email" name="A" value="B">
+        <select name="chooseOne">
+                <option value="1">one</option>
+                <option value="2">two</option>
+                <option selected value="3">three</option>
+                <option value="4">four</option>
+                <option value="5">five pictures on the wall</option>
+            </select>
+        <input type="submit" value="Send">
+    </form>
+</body>
+
+</html>
