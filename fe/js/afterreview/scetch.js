@@ -160,7 +160,7 @@ function sketchBoard() {
         if (selected.length > 0) {
             for (var i = 0; i < selected.length; ++i) {
                 //  selected[i].addEventListener('keydown', DeleteDiv); //delete key
-                selected[i].addEventListener('mousedown', moveElement);
+                selected[i].addEventListener('mousedown', movemorethan1);
                 for (var j = 0; j < selected[i].children.length; ++j) {
                     selected[i].children[j].addEventListener('mousedown', resize);
                 }
@@ -168,11 +168,18 @@ function sketchBoard() {
         }
     }
     ///////movement initializer with 2 functions//////////////////////////////////////////
+    function movemorethan1(mousepoint) {
+        var selected = document.getElementsByClassName("selected");
+        moveElement(selected[0].target);
+        //moveElement(selected[1]);
+    }
+
+
     function moveElement(movemouse) {
-        if (movemouse.currentTarget.className != "block selected") {
-            return;
-        }
-        movemouse.preventDefault();
+        //if (movemouse.currentTarget.className != "block selected") {
+        //    return;
+        // }
+        //movemouse.preventDefault();
         var diffX = movemouse.clientX - this.offsetLeft;
         var diffY = movemouse.clientY - this.offsetTop;
         this.addEventListener('mouseup', stopDrag);
