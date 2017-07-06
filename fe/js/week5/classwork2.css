@@ -1,5 +1,6 @@
 #maindiv {
-    margin: 0 auto;
+    margin: 0px auto;
+    padding: 0px;
     margin-top: 20px;
     width: 100%;
     box-sizing: border-box;
@@ -50,6 +51,7 @@ content img {
 @media (min-width: 481px) {
     body {
         margin: 0px;
+        padding: 0px;
         background: #EEF;
     }
     button {
@@ -106,16 +108,21 @@ content img {
         clear: right;
     }
     footer {
-        width: 960px;
+        padding: 0px;
+        margin: 0px auto;
         clear: both;
         background-color: #EEE;
     }
     #footercontent {
-        margin: 0 auto;
+        text-align: justify;
+        margin: 0px auto;
         width: 960px;
     }
-    #pfooter {
+    pfooter {
         /*width: 960px;*/
         /*padding: 5px;*/
+    }
+    p {
+        margin: 0px;
     }
 }
