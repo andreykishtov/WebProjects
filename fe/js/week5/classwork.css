@@ -5,6 +5,9 @@ body {
 
 button {
     display: none;
+    border-bottom-right-radius: 8px;
+    background-color: grey;
+    color: #fff;
 }
 
 #maindiv {
@@ -14,16 +17,15 @@ button {
     padding: 15px;
 }
 
-ul {
-    float: right;
-    position: relative;
-    top: 30px;
-    list-style: none;
+header {
+    display: flex;
+    justify-content: space-between;
 }
 
-ul:after {
-    clear: both;
-    content: "";
+ul {
+    display: inline-flex;
+    justify-content: flex-end;
+    list-style: none;
 }
 
 li {
@@ -45,21 +47,22 @@ content {
     width: 100%;
 }
 
-content:after {
-    clear: both;
-    content: "";
-    display: block;
+#maincontent,
+#sidebar {
+    margin: 0px;
+    display: inline-flex;
+    justify-content: space-between;
+    flex-direction: column;
+    text-align: justify;
 }
 
 #maincontent {
     background: white;
-    float: left;
     width: 60%;
 }
 
 #sidebar {
     background: white;
-    float: right;
     width: 35%;
 }
 
@@ -83,6 +86,10 @@ p {
 }
 
 @media (max-width: 480px) {
+    img {
+        /*max-width: 100%;*/
+        flex-shrink: 0;
+    }
     #maindiv {
         margin: auto;
         margin-top: 20px;
@@ -90,6 +97,10 @@ p {
         box-sizing: border-box;
         display: block;
         max-width: 100%;
+        flex: none;
+    }
+    header {
+        flex-direction: column;
     }
     li {
         border: 0;
@@ -99,24 +110,21 @@ p {
         display: block;
         background-color: #EFEFEF;
         text-align: center;
-        height: 40px
+        height: 40px;
     }
     ul {
+        flex-direction: column;
         padding: 0px;
         margin: 20px 20px 40px;
-        position: none;
-        float: none;
     }
     button {
         display: block;
     }
     #maincontent {
         width: 100%;
-        float: none;
     }
     #sidebar {
         width: 100%;
-        float: none;
     }
     #footercontent {
         width: 100%;

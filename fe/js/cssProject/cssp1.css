@@ -1,0 +1,378 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: white;
+}
+
+p {
+    max-width: 100%;
+}
+
+header {
+    background-color: white;
+    width: 100%;
+    position: fixed;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+menu {
+    margin: 0 auto;
+    max-width: 1170px;
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+}
+
+header img {
+    width: 80px;
+    height: 80px;
+}
+
+.navigation {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navigation a {
+    border-bottom: 5px solid transparent;
+    text-decoration: none;
+    display: block;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1.2px;
+    margin: 5px 1.5rem 0;
+    padding: 13px 0;
+    color: black;
+}
+
+.navigation a:hover {
+    border-bottom: 5px solid;
+}
+
+mainDiv {
+    width: 100%;
+    background-color: white;
+}
+
+
+/*end navigation*/
+
+#andreyMainDiv {
+    position: relative;
+    background-image: url("images/hong-kong-1990268_1920.jpg");
+    background-size: cover;
+    width: 100%;
+    height: 700px;
+}
+
+#andreyDiv {
+    padding-top: 5%;
+    padding-left: 20%;
+    color: #FBFFFF;
+    font-size: 200%;
+}
+
+h1 {
+    font-size: 200%;
+}
+
+.button {
+    font-size: 1em;
+    padding: 10px 20px;
+    font-weight: bold;
+    background: #FFF;
+    color: #33A;
+    border: 2px solid blue;
+    border-radius: 20px/50px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+
+.button:hover {
+    border: none;
+    background: blue;
+    border-color: #06D85F;
+    color: #FFF;
+}
+
+.refbutton {
+    text-decoration: none;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 1px solid #FFF;
+    border-radius: 3px;
+    color: #FFF;
+    font-size: 18px;
+    margin-left: 7vw;
+    padding: 12px 50px;
+}
+
+.boxshadowclass {
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+}
+
+#mainName {
+    color: #F9FFCA;
+    font-style: italic;
+}
+
+#andrey {
+    position: absolute;
+    top: 88%;
+    left: 44%;
+    height: 150px;
+    width: 150px;
+    border: 5px solid white;
+    border-radius: 50%;
+}
+
+#about {
+    font-size: 22px;
+    max-width: 1170px;
+    margin: 0 auto;
+    padding: 100px;
+    text-align: justify;
+}
+
+#services {
+    padding: 50px;
+    max-width: 1170px;
+    margin: 0 auto;
+}
+
+#services h3 {
+    padding: 20px;
+    font-size: 3.5rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin: 0px;
+    text-align: center;
+    text-transform: uppercase;
+    /*display: block;*/
+}
+
+
+/*end portrait part*/
+
+#flexcont {
+    display: inline-flex;
+    justify-content: center;
+    justify-content: space-around;
+}
+
+#respImg {
+    display: flex;
+    justify-content: space-around;
+}
+
+#services img {
+    height: 100px;
+    width: 100px;
+}
+
+.servicesc h4 {
+    font-weight: 600;
+    text-align: center;
+    font-size: 30;
+}
+
+.servicesc p {
+    text-align: justify;
+    padding-right: 30px;
+    opacity: 0.5;
+}
+
+.servicesc p:hover {
+    opacity: 1;
+}
+
+.servicesc h4:hover+p {
+    opacity: 1;
+}
+
+#services img:hover~#flexcont {
+    opacity: 1;
+}
+
+#projects {
+    margin: 0 auto;
+    padding: 50px 100px;
+    max-width: 1170px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    text-decoration: none;
+}
+
+.col {
+    width: 33.33333333%;
+    padding: 20px 0px;
+}
+
+#project1 {
+    height: 250px;
+    width: 350px;
+    display: flex;
+    justify-content: center;
+    background-image: url("images/apple-imac-ipad-workplace-38568.jpeg");
+    background-size: cover;
+}
+
+#project1:hover,
+#project2:hover,
+#project3:hover,
+#project4:hover,
+#project5:hover,
+#project6:hover {
+    box-shadow: 5px 5px 2px grey;
+    border: 3px solid white;
+    border-radius: 2%;
+}
+
+#project2 {
+    height: 250px;
+    width: 350px;
+    display: flex;
+    justify-content: center;
+    background-image: url("images/apple-imac-ipad-workplace-38568.jpeg");
+    background-size: cover;
+    /*font-size: 30px;*/
+}
+
+#project3 {
+    height: 250px;
+    width: 350px;
+    display: flex;
+    justify-content: center;
+    background-image: url("images/apple-imac-ipad-workplace-38568.jpeg");
+    background-size: cover;
+    /*font-size: 30px;*/
+}
+
+#project4 {
+    height: 250px;
+    width: 350px;
+    display: flex;
+    justify-content: center;
+    background-image: url("images/apple-imac-ipad-workplace-38568.jpeg");
+    background-size: cover;
+    /*font-size: 30px;*/
+}
+
+#project5 {
+    height: 250px;
+    width: 350px;
+    display: flex;
+    justify-content: center;
+    background-image: url("images/apple-imac-ipad-workplace-38568.jpeg");
+    background-size: cover;
+    /*font-size: 30px;*/
+}
+
+#project6 {
+    height: 250px;
+    width: 350px;
+    display: flex;
+    justify-content: center;
+    background-image: url("images/apple-imac-ipad-workplace-38568.jpeg");
+    background-size: cover;
+    /*font-size: 30px;*/
+}
+
+.col p {
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+    color: #FFF;
+    display: inline-block;
+    line-height: 0;
+    margin: 90px 0;
+    padding: 20px;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}
+
+.col p {
+    margin-bottom: 0;
+    height: 0px;
+}
+
+#mainProjectsDiv h2 {
+    text-align: center;
+    font-size: 3.5rem;
+}
+
+#formDiv {
+    border-left: 1px solid rgba(255, 255, 255, 0.03);
+    border-right: 1px solid rgba(255, 255, 255, 0.03);
+    border-top: 1px solid rgba(0, 0, 0, 0.24);
+    box-shadow: none;
+    outline: none;
+    color: #B5B5B5;
+    background-color: #161414;
+}
+
+#formDiv h3 {
+    padding-top: 30px;
+    text-align: center;
+    font-size: 30px;
+}
+
+form {
+    display: block;
+    outline: none;
+    padding: 6px 12px;
+    width: 31.47%;
+    background-color: #191616;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    color: #999;
+}
+
+#subject {
+    background-color: #191616;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    color: #999;
+    transition: all .3s;
+    font-size: 14px;
+    height: 90px;
+    line-height: 1.42857143;
+    margin: 1.2rem 0 .6rem;
+    padding: 6px 12px;
+    resize: none;
+    width: 99.5%;
+}
+
+#submit-btn {
+    background-color: #161414;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 3px;
+    color: #6D6C6C;
+    font-weight: 500;
+    margin-right: .7%;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    transition: all .3s;
+    width: 25%;
+}
+
+footer {
+    height: 600px;
+    background-color: #161414;
+}
+
+#containerFoot {
+    display: flex;
+    justify-content: center;
+}
+
+input {
+    background-color: #161414;
+    border: none;
+}
+
+.col p:hover+.animate.flash {}

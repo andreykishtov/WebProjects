@@ -10,24 +10,30 @@
 
 li {
     border: 0;
-    padding: 0px;
-    margin: 0px;
     margin-bottom: 3px;
+    margin-top: 5px;
+    padding-top: 15px;
     display: block;
     background-color: #EFEFEF;
     text-align: center;
-    height: 40px
+    height: 40px;
 }
 
 ul {
-    padding: 0px;
-    margin: 20px 20px 40px;
+    padding: 5px 5px;
+    margin: 20px 20px 40px 10px;
     position: none;
-    float: none;
+}
+
+a {
+    text-decoration: none;
 }
 
 button {
     display: block;
+    border-bottom-right-radius: 8px;
+    background-color: grey;
+    color: #fff;
 }
 
 #maincontent {
@@ -42,6 +48,7 @@ button {
 
 #footercontent {
     width: 100%;
+    background-color: #EEE;
 }
 
 content img {
@@ -64,14 +71,11 @@ content img {
         padding: 15px;
     }
     ul {
-        float: right;
+        display: inline-flex;
+        justify-content: flex-end;
         position: relative;
         top: 30px;
         list-style: none;
-    }
-    ul:after {
-        clear: both;
-        content: "";
     }
     li {
         display: inline;
