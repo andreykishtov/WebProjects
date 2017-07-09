@@ -21,7 +21,7 @@ menu {
     max-width: 1170px;
     background-color: white;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 header img {
