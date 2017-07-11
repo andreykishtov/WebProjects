@@ -1,4 +1,10 @@
 $(document).ready(function() {
+    createCart();
+});
+
+
+////////////////////////creates cart////////////////////
+function createCart() {
     for (var index = 0; index < products.length; index++) {
         var product = products[index];
         var newDiv = $('<div>');
@@ -9,15 +15,15 @@ $(document).ready(function() {
 
         newDiv.appendTo($("#gridmain"));
     }
-});
-
+}
 //////////////////////add listener on button function//////////////////
 function addToCart(event, productObj) {
     var index = $("#gridmain div").index(event);
     var table = $("#tablecart").children();
     var flag = true;
     if ($("#rowid" + index).length) {
-        addToRow(index, productObj[index]);
+        // addToRow(index, true);
+        changeByInput($("#rowid" + index), true);
     } else { //if no rows added
         createRow(productObj[index], index);
     }
@@ -39,30 +45,25 @@ function createRow(obj, index) {
         tRow.insertBefore("#TotalMoney");
         //$('#tablecart tbody').append(tRow);
     });
-    $("#rowid" + index).change(function(event) {
-        changeByInput(event, $(this));
+    $("#rowid" + index).change(function() {
+        changeByInput($(this));
     });
 }
-//adds stuff to table
-function addToRow(index, obj) {
-    var tr;
-    for (var j = 2; j < 5; j++) {
-        tr = $("#rowid" + index + " .cellClass" + j);
-        if (j == 2) {
-            $("#rowid" + index + " .cellClass" + j + " input").val(1 + parseInt($("#rowid" + index + " .cellClass" + j + " input").val()));
-        } else {
-            tr.text((parseInt(tr.text()) + parseInt(obj.price)));
-        }
-    }
-}
 
-function changeByInput(event, thisold) {
-    console.log(thisold.children()[3]);
-    var x = thisold.children()[3];
+function changeByInput(thisold, add) {
+    var value = thisold.find("td:nth-child(4)").text();
+    var save = thisold.find("td:nth-child(5)");
+    var howmany = thisold.find("td:nth-child(3) input").val();
+    if (add) {
+        thisold.find("td:nth-child(3) input").val(++howmany);
+    }
+    save.text((value * howmany).toFixed(2));
     totalChange();
 }
 
 
-function totalChange(params) {
-
+function totalChange() {
+    var total = $("#TotalMoney");
+    var allcellsInput = $("cellClass2");
+    var allcellsPrice = $("cellClass3");
 }
