@@ -15,7 +15,7 @@ function shop(products, cartSelector) {
                 element.stop(false, false).animate({
                     top: scrollTop < originalY ?
                         0 : scrollTop - originalY + topMargin
-                }, 300);
+                }, 200);
             });
         })($("#" + cartSelector));
 
@@ -145,11 +145,12 @@ function shop(products, cartSelector) {
 
     for (var i = 0; i < products.length; ++i) {
         var prod = products[i];
-        var product = new ProductList(prod.items, prod.selector, cart);
+        var product = new ProductList(prod.items, prod.selector, cart, cartSelector);
     }
 }
-
-function ProductList(items, selector, cart) {
+///////////////////////////////////////product list/////////////////////////
+///////////////////////////////////////////////////////////////////////////
+function ProductList(items, selector, cart, cartSelector) {
 
     var container = $(selector);
     items.forEach(function(element, i) {
@@ -168,11 +169,45 @@ function ProductList(items, selector, cart) {
         });
         btn.click(function() {
             cart.addItem($(this).data('prod'));
+            ////////////////////////
+            //Scroll to top if cart icon is hidden on top
+            // $('html, body').animate({
+            //     'scrollTop': $(".cart_anchor").position().top
+            // });
+            //Select item image and pass to the function
+            // var itemImg = $(this).parent().find('img').eq(0);
+            flyToElement($(this).parent().find("img"), "#" + cartSelector);
+            ///////////////////////
         }).appendTo(newDiv);
         newDiv.appendTo($("#" + selector));
     });
 
     function getRandomArbitrary(min, max) {
         return Math.floor(Math.random() * (max - min) + min);
+    }
+
+    $('.add-to-cart').on('click', function() {
+
+    });
+
+    function flyToElement(flyer, flyingTo) {
+        var $func = $(this);
+        var divider = 3;
+        var flyerClone = $(flyer).clone();
+        $(flyerClone).css({ position: 'absolute', top: $(flyer).offset().top + "px", left: $(flyer).offset().left + "px", opacity: 1, 'z-index': 1000 });
+        $('body').append($(flyerClone));
+        var gotoX = $(flyingTo).offset().left + ($(flyingTo).width() / 2) - ($(flyer).width() / divider) / 2;
+        var gotoY = $(flyingTo).offset().top + ($(flyingTo).height() / 2) - ($(flyer).height() / divider) / 2;
+
+        $(flyerClone).animate({
+                opacity: 0.4,
+                left: gotoX,
+                top: gotoY,
+                width: $(flyer).width() / divider,
+                height: $(flyer).height() / divider
+            }, 700,
+            function() {
+                $(flyerClone).remove();
+            });
     }
 }
