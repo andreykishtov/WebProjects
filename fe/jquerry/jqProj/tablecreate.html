@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="jquery-3.2.1.js"></script>
+    <link href="jqcssfile.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1>My Shop</h1>
+    </header>
+
+    <div id="mainDiv">
+
+        <div id="shopDiv">
+            <main id="gridmain">
+
+
+            </main>
+            <aside>
+                <table id="tablecart">
+                </table>
+
+            </aside>
+        </div>
+    </div>
+</body>
+<script>
+    function CreateTable() {
+        createRow("#tablecart", 1, '<th colspan="5">', ['Cart']);
+        createRow("#tablecart", 5, '<th>', ['', 'Product', 'Quantity', 'Price', 'Total']); //id //number of cells in row //
+        createRow("#tablecart", 5, '<td>', ['Total', "", '0', "", "0"], '<tr id="TotalMoney">');
+
+        function createRow(tableId, howmanyinrow, tdorth, data, tr) {
+            if (tr == undefined) {
+                tr = '<tr>';
+            }
+            $.each(data, function(i) {
+                if (!(i % howmanyinrow)) tRow = $(tr);
+                tCell = $(tdorth).html(data[i]);
+                $(tableId).append(tRow.append(tCell));
+            });
+        }
+    }
+</script>
+<!--
+<thead>
+                        <tr>
+                            <th colspan="5">Cart</th>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>-->
+
+</html>
