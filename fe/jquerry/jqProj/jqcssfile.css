@@ -102,3 +102,7 @@ td {
     padding: 5px;
     text-align: left;
 }
+
+table {
+    position: relative;
+}
