@@ -6,12 +6,15 @@ Expression.prototype.evaluate = function() {
     return this.value;
 }
 
-function Value(number) { return this.value = number; };
+function Value(number) {
+    return this.value = number;
+};
 Value.prototype = Object.create(Expression.prototype);
 
 function Add(expretion1, expretion2) {
     return this.value = expretion1.value + expretion2.value;
 };
+Add.prototype = Object.create(Expression.prototype);
 
 function minus(expretion1, expretion2) {
     if (expretion1 > expretion2) {
@@ -20,17 +23,18 @@ function minus(expretion1, expretion2) {
         return this.value = expretion2.value - expretion1.value;
     }
 }
+minus.prototype = Object.create(Expression.prototype);
 
 function pow(expretion) {
     return this.value = expretion * expretion;
 }
+pow.prototype = Object.create(Expression.prototype);
 
 function kefel(expretion1, expretion2) {
     return this.value = expretion1 * expretion2;
 }
+kefel.prototype = Object.create(Expression.prototype);
 
-
-Add.prototype = Object.create(Expression.prototype);
 var val8 = new Value(8);
 var val5 = new Value(5);
 var val2 = new Value(2);
