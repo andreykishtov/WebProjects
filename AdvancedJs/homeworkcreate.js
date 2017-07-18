@@ -12,6 +12,24 @@ Value.prototype = Object.create(Expression.prototype);
 function Add(expretion1, expretion2) {
     return this.value = expretion1.value + expretion2.value;
 };
+
+function minus(expretion1, expretion2) {
+    if (expretion1 > expretion2) {
+        return this.value = expretion1.value - expretion2.value;
+    } else {
+        return this.value = expretion2.value - expretion1.value;
+    }
+}
+
+function pow(expretion) {
+    return this.value = expretion * expretion;
+}
+
+function kefel(expretion1, expretion2) {
+    return this.value = expretion1 * expretion2;
+}
+
+
 Add.prototype = Object.create(Expression.prototype);
 var val8 = new Value(8);
 var val5 = new Value(5);
