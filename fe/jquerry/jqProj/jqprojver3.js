@@ -155,7 +155,7 @@
             });
             ///////////////////////////////////
             $(window).on('scroll', function(event) {
-                if ($(window).scrollTop() >= $(document).height() - $(window).height()) {
+                if ($(window).scrollTop() >= $(this).height() - $(window).height()) {
                     $.ajax({
                         url: 'http://wpwith.us/experis/cart-products-ajax.php',
                         type: 'POST',
