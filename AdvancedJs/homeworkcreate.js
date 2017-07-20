@@ -1,47 +1,38 @@
-function Expression(expretion) {
-    this.expretion = expretion || '0';
+function Expression(value) {
+    this.value = value;
 }
-
+//returns real number
 Expression.prototype.evaluate = function() {
     return this.value;
 }
 
 function Value(number) {
-    return this.value = number;
+    Expression.call(this, number);
 };
 Value.prototype = Object.create(Expression.prototype);
 
 function Add(expretion1, expretion2) {
-    return this.value = expretion1.value + expretion2.value;
+    Expression.call(this, expretion1.evaluate() + expretion2.evaluate());
 };
 Add.prototype = Object.create(Expression.prototype);
+console.log((new Add(new Value(5), (new Add(new Value(2), new Value(8))))).evaluate())
 
 function minus(expretion1, expretion2) {
-    if (expretion1 > expretion2) {
-        return this.value = expretion1.value - expretion2.value;
-    } else {
-        return this.value = expretion2.value - expretion1.value;
-    }
+    Expression.call(this, expretion1.evaluate() - expretion2.evaluate());
 }
 minus.prototype = Object.create(Expression.prototype);
 
-function pow(expretion) {
-    return this.value = expretion * expretion;
+function multiply(expretion) {
+    Expression.call(this, expretion.evaluate() * expretion.evaluate());
 }
 pow.prototype = Object.create(Expression.prototype);
 
-function kefel(expretion1, expretion2) {
-    return this.value = expretion1 * expretion2;
+function pow(expretion, howmany) {
+    for (var index = 0; index < howmany; index++) {
+        var full = multiply(expretion).evaluate();
+    }
 }
 kefel.prototype = Object.create(Expression.prototype);
-
-var val8 = new Value(8);
-var val5 = new Value(5);
-var val2 = new Value(2);
-var add1 = new Add(val2, val8);
-var addAll = new Add(val5, add1);
-console.log(addAll.evaluate());
-console.log(val2)
 
 
 
