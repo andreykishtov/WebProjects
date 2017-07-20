@@ -2,7 +2,7 @@
 var o = {
     n: 42,
     fx: function() {
-        { n: 4 };
+        return
         return function(x) {
             return x * this.n;
         }
