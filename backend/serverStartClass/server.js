@@ -1,5 +1,6 @@
     var fs = require("fs");
     var http = require('http');
+    var url = require("url");
 
     function getfile(params, res) {
         var getfil = fs.readFile(params, "utf8", function(err, data) {
@@ -17,5 +18,7 @@
             res.writeHead(404);
             getfile('.//1/err.html', res);
         }
-    }).listen(3300, "127.0.0.3"); // listen to port 2244 (we pick) and to ip. ip is default, dont have to write
+    }).listen(3000); // listen to port 2244 (we pick) and to ip. ip is default, dont have to write
     console.log('Server running!');
+
+    // module url module path
