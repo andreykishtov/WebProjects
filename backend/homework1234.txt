@@ -1,0 +1,7 @@
+
+FirstName:1234
+LastName:1234
+weight:30
+height:70
+Age:18
+bmi:61.224489795918366

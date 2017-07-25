@@ -1,6 +1,8 @@
 const exp = require('express');
+var EventEmitter = require('events').EventEmitter;
 var app = exp();
 var total = 0;
+var em = new EventEmitter;
 app.get('/', function(req, res) {
     ++total;
     var number = parseInt(req.query.number);
@@ -10,20 +12,20 @@ app.get('/', function(req, res) {
         console.log("total before" + total);
         setTimeout(function() {
             console.log(total);
-        }, 10);
+        }, 1000);
     }
     res.status(200).write(`<html>${fibunacinumer}</html>`);
-
-    //}
-
     // if (total > 50) {
     //     setTimeout(function() {
     //         res.status(200).write(`<html>${fibunacinumer}</html>`);
     //     }, 20);
 
     //     console.log(total);
-
     // }
+    console.log(process.pid);
+    process.on("SIGINT", function() {
+        console.log("you want to kill me?");
+    })
     res.end();
 });
 
