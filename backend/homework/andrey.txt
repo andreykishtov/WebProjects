@@ -1,1 +1,1 @@
-{"FirstName":"andrey","LastName":"andrey","weight":"46","height":"93","Age":"19","bmi":53.185339345589085}
+{"FirstName":"andrey","LastName":"kishtov","weight":"80","height":"174","Age":"33","bmi":26.42356982428326}

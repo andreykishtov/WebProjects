@@ -1,0 +1,1 @@
+var categories = [{"id":1,"categories":"Smart Robots"},{"id":2,"categories":"Not So Smart Robots"},{"id":3,"categories":"Robots That Count"},{"id":4,"categories":"Best Robots"}]
