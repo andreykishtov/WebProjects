@@ -1,7 +1,7 @@
 const connection = require('./server');
 
-//const port = connection.app.get('port') || 3000;
+const port = connection.app.get('port') || 3000;
 
-connection.server.listen(3000, function() {
+connection.server.listen(port, function() {
     console.log("started app");
 })

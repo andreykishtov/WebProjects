@@ -18,5 +18,6 @@ $(document).ready(function() {
             items: data.sendresult
         }
         $("#NewProducts").shop(options, cartDiv);
+        socket.disconnect();
     });
 });

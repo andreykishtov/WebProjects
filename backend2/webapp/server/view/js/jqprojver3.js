@@ -191,22 +191,7 @@ $.fn.shop = function(options, cartSelector) {
     ///////////////////////////////////////////////////////////////////////////////
     var product;
     var that = this;
-
-    var socket = io.connect('http://localhost:3000');
-
-    socket.on('loadcartfromsql', function(items) {
-        items = items.sendresult;
-        for (var i = 0; i < items.length; ++i) {
-            var item = items[i];
-            item.beforeproductlist = true;
-            if (item.quantity-- > 1) {
-                --i;
-            }
-            cart.addItem(item);
-        }
-    });
-
-
+    createCart(); //
     /////////////////
     products = options.products;
     for (var i = 0; i < products.length; ++i) {
@@ -215,6 +200,21 @@ $.fn.shop = function(options, cartSelector) {
     }
     ///////////////////////////////////
 
+    function createCart() {
+        var socket = io.connect('http://localhost:3000');
+        socket.on('loadcartfromsql', function(items) {
+            items = items.sendresult;
+            for (var i = 0; i < items.length; ++i) {
+                var item = items[i];
+                item.beforeproductlist = true;
+                if (item.quantity-- > 1) {
+                    --i;
+                }
+                cart.addItem(item);
+            }
+            socket.off();
+        });
+    }
     // after seting up sql   $(window).on('scroll', loadData); //////////////////////
     ///////////////////////////////////////product list/////////////////////////
     ///////////////////////////////////////////////////////////////////////////
