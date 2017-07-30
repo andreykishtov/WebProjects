@@ -1,0 +1,19 @@
+{
+    "name": "app",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "test": "nodemon app.js",
+        "start": "NODE_ENV=mysql nodemon app.js"
+    },
+    "author": "andrey",
+    "license": "ISC",
+    "dependencies": {
+        "body-parser": "^1.17.2",
+        "express": "^4.15.3",
+        "morgan": "^1.8.2",
+        "nodemon": "^1.11.0",
+        "socket.io": "^2.0.3"
+    }
+}

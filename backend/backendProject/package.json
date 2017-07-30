@@ -1,0 +1,15 @@
+{
+    "name": "backendproject",
+    "version": "1.0.0",
+    "description": "",
+    "main": "products.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "NODE_ENV=mysql nodemon weekendServer.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "nodemon": "^1.11.0"
+    }
+}

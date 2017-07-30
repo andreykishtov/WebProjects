@@ -1,7 +1,9 @@
 $.fn.shop = function(options, cartSelector) {
     var start = 1;
     var end = 9;
+    //this.text(""); //clears html
     var cart = (function(selector) {
+        //  $("#" + selector).text(""); //clear cart
         createTable(selector);
         ////////////////////////////////////cart location///////////////////////////////
         function createTable(selector) {
@@ -57,6 +59,10 @@ $.fn.shop = function(options, cartSelector) {
         }
 
         function addItem(sku, name, price) {
+            //////////////////////////////emiter
+            var socket = io.connect('http://localhost:9999');
+            socket.emit('addtocart', { sku: sku });
+            //////////////////////////////
             if (typeof sku === 'object' && arguments.length === 1) {
                 name = sku.name;
                 price = sku.price;
@@ -185,6 +191,7 @@ $.fn.shop = function(options, cartSelector) {
     function ProductList(items, selector, cart, cartSelector) {
         var divList = $('<div id="after-"' + "NewProducts" + ">");
         items.forEach(function(element, i) {
+            console.log(element);
             if (element.price.split("$").length == 1) {
                 element.price = "$" + element.price;
             }
@@ -197,7 +204,7 @@ $.fn.shop = function(options, cartSelector) {
             $("<p>", { class: 'pricePlaceHolder', }).text(element.price).appendTo(newDiv);
             var btn = $('<button>', { class: 'buttonCart', }).text('Add to Cart');
             btn.data('prod', {
-                sku: element.sku,
+                sku: element.id, //number in 
                 name: element.name,
                 price: element.price
             });
