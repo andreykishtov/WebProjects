@@ -7,7 +7,6 @@ module.exports = function() {
         //if (!sendresult.length) {
         //    return;
         // }
-        //  console.log('res:' + JSON.stringify(sendresult));
         io.on('connection', function(socket) {
             console.log("emiting products")
             socket.emit('loadcartfromsql', { sendresult: sendresult });
