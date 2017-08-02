@@ -1,40 +1,73 @@
-var RegisterHolderCreator = require('./handler');
+var url = require('url');
 var fs = require('fs');
-var parser = require('url');
-var RegisterHolders = {};
 
-exports.clear = function() {
-    RegisterHolders = {};
+var registerUrl = {};
+
+function register(url, func) {
+    registerUrl[url] = func;
 }
 
-exports.register = function(url, method) {
-    RegisterHolders[url] = RegisterHolderCreator.CreateRegisterHolder(method);
-}
-
-exports.route = function(req) {
-    url = parser.parse(req.url, true);
-    var RegisterHolder = RegisterHolders[url.pathname];
-    if (!RegisterHolder) { RegisterHolder = this.missing(req) }
-    return RegisterHolder;
-}
-
-exports.missing = function(req) {
-    // Try to read the file locally, this is a security hole, yo /../../etc/passwd
-    var url = parser.parse(req.url, true);
-    var path = __dirname + "/public" + url.pathname
-    try {
-        data = fs.readFileSync(path);
-        mime = req.headers.accepts || 'text/html'
-        return RegisterHolderCreator.CreateRegisterHolder(function(req, res) {
-            res.writeHead(200, { 'Content-Type': mime });
-            res.write(data);
-            res.end();
-        });
-    } catch (e) {
-        return RegisterHolderCreator.CreateRegisterHolder(function(req, res) {
-            res.writeHead(404, { 'Content-Type': 'text/plain' });
-            res.write("No route registered for " + url.pathname);
-            res.end();
-        });
+function route(request, response) {
+    var where = url.parse(request.url).pathname;
+    if (registerUrl[where]) {
+        registerUrl[where](request, response);
+    } else {
+        readfile(request, response, where)
     }
+}
+
+function notFound(request, response) {
+    response.writeHead(404, { 'Content-Type': 'text/plain' });
+    response.write("googogogoogog");
+    response.end();
+}
+
+function readfile(request, response, filepath) {
+    fs.readFile('public' + filepath, 'utf8', function(err, data) {
+        if (err) {
+            console.log(err);
+            response.writeHead(404, { 'Content-Type': 'text/html' });
+            response.write("<h1>Error HTML Not Found</h1>");
+            response.end();
+            return;
+        }
+        var mime = findformat(filepath);
+        if (mime) {
+            response.writeHead(200, { 'Content-Type': mime });
+        }
+        response.write(data);
+        response.end();
+    });
+}
+
+function findformat(filepath) {
+    if (!filepath) { return; }
+    filepath = filepath.split(".");
+    filepath = filepath[filepath.length - 1];
+    if (filepath == "js") {
+        return 'text/javascript';
+    }
+    if (filepath == "css") {
+        return 'text/css';
+    }
+    if (filepath == "html") {
+        return 'text/html';
+    }
+
+    // if (!filepath) { return; }
+    // filepath = filepath.split(".");
+    // filepath = filepath[filepath.length - 1];
+    // var mime = {
+    //     'js': 'text/javascript',
+    //     'css': 'text/css',
+    //     'html': 'text/html'
+    // }
+    // console.log(mime[filepath]);
+    // return mime[filepath];
+}
+
+module.exports = {
+    register: register,
+    route: route,
+    readfile: readfile
 }

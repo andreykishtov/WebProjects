@@ -1,0 +1,20 @@
+{
+    "name": "expressnode",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "test": "jasmine-node tests",
+        "start": "node ./$expressNode nodemon app.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "body-parser": "^1.17.2",
+        "express": "^4.15.3",
+        "nodemon": "^1.11.0"
+    },
+    "devDependencies": {
+        "jasmine-node": "^1.14.5"
+    }
+}
