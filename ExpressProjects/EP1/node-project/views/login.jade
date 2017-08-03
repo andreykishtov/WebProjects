@@ -1,16 +1,16 @@
 extends layout
 
 block content
-  h2 login
-  form(method="post" action='/login_form')
-    label username 
+  h2= title
+  form(method="post" action='/users/login_form')
+    label(for="username")= username 
     input#username(type="text",name="username")
     br
     br
-    label password
+    label(for="password")= password
     input#password(type="text",name="password")
     br
-    input#submit(type="submit", value="Log In")
+    input#submit(type="submit", value="#{submit}")
     br
   script(src="http://code.jquery.com/jquery-3.2.1.min.js")  
   script(src="javascripts/ajax.js")

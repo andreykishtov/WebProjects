@@ -7,12 +7,9 @@ var users = {
 
 var currentPage = '/';
 
-var loggedIn = false;
-
 function loggedInCheck(req, res) {
     var sess = req.session;
-    if (loggedIn) {
-        sess.login = 1;
+    if (sess.loggedIn) {
         //sess.realName = getNameFromDB();
         return;
     }
@@ -20,25 +17,23 @@ function loggedInCheck(req, res) {
     if (req.url == '/login') {
         return;
     }
-    if (req.url == '/user_form') {
+    if (req.url == '/users/user_form') {
         return;
     }
     currentPage = req.url;
     res.redirect('/login');
 }
 
-function validate(username, password) {
+function validate(sess, username, password) {
 
     if (username !== users.andrey.myUserName) {
         return ({ status: 'wrong username, please try again' });
     }
     if (password !== users.andrey.myPassword) {
         return ({ status: 'wrong password, please try again' });
-    }
-    // var sess = req.session;
-    loggedIn = true;
+    };
+    sess.loggedIn = true;
     return ({ status: 'success', redirect: currentPage })
-
 }
 
 module.exports = {

@@ -7,7 +7,26 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/login', function(req, res, next) {
-    res.render('login', { title: 'Express' });
+    var langTexts = {
+        en: {
+            dir: 'ltr',
+            title: 'Login',
+            username: 'User',
+            password: 'Pass',
+            submit: 'Log In',
+            banner: 'Huge Header'
+         },
+        he: {
+            dir: 'rtl',
+            title: 'לוגין',
+            username: 'משתמש',
+            password: 'סיסמא',
+            submit: 'כניסה',
+            banner: 'כותרת גדולה'
+         }
+    };
+    var texts = langTexts.he;
+    res.render('login', texts);
 });
 
 
