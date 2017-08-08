@@ -1,4 +1,4 @@
-module.exports = (function() {
+var list = (function() {
     var cons = function() {
         this.first;
         this.last;
@@ -75,6 +75,17 @@ module.exports = (function() {
         }
         return null;
     };
+    cons.prototype.swap = function(i) {
+        var head = this.first;
+        var tail = this.last;
+        while (head != null) {
+            var temp = this.first.data;
+            this.first.data = this.last.data;
+            this.last.data = temp;
+            head = head.next;
+            tail = tail.prev;
+        }
+    }
     return cons;
 })();
 
@@ -87,9 +98,22 @@ function makesearchlogic(first, second) {
 }
 
 /////////
-// var list1 = new list;
-// list1.pushHead(2);
-// list1.pushHead(4);
-//list1.pushtail(3);
-//list1.show();
+var list1 = new list;
+list1.pushHead(6);
+list1.pushHead(5);
+list1.pushHead(4);
+list1.pushHead(3);
+list1.pushHead(2);
+list1.pushHead(1);
+
+
+list1.swap(0);
+
+//shwa(list1.first);
+
+//function shwa(params) {
+//   params = null;
+//}
+
+list1.show();
 //console.log(list1.FindVal(2, makesearchlogic));

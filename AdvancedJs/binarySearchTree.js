@@ -19,6 +19,15 @@ function NodeTree(data) {
     this.left = this.right = null;
 }
 
+// Tree.prototype.sum = function sum(root) {
+//     if (this.root === null) {
+//         return;
+//     }
+//     return sum(this.root.right) + sum(this.root.left) + this.root.data;
+// }
+
+
+
 Tree.prototype.insert = function(data) {
     if (this.root === null) {
         this.root = new NodeTree(data);
@@ -55,6 +64,15 @@ myTree.insert(9);
 myTree.insert(8);
 //myTree.height(myTree.root);
 //console.log(myTree);
+console.log("sum:" + sum(myTree.root));
+
+function sum(node) {
+    if (node === null) {
+        return 0;
+    }
+    return sum(node.right) + sum(node.left) + node.data;
+}
+
 
 Tree.prototype.find = function(data) {
     var current = this.root;

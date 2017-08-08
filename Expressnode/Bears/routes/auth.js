@@ -10,7 +10,6 @@ function basic_auth_asinc(req, res, next) {
         if (req.headers.authorization && req.headers.authorization.search('Basic ') === 0) {
             // fetch login and password
             for (var k = 0; k < usersInMemory.length; ++k) {
-                console.log('' + usersInMemory[k].username + ':' + usersInMemory[k].password);
                 if (tocheck[2] == '' + usersInMemory[k].username + ':' + usersInMemory[k].password) {
                     next();
                     return;

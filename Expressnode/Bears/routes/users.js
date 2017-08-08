@@ -7,37 +7,29 @@ var basic_auth_asinc = require('./auth');
 
 ////////////get all users
 router.get('/', function(req, res, next) {
-    function callback(dataToShow) {
+    users.users(function(dataToShow) {
         res.json(dataToShow)
-    }
-    users.users(callback);
+    });
 });
 ////////////////////////////get specific user
 router.get('/:id', function(req, res, next) {
-    function callback(dataToShow) {
+    users.specificUser(function(dataToShow) {
         res.json(dataToShow[req.params.id]);
-    }
-    users.specificUser(callback);
+    });
 });
-///////////////auth middleware
-router.use(function(req, res, next) {
-    //if(err) { console.log(err); }
-    basic_auth_asinc(req, res, next);
-});
-
 
 //add user
-router.post('/', function(req, res, next) {
+router.post('/', basic_auth_asinc, function(req, res, next) {
     users.addUser(req.body);
 });
 
 //delete
-router.delete('/:id', function(req, res, next) {
+router.delete('/:id', basic_auth_asinc, function(req, res, next) {
     users.removeUser(req.params.id);
 });
 
 //update
-router.put('/:id', function(req, res, next) {
+router.put('/:id', basic_auth_asinc, function(req, res, next) {
     users.changeUserPasword(req.params.id, req.body);
 });
 

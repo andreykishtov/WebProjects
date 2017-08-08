@@ -2,7 +2,7 @@ var db = require('./db');
 var sha1 = require('sha1');
 //////////////////users for Check
 function usersprivate(callback) {
-    var query = 'select username,password from users;'
+    var query = 'select username,password from users;';
     db.query(query, function(err, data, fields) {
         if (err) throw err;
         callback(data);
@@ -11,7 +11,7 @@ function usersprivate(callback) {
 
 //get users
 function users(callback) {
-    var query = 'select id,username,email,firstname,lastname,cartId from users;'
+    var query = 'select id,username,email,firstname,lastname,cartId from users;';
     db.query(query, function(err, data, fields) {
         if (err) throw err;
         callback(data);
@@ -19,7 +19,7 @@ function users(callback) {
 }
 ///////////////////////////////get specific user
 function specificUser(callback, id) {
-    var query = 'select id,username,email,firstname,lastname,cartId from users where id=' + id + ';'
+    var query = 'select id,username,email,firstname,lastname,cartId from users where id=' + id + ';';
     db.query(query, function(err, data, fields) {
         if (err) throw err;
         callback(data);
@@ -41,8 +41,8 @@ function removeUser(id) {
     });
 };
 //////////////////////update password
-function changeUserPasword(id, shaPass) {
-    var updatePass = 'UPDATE users SET password="' + sha1(shaPass) + '" WHERE id=' + id + ';'
+function changeUserPasword(id, user) {
+    var updatePass = 'UPDATE users SET password="' + sha1(user.password) + '" WHERE id=' + id + ';'
     db.query(updatePass, function(err) {
         if (err) throw err;
     });
