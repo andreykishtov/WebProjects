@@ -4,7 +4,6 @@ class Game {
         this.board = [];
         this.currentX = "X";
         this.currentO = "O";
-        this.current;
         this.turn = 1;
         this.gameOld = newTTTGame();
         this.boardOld = this.gameOld.newGame();
@@ -21,7 +20,7 @@ class Game {
 
     play() {
         this.draw(); // draw()
-        this.findClickedCell(); // Start listening to clicks
+        this.registerEventListener(); // Start listening to clicks
     }
 
     draw() {
@@ -31,49 +30,49 @@ class Game {
     }
 
     onClick(event) {
-        for (let cell = 0; cell < (this.size * this.size); ++cell)
+        for (let cell = 0; cell < (this.size * this.size); ++cell) {
             if (this.board[cell].isInCell(event.clientX, event.clientY)) {
-                this.stateOfGame = this.gameOld.playGame(cell, this.boardOld);
-                this.current = this.board[cell].getState()
-                if (this.current === 'X' || this.current === 'O') {
-                    return;
-                }
-                if (this.turn % 2)
-                    this.board[cell].setState(this.ctx, this.currentX);
-                else
-                    this.board[cell].setState(this.ctx, this.currentO);
-
-                this.turn++;
-                if (this.stateOfGame[1].length)
-                    this.computermove(this.stateOfGame[2]);
-                else {
-                    this.checkWin(this.stateOfGame[0]);
-                }
+                this.moveCurrent(cell);
+                return;
             }
+        }
     }
 
-    computermove(cell) {
-        this.current = this.board[cell].getState()
-        if (this.current === 'X' || this.current === 'O') {
-            return;
+    moveCurrent(cell) {
+        let movesLeft, stateOFGame, compmove;
+        [stateOFGame, movesLeft, compmove] = this.gameOld.playGame(cell, this.boardOld);
+
+        this.move(cell);
+        this.move(compmove);
+        if (movesLeft.length === 0 || stateOFGame !== 'Tie') {
+            this.checkWin(stateOFGame);
+        }
+    }
+
+    move(cell) {
+        if (cell !== undefined) {
+            let cellObj = this.board[cell];
+            let current = cellObj.getState()
+            if (current === 'X' || current === 'O') {
+                return;
+            }
         }
         if (this.turn % 2)
-            this.board[cell].setState(this.ctx, this.currentX);
+            cellObj.setState(this.currentX);
         else
-            this.board[cell].setState(this.ctx, this.currentO);
+            cellObj.setState(this.currentO);
+        cellObj.draw(this.ctx);
         this.turn++;
     }
 
-    findClickedCell() {
+    registerEventListener() {
         this.canvas.addEventListener("click", event => this.onClick(event))
     }
 
     checkWin(win) {
         alert(win);
     }
-    onChange() {
-        console.log('change');
-    }
+
 }
 
 class Cell {
@@ -86,29 +85,11 @@ class Cell {
     }
 
     isInCell(x, y) {
-            if ((x < this.width + this.x && x > this.x) && (y < this.heigth + this.y && y > this.y))
-                return true;
-            else return false;
-        } // returns true/false (does nothing)
+        return ((x < this.width + this.x && x > this.x) && (y < this.heigth + this.y && y > this.y));
+    }
 
-    setState(ctx, state) { // can be ' ', 'x', 'o'
-        if (state === 'X') {
-            this.state = 'X'
-            var offset = this.width / 5;
-            ctx.beginPath();
-            ctx.moveTo(this.x + offset, this.y + offset);
-            ctx.lineTo(this.x + this.width - offset, this.y + this.width - offset);
-            ctx.moveTo(this.x + offset, this.y + this.width - offset);
-            ctx.lineTo(this.x + this.width - offset, this.y + offset);
-            ctx.stroke();
-        }
-
-        if (state === 'O') {
-            this.state = 'O'
-            ctx.beginPath();
-            ctx.arc(this.x + this.width / 2, this.y + this.width / 2, this.width / 3, 0, 2 * Math.PI);
-            ctx.stroke();
-        }
+    setState(state) {
+        this.state = state;
     }
 
     getState() {
@@ -116,7 +97,33 @@ class Cell {
     }
 
     draw(ctx) {
-        ctx.rect(this.x, this.y, this.width, this.heigth);
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.strokeRect(0, 0, this.width, this.heigth);
+
+        if (this.state === 'X') {
+            this.drawX(ctx);
+        }
+
+        if (this.state === 'O') {
+            this.drawO(ctx);
+        }
+        ctx.restore();
+    }
+
+    drawO(ctx) {
+        ctx.beginPath();
+        ctx.arc(this.width / 2, this.width / 2, this.width / 3, 0, 2 * Math.PI);
+        ctx.stroke();
+    }
+
+    drawX(ctx) {
+        let offset = this.width / 5;
+        ctx.beginPath();
+        ctx.moveTo(offset, offset);
+        ctx.lineTo(this.width - offset, this.width - offset);
+        ctx.moveTo(offset, this.width - offset);
+        ctx.lineTo(this.width - offset, offset);
         ctx.stroke();
     }
 }
