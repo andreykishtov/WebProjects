@@ -1,0 +1,52 @@
+<<div class="row">
+    <div class="span12">
+        <h2>Hi, {{me.username}}!</h2>
+    </div>
+    </div>
+
+    <div class="row">
+
+        <div class="span9">
+
+            <div class="games-container">
+
+                <h4>Available Games ({{games.length}})</h4>
+
+                <table class="games" ng-show="games.length>0">
+                    <tr>
+                        <th>Name</th>
+                        <th>Map</th>
+                        <th>Speed</th>
+                    </tr>
+                    <tr ng-repeat="game in games" ng-click="on_game_select(game)" ng-class="{selected: selected_game==game}">
+
+                        <td>{{game.name}}</td>
+                        <td>{{game.map.name}}</td>
+                        <td>{{game.speed}}</td>
+                    </tr>
+                </table>
+                <div ng-show="games.length==0">No games available! Why don't you create one?</div>
+
+                <div class="game-controls">
+                    <div class="btn-group">
+                        <button class="btn btn-primary" type="button" ng-click="on_create_click()">Create</button>
+                        <button class="btn btn-primary" type="button" ng-disabled="selected_game==null" ng-click="on_join_click()">Join</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="span3 user-online-list">
+            <div class="well">
+                <h2>Users online ({{users.length}})</h2>
+
+                <ul>
+                    <li ng-repeat="user in users | orderBy:'toString()'">{{user}}</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+         <script src="/javascripts/connection_auth.js"></script> 

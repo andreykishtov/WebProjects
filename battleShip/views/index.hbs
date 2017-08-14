@@ -1,0 +1,63 @@
+<section class="container">
+    <div id='login' class="login">
+        <h1>Login Username to BattleShip Game</h1>
+        {{!-- <form method="post" action="/users"> --}}
+            <p><input id="username" type="text" name="username" value="" placeholder="Username"></p>
+            <label><input type="checkbox" name="remember_me" id="remember_me">Remember me on this computer</label>
+            <p class="submit"><input id="loginSubmit" type="submit" name="commit" value="Add Username"></p>
+        {{!-- </form> --}}
+    </div>
+
+    <div id='greedingLoby' class="row">
+        <div class="span12">
+            <h2 id='greeding'>Hi,!</h2>
+        </div>
+    </div>
+
+    <div id="gameLoby" class="row">
+
+        <div class="span9">
+
+            <div class="games-container">
+
+                <h4>Available Games ({{games.length}})</h4>
+
+                <table class="games" ng-show="games.length>0">
+                    <tr>
+                        <th>Name</th>
+                        <th>Map</th>
+                        <th>Speed</th>
+                    </tr>
+                    <tr ng-repeat="game in games" ng-click="on_game_select(game)" ng-class="{selected: selected_game==game}">
+
+                        <td>{{game.name}}</td>
+                        <td>{{game.map.name}}</td>
+                        <td>{{game.speed}}</td>
+                    </tr>
+                </table>
+                <div ng-show="games.length==0">No games available! Why don't you create one?</div>
+
+                <div class="game-controls">
+                    <div class="btn-group">
+                        <button class="btn btn-primary" type="button" ng-click="on_create_click()">Create</button>
+                        <button class="btn btn-primary" type="button" ng-disabled="selected_game==null" ng-click="on_join_click()">Join</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="span3 user-online-list">
+            <div class="well">
+                <h2>Users online</h2>
+
+                <ul id='users'>
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <script src="/javascripts/communicationManager.js"></script> 
+    <script src="/javascripts/connection_auth.js"></script> 
