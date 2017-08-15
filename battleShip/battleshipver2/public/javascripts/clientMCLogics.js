@@ -32,6 +32,14 @@ class CommunicationLogic {
         console.log(ships);
         battleshipGame.drawBattleship(ships);
     }
+
+    checkIfHitFromServer(cell) {
+        fromServerIfHit(cell);
+    }
+    answerIfHit(cellContent) {
+
+    }
+
 }
 var cmlogic = new CommunicationLogic;
 

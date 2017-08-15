@@ -11,7 +11,6 @@ class Communication {
                 cmlogic.firstTimeGetUsersFromServer(usersObject); //function outside
             }
             this.socket.on('connetionBeforeGame', (ships) => { //connected to game
-                console.log("afterbrodcast:" + ships);
                 cmlogic.playGame(ships);
             });
         });
@@ -30,6 +29,14 @@ class Communication {
     startGame(username) {
         this.socket.emit('startGame', username);
     }
+
+    fromServerIfHit(cell) {
+        this.socket.emit('checkifHit', cell);
+        this.socket.on('answerIfHit', (cellContent) => { //connected
+            gameLogics.checkboardIfHit(cell, ifHit); ////////////////////////////game Logics///////////////////////
+        });
+    }
+
 }
 
 var communication = new Communication;

@@ -1,13 +1,14 @@
 var users = require('./users');
 var gamelogics = require('./gamelogics');
-var sendships = 0; //remove after making random board
-
-var emiters = function(socket) {
+var sendships = 0; //currentGame
+var CurrentGame = [];
+var emiters = function(socket, io) {
     socket.on('startConnection', (dataBeforeConnection) => { //User Connected
         let usersInServer = users.getUsers();
         socket.emit('connection Established', usersInServer); //Responce To User
         checkuserForEmit(socket);
-        waitingForGame(socket);
+        waitingForGame(socket, io);
+        checIfHitOnServer(socket);
     })
 }
 
@@ -21,15 +22,24 @@ function checkuserForEmit(socket) {
     });
 }
 
-function waitingForGame(socket) {
+function waitingForGame(socket, io) {
     socket.on('startGame', (newUsername) => {
         let socketid = users.findsocketID(newUsername);
-        if (sendships++) { //change after game works
-            socket.broadcast.to(socketid).emit('connetionBeforeGame', gamelogics.shipsPlayer1);
-        } else {
-            socket.broadcast.to(socketid).emit('connetionBeforeGame', gamelogics.shipsPlayer2);
-        }
+        //console.log(socketid);
+        CurrentGame[sendships] = new gamelogics(socket.id, socketid); //saves first game
+        let game = CurrentGame[sendships].objOfPlayers;
+        //console.log(game[0].board);
+        io.to(game[0].id).emit('connetionBeforeGame', game[0].board);
+        io.to(game[1].id).emit('connetionBeforeGame', game[1].board);
+        //socket.emit('connetionBeforeGame', game[1].board);
     });
+}
+
+function checIfHitOnServer(socket) {
+    socket.on('checkifHit', (cell) => { //User Connected
+
+        socket.broadcast.to(socketid).emit('connetionBeforeGame', gamelogics.shipsPlayer2);
+    })
 }
 
 
@@ -54,4 +64,4 @@ module.exports = emiters;
 //            console.log(clients);
 //            socket.broadcast.emit('addUserNameToList', clients);
 
-//        });
+//
