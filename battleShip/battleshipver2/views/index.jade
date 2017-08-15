@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1 My Battleship
+  h2(id='greeting')    
+
+    input(type="text",id="username", name="username" placeholder="enter username")
+    input(id="submitNewUser" type="button", value='submit')
+    br
+    br
+    h4 Players list
+    select(id="playerList", name="playerList")
+    br
+    br
+    input(id="selectInput" type="button", value='Play')
+    canvas(id="canvas" width="1500" height="500")
+    script(src="/socket.io/socket.io.js")
+    script(src="/javascripts/clientMCLogics.js")
+    script(src="/javascripts/clientCM.js")
+    script(src="/javascripts/boardDrawer.js")
+    script(src="/javascripts/clientGameLogics.js")
