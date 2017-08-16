@@ -3,6 +3,8 @@ class Game {
         this.player1 = id1;
         this.player2 = id2;
         this.gameInit();
+        this.currentPlayer;
+        this.CurrentGame = [];
     }
 
     gameInit() {
@@ -36,26 +38,48 @@ class Game {
             }
         }];
     }
+
+    startGame(newUsername) {
+        let socketid = users.findsocketID(newUsername);
+        CurrentGame[sendships] = new gamelogics(socket.id, socketid); //saves first game
+        let game = CurrentGame[sendships].objOfPlayers; //first player that started the game is first playing player0
+        CurrentGame[sendships].currentPlayer = game[0].id;
+        return game;
+    }
+
+    checkGame(socketid, cell) {
+        if (socketid != this.player1) { //uses board of other player!//
+            var currentboard = this.objOfPlayers[0].board;
+        } else {
+            var currentboard = this.objOfPlayers[1].board;
+        }
+        for (var key in currentboard) {
+            var ship = currentboard[key];
+            for (var index = 0; index < ship.length; index++) {
+                if (ship[index] === cell) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    ifPlayerAllowed(socketid) {
+        let otherPlayerID = this.FindOtherPlayer(socketid);
+        if (otherPlayerID !== this.currentPlayer) {
+            let player = this.currentPlayer;
+            this.currentPlayer = otherPlayerID;
+            return player;
+        }
+    }
+
+    FindOtherPlayer(socketid) {
+        if (socketid === this.player1) { //uses board of other player!//
+            return this.player2;
+        } else {
+            return this.player1;
+        }
+    }
 }
-
-
-
-
-
-
-// class GameLogics {
-//     constructor() {
-//         this.makeShips();
-//     }
-//     makeShips() {
-//         this.shipsPlayer1 =
-//             this.shipsPlayer2 =
-//     }
-
-//     createRandomShip() {
-//         Math.floor(Math.random() * 10)
-//     }
-
-// }
 
 module.exports = Game;

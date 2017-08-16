@@ -2,8 +2,8 @@ class BattleShip {
     constructor(canvasID, size = 10) {
         this.size = size;
         this.board = [];
-        this.currentX = "X";
-        this.currentO = "O";
+        this.currenthit = "hit";
+        this.currentmiss = "miss";
         this.stateShip = 'ship';
         this.canvas = document.getElementById(canvasID);
         this.ctx = this.canvas.getContext('2d');
@@ -25,7 +25,7 @@ class BattleShip {
             var celldraw = this.board[cell];
             this.ctx.save();
             this.ctx.translate(celldraw.x, celldraw.y);
-            this.ctx.strokeRect(0, 0, celldraw.width, celldraw.heigth);
+            this.ctx.strokeRect(0, 0, celldraw.width, celldraw.height);
             this.ctx.restore();
         }
     }
@@ -50,7 +50,7 @@ class BattleShip {
 
         let cellObj = gameLogics.board[cell]; //  this for drawBattleships is from other object
         let current = cellObj.getState();
-        if (current === 'X' || current === 'O' || current === 'ship') {
+        if (current === 'hit' || current === 'miss' || current === 'ship') {
             return;
         }
 
@@ -65,12 +65,12 @@ class Cell {
         this.x = x;
         this.y = y;
         this.width = w;
-        this.heigth = h;
+        this.height = h;
         this.state = ' ';
     }
 
-    isInCell(x, y) {
-        return ((x < this.width + this.x && x > this.x) && (y < this.heigth + this.y && y > this.y));
+    clickedCell(x, y) {
+        return ((x < this.width + this.x && x > this.x) && (y < this.height + this.y && y > this.y));
     }
 
     setState(state) {
@@ -82,11 +82,11 @@ class Cell {
     }
 
     draw(ctx) {
-        if (this.state === 'X') {
+        if (this.state === 'hit') {
             this.drawX(ctx);
         }
 
-        if (this.state === 'O') {
+        if (this.state === 'miss') {
             this.drawO(ctx);
         }
 
@@ -104,7 +104,7 @@ class Cell {
 
     drawShip(ctx) { //ship
         ctx.fillStyle = 'blue';
-        ctx.fillRect(this.x + 5, this.y + 5, this.width - 10, this.heigth - 10);
+        ctx.fillRect(this.x + 5, this.y + 5, this.width - 10, this.height - 10);
     }
 
     drawX(ctx) { //hit

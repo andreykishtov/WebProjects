@@ -8,14 +8,12 @@ var emiters = function(socket, io) {
         socket.emit('connection Established', usersInServer); //Responce To User
         checkuserForEmit(socket);
         waitingForGame(socket, io);
-        checIfHitOnServer(socket);
-    })
+    });
 }
 
 function checkuserForEmit(socket) {
     socket.on('username', (newUsername) => {
         var ok = users.checkUser(newUsername, socket.id);
-        //console.log('going into users: name:' + newUsername + " id:" + socket.id);
         if (!ok) {
             socket.broadcast.emit('usernameOK', newUsername); //Responce To User
         }
@@ -24,29 +22,40 @@ function checkuserForEmit(socket) {
 
 function waitingForGame(socket, io) {
     socket.on('startGame', (newUsername) => {
-        let socketid = users.findsocketID(newUsername);
-        //console.log(socketid);
-        CurrentGame[sendships] = new gamelogics(socket.id, socketid); //saves first game
-        let game = CurrentGame[sendships].objOfPlayers;
-        //console.log(game[0].board);
+        let emitData = CurrentGame.startGame(newUsername);
+        // let socketid = users.findsocketID(newUsername);
+        // CurrentGame[sendships] = new gamelogics(socket.id, socketid); //saves first game
+        // let game = CurrentGame[sendships].objOfPlayers; //first player that started the game is first playing player0
+        // CurrentGame[sendships].currentPlayer = game[0].id;
         io.to(game[0].id).emit('connetionBeforeGame', game[0].board);
         io.to(game[1].id).emit('connetionBeforeGame', game[1].board);
-        //socket.emit('connetionBeforeGame', game[1].board);
+        ///////////////////////////****game started****///////////////////////////////
+    });
+
+    socket.on('checkifHit', (cell) => { //User Connected
+        if (CurrentGame[sendships].ifPlayerAllowed(socket.id)) { //checks whos turn it is and allows if its right player turn.
+            let oponent = CurrentGame[sendships].FindOtherPlayer(socket.id);
+            let answer = CurrentGame[sendships].checkGame(socket.id, cell - 100);
+            socket.emit('answerIfHit', { answer, cell });
+            io.to(oponent).emit('answerIfHitFromOtherPlayer', { answer, cell });
+        }
     });
 }
 
-function checIfHitOnServer(socket) {
-    socket.on('checkifHit', (cell) => { //User Connected
-
-        socket.broadcast.to(socketid).emit('connetionBeforeGame', gamelogics.shipsPlayer2);
-    })
-}
-
-
-
-
-
 module.exports = emiters;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

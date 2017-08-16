@@ -1,7 +1,8 @@
 class Communication {
     constructor() {
-        this.socket = io.connect('http://localhost:3000');
+        this.socket = io.connect();
         this.select = document.getElementById("playerList");
+        this.answerIfHit();
     }
 
     startComunication() {
@@ -32,8 +33,14 @@ class Communication {
 
     fromServerIfHit(cell) {
         this.socket.emit('checkifHit', cell);
-        this.socket.on('answerIfHit', (cellContent) => { //connected
-            gameLogics.checkboardIfHit(cell, ifHit); ////////////////////////////game Logics///////////////////////
+    }
+
+    answerIfHit() {
+        this.socket.on('answerIfHit', (ifHit) => { //connected
+            gameLogics.checkboardIfHit(ifHit.cell, ifHit.answer);
+        });
+        this.socket.on('answerIfHitFromOtherPlayer', (ifHit) => { //connected
+            gameLogics.checkboardIfHit(ifHit.cell - 100, ifHit.answer);
         });
     }
 

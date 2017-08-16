@@ -33,9 +33,6 @@ class CommunicationLogic {
         battleshipGame.drawBattleship(ships);
     }
 
-    checkIfHitFromServer(cell) {
-        fromServerIfHit(cell);
-    }
     answerIfHit(cellContent) {
 
     }
