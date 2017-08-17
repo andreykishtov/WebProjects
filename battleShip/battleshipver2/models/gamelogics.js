@@ -59,14 +59,15 @@ class Game {
     }
 
     ifPlayerAllowed(socketid, ifHit) {
-        //if (ifHit) {
-        //    return socketid;
-        //}
         let otherPlayerID = this.FindOtherPlayer(socketid);
-        if (otherPlayerID !== this.currentPlayer) {
-            let player = this.currentPlayer;
-            this.currentPlayer = otherPlayerID;
-            return player;
+        if (ifHit === true && otherPlayerID !== this.currentPlayer) {
+            return this.currentPlayer;
+        } else {
+            if (otherPlayerID !== this.currentPlayer) {
+                let player = this.currentPlayer;
+                this.currentPlayer = otherPlayerID;
+                return player;
+            }
         }
     }
 
@@ -80,7 +81,7 @@ class Game {
 
     gameEnds(IfHit, socketid) {
         if (IfHit) {
-            return (++this.winners[socketid] === 4) //no more ships
+            return (++this.winners[socketid] === 20) //no more ships
         }
     }
 }
