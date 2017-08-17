@@ -11,8 +11,6 @@ class GameLogics extends BattleShip {
     onClick(event) { //starts from 100 because i want to click on other user board
         for (let cell = 100; cell < (this.size * this.size) * this.times; ++cell) {
             if (this.board[cell].clickedCell(event.offsetX, event.offsetY)) {
-                //console.log(cell);
-                //cell = cell - 100;
                 if (this.AllreadyHit(cell)) { //changes board
                     return;
                 }
@@ -44,10 +42,19 @@ class GameLogics extends BattleShip {
         }
     }
 
-    checkWin() {}
+    endGame(usernameOfWinner) {
+        let currentUser = cmlogic.username;
+        if (currentUser === usernameOfWinner) {
+            battleshipGame.drawText(`The Winner Is ${currentUser}`)
+        } else {
+            battleshipGame.drawText(`The Winner Is ${usernameOfWinner}`)
+        }
+
+    }
+
 }
 
 var gameLogics = new GameLogics();
 gameLogics.createCells();
-gameLogics.createCells(800);
+gameLogics.createCells(1000);
 gameLogics.draw(2);

@@ -2,6 +2,7 @@ class Users {
     constructor() {
         this.users = [];
         this.socketid = [];
+        this.currentGame = [];
     }
     getUsers() {
         return this.users;
@@ -15,23 +16,35 @@ class Users {
 
     }
     checkUser(username, socketid) {
-        //if (typeof(username) !== 'string') {
-        //return true;
-        //}
-        //for (var index = 0; index < this.users.length; index++) { //checks if exists
-        // if (username !== this.users[index]) {
-        //     return;
-        // }
-
-        //}
+        for (let index = 0; index < this.users.length; ++index) {
+            if (username === this.users[index]) {
+                return true;
+            }
+        }
         this.addUser(username, socketid);
     }
+
     findsocketID(username) {
-        for (var index = 0; index < this.users.length; index++) {
+        for (let index = 0; index < this.users.length; ++index) {
             if (username === this.users[index]) {
                 return this.socketid[index];
             }
+        }
+    }
 
+    findUserName(socketid) {
+        for (let index = 0; index < this.socketid.length; ++index) {
+            if (socketid === this.socketid[index]) {
+                return this.users[index];
+            }
+
+        }
+    }
+    findCurrentGame(socketid) {
+        for (let index = 0; index < this.currentGame.length; ++index) {
+            if (socketid === this.currentGame[index].player1 || socketid === this.currentGame[index].player2) {
+                return this.currentGame[index];
+            }
         }
     }
 }

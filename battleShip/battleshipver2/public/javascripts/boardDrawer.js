@@ -57,6 +57,24 @@ class BattleShip {
         cellObj.setState(this.stateShip);
         cellObj.draw(this.ctx);
     }
+
+    // drawText1(text) {
+
+    //     this.ctx.fillStyle = "blue";
+    //     this.ctx.font = "bold 16px Arial";
+    //     this.ctx.fillText(text, (canvas.width / 2) - 100, (canvas.height / 2) + 8);
+    // }
+
+    drawText(text, fill, textwidth, textheight) {
+        this.ctx.clearRect(500, 0, this.canvas.height, 500);
+        this.ctx.font = "40px verdana";
+        this.ctx.fillStyle = fill;
+        //ctx.strokeStyle = stroke;
+        this.ctx.lineWidth = 4;
+        this.ctx.fillText(text, (canvas.width / 2) - 200, (canvas.height / 2) - 100);
+        //this.ctx.strokeText(text, (canvas.width / 2) - 200, (canvas.height / 2) - 100);
+    }
+
 }
 
 class Cell {

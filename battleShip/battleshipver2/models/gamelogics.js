@@ -4,7 +4,9 @@ class Game {
         this.player2 = id2;
         this.gameInit();
         this.currentPlayer;
-        this.CurrentGame = [];
+        this.winners = {};
+        this.winners[this.player1] = 0;
+        this.winners[this.player2] = 0;
     }
 
     gameInit() {
@@ -39,14 +41,6 @@ class Game {
         }];
     }
 
-    startGame(newUsername) {
-        let socketid = users.findsocketID(newUsername);
-        CurrentGame[sendships] = new gamelogics(socket.id, socketid); //saves first game
-        let game = CurrentGame[sendships].objOfPlayers; //first player that started the game is first playing player0
-        CurrentGame[sendships].currentPlayer = game[0].id;
-        return game;
-    }
-
     checkGame(socketid, cell) {
         if (socketid != this.player1) { //uses board of other player!//
             var currentboard = this.objOfPlayers[0].board;
@@ -78,6 +72,12 @@ class Game {
             return this.player2;
         } else {
             return this.player1;
+        }
+    }
+
+    gameEnds(IfHit, socketid) {
+        if (IfHit) {
+            return (++this.winners[socketid] === 4) //no more ships
         }
     }
 }

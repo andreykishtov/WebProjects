@@ -9,4 +9,11 @@ a {
 
 canvas {
     display: block;
+    max-width: 100%;
+}
+
+img {
+    margin: auto;
+    margin: 0px 50px;
+    padding: 10px;
 }
