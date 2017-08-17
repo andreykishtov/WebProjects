@@ -33,10 +33,12 @@ function waitingForGame(socket, io) {
     });
 
     socket.on('checkifHit', (cell) => { //User Connected
-        var CurrentGame = users.findCurrentGame(socket.id);
-        if (CurrentGame.ifPlayerAllowed(socket.id)) { //checks whos turn it is and allows if its right player turn.
+        let CurrentGame = users.findCurrentGame(socket.id);
+        let answer = CurrentGame.checkGame(socket.id, cell - 100);
+        //console.log(answer);
+        if (CurrentGame.ifPlayerAllowed(socket.id, answer)) { //checks whos turn it is and allows if its right player turn.
             let opponent = CurrentGame.FindOtherPlayer(socket.id);
-            let answer = CurrentGame.checkGame(socket.id, cell - 100);
+            //let answer = CurrentGame.checkGame(socket.id, cell - 100);
             if (!CurrentGame.gameEnds(answer, socket.id)) {
                 socket.emit('answerIfHit', { answer, cell });
                 io.to(opponent).emit('answerIfHitFromOtherPlayer', { answer, cell });
