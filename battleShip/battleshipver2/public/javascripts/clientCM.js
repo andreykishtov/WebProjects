@@ -19,6 +19,9 @@ class Communication {
                 cmlogic.playGame(ships);
             });
         });
+        this.socket.on('disconnectedUser', function(username) {
+            cmlogic.removePlayer(username);
+        })
     }
 
     sendUserToPlayer(username) {
@@ -27,7 +30,7 @@ class Communication {
 
     waitingForPlayer() {
         this.socket.on('usernameNotOk', username => { //connected
-            alert(`UserName Allready Exsists: ${username}`); //doesn`t work
+            cmlogic.userNameIsBad();
         });
 
         this.socket.on('usernameOK', username => { //connected

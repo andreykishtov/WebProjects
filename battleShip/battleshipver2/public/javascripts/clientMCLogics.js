@@ -26,6 +26,11 @@ class CommunicationLogic {
         });
     }
 
+    usernameIsBad() {
+        alert(`UserName Allready Exsists: ${username}`); //doesn`t work
+        document.getElementById("greeting").style.display = 'block';
+    }
+
     waitForPlayers() {
         let select = document.getElementById("playerList");
         let div = document.createElement("div");
@@ -35,8 +40,6 @@ class CommunicationLogic {
         div.style.width = '2000px';
         div.style.height = '2000px';
         body[0].prepend(div);
-
-
     }
 
     createGame() {
@@ -48,11 +51,22 @@ class CommunicationLogic {
     }
 
     playGame(ships) {
-        //console.log(ships);
         battleshipGame.drawBattleship(ships);
     }
 
+    removePlayer(username) { //need to check
+        var select = document.getElementById("selectInput");
+        var options = document.getElementsByTagName("option");
+        for (var index = 0; index < options.length; index++) {
+            if ('' + username === options[index].innerHTML) {
+                select.remove(index);
+                return;
+            }
+        }
+    }
+
 }
+
 var cmlogic = new CommunicationLogic;
 
 

@@ -7,14 +7,21 @@ class Users {
     getUsers() {
         return this.users;
     }
+
     addUser(username, socketid) {
         this.users.push(username);
         this.socketid.push(socketid);
-        //console.log(users);
     }
-    removeUser() {
 
+    removeUser(username) {
+        for (let index = 0; index < this.users.length; ++index) {
+            if (username === this.users[index]) {
+                this.users.splice(index, 1);
+                this.socketid.splice(index, 1);
+            }
+        }
     }
+
     checkUser(username, socketid) {
         for (let index = 0; index < this.users.length; ++index) {
             if (username === this.users[index]) {

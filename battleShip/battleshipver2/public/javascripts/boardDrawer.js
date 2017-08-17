@@ -115,6 +115,10 @@ class Cell {
     }
 
     drawO(ctx) { //miss
+        // let offsetX = this.width / 8;
+        // let offsetY = this.height / 2;
+        // ctx.font = "30px Arial";
+        // ctx.fillText("miss", this.x + offsetX, this.y + offsetY);
         ctx.beginPath();
         ctx.arc(this.x + this.width / 2, this.y + this.width / 2, this.width / 3, 0, 2 * Math.PI);
         ctx.stroke();

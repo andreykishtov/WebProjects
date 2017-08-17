@@ -71,7 +71,11 @@ class Game {
         }
     }
 
-    FindOtherPlayer(socketid) {
+    FindOtherPlayer(socketid, ishit) {
+        if (ishit) {
+            return socketid;
+        }
+
         if (socketid === this.player1) { //uses board of other player!//
             return this.player2;
         } else {

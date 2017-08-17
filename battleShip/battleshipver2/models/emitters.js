@@ -7,6 +7,7 @@ var emiters = function(socket, io) {
         checkuserForEmit(socket);
         waitingForGame(socket, io);
     });
+    dissconnect(socket);
 }
 
 function checkuserForEmit(socket) {
@@ -36,7 +37,7 @@ function waitingForGame(socket, io) {
         let CurrentGame = users.findCurrentGame(socket.id);
         let answer = CurrentGame.checkGame(socket.id, cell - 100);
         if (CurrentGame.ifPlayerAllowed(socket.id, answer)) { //checks whos turn it is and allows if its right player turn.
-            let opponent = CurrentGame.FindOtherPlayer(socket.id);
+            let opponent = CurrentGame.FindOtherPlayer(socket.id, answer);
             //let answer = CurrentGame.checkGame(socket.id, cell - 100);
             if (!CurrentGame.gameEnds(answer, socket.id)) {
                 socket.emit('answerIfHit', { answer, cell });
@@ -50,6 +51,14 @@ function waitingForGame(socket, io) {
         }
     });
 }
+
+function dissconnect(socket) {
+    socket.on('disconnect', () => {
+        let username = users.findUserName(socket.id);
+        users.removeUser(username);
+        socket.broadcast.emit('disconnectedUser', username);
+    });
+};
 
 module.exports = emiters;
 
