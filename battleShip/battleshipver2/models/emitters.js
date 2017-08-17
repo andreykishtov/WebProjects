@@ -35,7 +35,6 @@ function waitingForGame(socket, io) {
     socket.on('checkifHit', (cell) => { //User Connected
         let CurrentGame = users.findCurrentGame(socket.id);
         let answer = CurrentGame.checkGame(socket.id, cell - 100);
-        //console.log(answer);
         if (CurrentGame.ifPlayerAllowed(socket.id, answer)) { //checks whos turn it is and allows if its right player turn.
             let opponent = CurrentGame.FindOtherPlayer(socket.id);
             //let answer = CurrentGame.checkGame(socket.id, cell - 100);

@@ -59,9 +59,9 @@ class Game {
     }
 
     ifPlayerAllowed(socketid, ifHit) {
-        if (ifHit) {
-            return socketid;
-        }
+        //if (ifHit) {
+        //    return socketid;
+        //}
         let otherPlayerID = this.FindOtherPlayer(socketid);
         if (otherPlayerID !== this.currentPlayer) {
             let player = this.currentPlayer;
