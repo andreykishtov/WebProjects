@@ -21,7 +21,6 @@ class GameLogics extends BattleShip {
     }
 
     AllreadyHit(cell) {
-        //  console.log(cell);
         if (cell === undefined) {
             return;
         }
@@ -30,31 +29,39 @@ class GameLogics extends BattleShip {
         return (current === 'miss' || current === 'hit');
     }
 
-    checkboardIfHit(cell, ifHit) {
+    checkboardIfHit(cell, ifHit, Fromopponent) {
         let cellObj = this.board[cell];
-        if (!ifHit) {
-            cellObj.setState(this.currentmiss); //miss Draw
-            cellObj.draw(this.ctx);
-            return;
-        } else {
+        if (ifHit) {
             cellObj.setState(this.currenthit); //hit Draw
             cellObj.draw(this.ctx);
-        }
-    }
-
-    endGame(usernameOfWinner) {
-        let currentUser = cmlogic.username;
-        if (currentUser === usernameOfWinner) {
-            battleshipGame.drawText(`The Winner Is ${currentUser}`)
+            if (Fromopponent) {
+                battleshipGame.drawText('Other Player Turn', 'black', 100, 200);
+            } else {
+                battleshipGame.drawText('your Turn Attack!', 'black', 100, 200);
+            }
         } else {
-            battleshipGame.drawText(`The Winner Is ${usernameOfWinner}`)
+            cellObj.setState(this.currentmiss); //miss Draw
+            cellObj.draw(this.ctx);
+            if (Fromopponent) {
+                battleshipGame.drawText('your Turn Attack!', 'black', 100, 200);
+            } else {
+                battleshipGame.drawText('Other Player Turn', 'black', 100, 200);
+            }
         }
-
     }
-
 }
 
-var gameLogics = new GameLogics();
-gameLogics.createCells();
-gameLogics.createCells(1000);
-gameLogics.draw(2);
+var battleshipGame;
+var gameLogics;
+
+
+function startGame(username) { //Creates Canvas
+    let playerList = document.getElementById('playerlistDiv');
+    playerList.style.display = 'none';
+    battleshipGame = new BattleShip('canvas');
+    gameLogics = new GameLogics();
+    gameLogics.createCells(40);
+    let length = document.body.offsetWidth / 2;
+    gameLogics.createCells(length + (length - battleshipGame.sizeofcell * 10 - battleshipGame.sizeofcell * 1));
+    gameLogics.draw(2);
+}

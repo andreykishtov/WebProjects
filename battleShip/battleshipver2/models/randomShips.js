@@ -26,7 +26,7 @@ function randomShips(shipmaxsize) {
                 board["" + (X + index++) + "" + Y] = false;
             }
             if (index < shipmaxsize) {} else {
-                //addDots(ship, 1);
+                addDots(ship, 1);
                 ships.push(ship);
                 if (ships.length === 1) {
                     shipmaxsize-- //4 1
@@ -53,7 +53,7 @@ function randomShips(shipmaxsize) {
                 board["" + X + "" + (Y + index++)] = false;
             }
             if (index < shipmaxsize) {} else {
-                //addDots(ship, 0);
+                addDots(ship, 0);
                 ships.push(ship);
                 if (ships.length === 1) {
                     shipmaxsize-- //4 1
@@ -70,55 +70,51 @@ function randomShips(shipmaxsize) {
             }
         }
     }
-    console.log(JSON.stringify(board));
-    return ships;
+    //return ships;
+    var show = [];
+    for (var x = 1; x < 9; x++) {
+        for (var index = 1; index < 9; index++) {
+            show[x + '' + index] += '' + board[x + '' + index];
+        }
+    }
+    //console.log(show);
+
+    return {
+        ship0: ships[0],
+        ship1: ships[1],
+        ship2: ships[2],
+        ship3: ships[3],
+        ship4: ships[4],
+        ship5: ships[5],
+        ship6: ships[6],
+        ship7: ships[7],
+        ship8: ships[8],
+        ship9: ships[9],
+    }
+
 
     function addDots(ship, XorY) {
         if (XorY) {
-            if (ship[index]) {
-                var element = '' + ship[index];
-            }
-            var element = element.split('');
-            if (element[0] >= 0) {
-                board[(element[0] - 1) + (element[1] - 1)] = false;
-                board[(element[0] - 1) + (element[1])] = false;
-                board[(element[0] - 1) + (element[1] + 1)] = false;
-            }
             for (var index = 0; index < ship.length; index++) {
-                if (ship[index]) {
-                    var element = '' + ship[index];
-                } else {
-                    element++;
-                }
+                var element = '' + ship[index];
                 element = element.split('');
-                board[(element[0]) + (element[1] - 1)] = false;
-                board[(element[0]) + (element[1])] = false;
-                board[(element[0]) + (element[1] + 1)] = false;
+                if (element[1] > 0 && element[1] < 9) {
+                    board[parseInt((element[0])) + (parseInt(element[1]) - 1)] = false;
+                    board[parseInt((element[0])) + parseInt((element[1]))] = false;
+                    board[parseInt((element[0])) + (parseInt(element[1]) + 1)] = false;
+                }
             }
         } else {
-            if (ship[index]) {
-                var element = '' + ship[index];
-            }
-            element = element.split('');
-            if (element[1] >= 0) {
-                board[(element[0] - 1) + (element[1] - 1)] = false;
-                board[(element[0]) + (element[1] - 1)] = false;
-                board[(element[0] + 1) + (element[1] - 1)] = false;
-            }
             for (var index = 0; index < ship.length; index++) {
-                if (ship[index]) {
-                    var element = '' + ship[index];
-                } else {
-                    element = element + 10;
-                }
+                var element = '' + ship[index];
                 element = element.split('');
-                board[(element[0] - 1) + (element[1])] = false;
-                board[(element[0]) + (element[1])] = false;
-                board[(element[0] + 1) + (element[1])] = false;
+                if (element[0] > 0 && element[0] < 9) {
+                    board[parseInt((element[0]) - 1) + (parseInt(element[1]))] = false;
+                    board[parseInt((element[0])) + parseInt((element[1]))] = false;
+                    board[parseInt((element[0]) + 1) + (parseInt(element[1]))] = false;
+                }
             }
         }
     }
 }
-
-var ships = randomShips(4);
-console.log(JSON.stringify(ships));
+module.exports = randomShips; //how big are ships;

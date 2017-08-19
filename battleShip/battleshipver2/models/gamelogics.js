@@ -1,9 +1,13 @@
+var randomships = require('./randomShips')
+
 class Game {
     constructor(id1, id2) {
         this.player1 = id1;
         this.player2 = id2;
         this.gameInit();
         this.currentPlayer;
+        this.objOfPlayers[0].board = randomships(4);
+        this.objOfPlayers[1].board = randomships(4);
         this.winners = {};
         this.winners[this.player1] = 0;
         this.winners[this.player2] = 0;
@@ -12,32 +16,34 @@ class Game {
     gameInit() {
         this.objOfPlayers = [{
             id: this.player1,
-            board: {
-                ship0: [10, 11, 12, 13],
-                ship1: [17, 18, 19],
-                ship2: [35, 25, 15],
-                ship3: [31, 32],
-                ship4: [44, 54],
-                ship5: [51, 52],
-                ship6: [81],
-                ship7: [94],
-                ship8: [79],
-                ship9: [66],
-            }
+            board: "none"
+                // board: {
+                // ship0: [10, 11, 12, 13],
+                // ship1: [17, 18, 19],
+                // ship2: [35, 25, 15],
+                // ship3: [31, 32],
+                // ship4: [44, 54],
+                // ship5: [51, 52],
+                // ship6: [81],
+                // ship7: [94],
+                // ship8: [79],
+                // ship9: [66],
+
         }, {
             id: this.player2,
-            board: {
-                ship0: [10, 11, 12, 13],
-                ship1: [7, 8, 9],
-                ship2: [28, 38, 48],
-                ship3: [31, 32],
-                ship4: [44, 54],
-                ship5: [51, 52],
-                ship6: [80],
-                ship7: [97],
-                ship8: [78],
-                ship9: [69],
-            }
+            board: 'none'
+                // board: {
+                //     ship0: [10, 11, 12, 13],
+                //     ship1: [7, 8, 9],
+                //     ship2: [28, 38, 48],
+                //     ship3: [31, 32],
+                //     ship4: [44, 54],
+                //     ship5: [51, 52],
+                //     ship6: [80],
+                //     ship7: [97],
+                //     ship8: [78],
+                //     ship9: [69],
+                // }
         }];
     }
 
@@ -50,7 +56,7 @@ class Game {
         for (var key in currentboard) {
             var ship = currentboard[key];
             for (var index = 0; index < ship.length; index++) {
-                if (ship[index] === cell) {
+                if (ship[index] == cell) {
                     return true;
                 }
             }
@@ -72,9 +78,9 @@ class Game {
     }
 
     FindOtherPlayer(socketid, ishit) {
-        if (ishit) {
-            return socketid;
-        }
+        // if (ishit) {
+        //     return socketid;
+        // }
 
         if (socketid === this.player1) { //uses board of other player!//
             return this.player2;

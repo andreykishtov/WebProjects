@@ -12,8 +12,9 @@ class Communication {
             if (usersObject.length) {
                 cmlogic.firstTimeGetUsersFromServer(usersObject); //function outside
             }
-            this.socket.on('connetionBeforeGame', (ships, draw) => { //connected to game
+            this.socket.on('connetionBeforeGame', (ships, draw, username) => { //connected to game
                 if (draw) {
+                    startGame(username); //only second Player
                     battleshipGame.drawText('Game Started Wait For It!', 'black', 100, 200);
                 }
                 cmlogic.playGame(ships);
@@ -21,6 +22,9 @@ class Communication {
         });
         this.socket.on('disconnectedUser', function(username) {
             cmlogic.removePlayer(username);
+        })
+        this.socket.on('2playersPlaying', function(myUsername, newUsername) {
+            cmlogic.changeStatus(myUsername, newUsername);
         })
     }
 
@@ -30,11 +34,11 @@ class Communication {
 
     waitingForPlayer() {
         this.socket.on('usernameNotOk', username => { //connected
-            cmlogic.userNameIsBad();
+            cmlogic.usernameIsBad(username);
         });
 
         this.socket.on('usernameOK', username => { //connected
-            cmlogic.createOption(username);
+            cmlogic.createOption(username, 'Online');
         });
     }
 
@@ -50,17 +54,15 @@ class Communication {
     answerIfHit() {
         this.socket.on('answerIfHit', (ifHit) => { //connected
             gameLogics.checkboardIfHit(ifHit.cell, ifHit.answer);
-            battleshipGame.drawText('Other Player Turn', 'black', 100, 200);
         });
         this.socket.on('answerIfHitFromOtherPlayer', (ifHit) => { //connected
-            gameLogics.checkboardIfHit(ifHit.cell - 100, ifHit.answer);
-            battleshipGame.drawText('your Turn Attack!', 'black', 100, 200);
+            gameLogics.checkboardIfHit(ifHit.cell - 100, ifHit.answer, ifHit.opponent);
         });
     }
 
     endGame() {
-        this.socket.on('endGame', (usernameOfWinner) => { //connected
-            gameLogics.endGame(usernameOfWinner);
+        this.socket.on('endGame', (usernameOfWinner, loserUsername, forall) => { //connected
+            cmlogic.endGame(usernameOfWinner, loserUsername, forall);
         });
     }
 

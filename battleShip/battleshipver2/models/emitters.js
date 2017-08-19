@@ -23,13 +23,19 @@ function checkuserForEmit(socket) {
 
 function waitingForGame(socket, io) {
     socket.on('startGame', (newUsername) => {
+        console.log(newUsername);
         let socketid = users.findsocketID(newUsername);
+        let myUsername = users.findUserName(socket.id);
         let CurrentGame = new gamelogics(socket.id, socketid); //saves first game
         let game = CurrentGame.objOfPlayers; //first player that started the game is first playing player0
         users.currentGame.push(CurrentGame);
         CurrentGame.currentPlayer = game[0].id;
+        // console.log(JSON.stringify(game[0].board));
+        // console.log(JSON.stringify(game[1].board));
         io.to(game[0].id).emit('connetionBeforeGame', game[0].board);
-        io.to(game[1].id).emit('connetionBeforeGame', game[1].board, true);
+        io.to(game[1].id).emit('connetionBeforeGame', game[1].board, true, newUsername);
+        io.to(game[0].id).emit('2playersPlaying', myUsername, newUsername);
+        socket.broadcast.emit('2playersPlaying', myUsername, newUsername);
         ///////////////////////////****game started****///////////////////////////////
     });
 
@@ -41,12 +47,13 @@ function waitingForGame(socket, io) {
             //let answer = CurrentGame.checkGame(socket.id, cell - 100);
             if (!CurrentGame.gameEnds(answer, socket.id)) {
                 socket.emit('answerIfHit', { answer, cell });
-                io.to(opponent).emit('answerIfHitFromOtherPlayer', { answer, cell });
+                io.to(opponent).emit('answerIfHitFromOtherPlayer', { answer: answer, cell: cell, opponent: true });
             } else {
                 socket.emit('answerIfHit', { answer, cell });
-                io.to(opponent).emit('answerIfHitFromOtherPlayer', { answer, cell });
-                socket.emit('endGame', users.findUserName(socket.id));
-                io.to(opponent).emit('endGame', users.findUserName(opponent));
+                io.to(opponent).emit('answerIfHitFromOtherPlayer', { answer: answer, cell: cell, opponent: true });
+                socket.emit('endGame', users.findUserName(socket.id), users.findUserName(opponent));
+                socket.broadcast.emit('endGame', users.findUserName(socket.id), users.findUserName(opponent), true);
+                io.to(opponent).emit('endGame', users.findUserName(socket.id), users.findUserName(opponent), false);
             }
         }
     });
@@ -61,34 +68,3 @@ function dissconnect(socket) {
 };
 
 module.exports = emiters;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// socket.on('disconnect', function () {
-//            console.log(socket.id + ' disconnected');
-//            for (var i = 0; i < clients.length; i++) {
-//                if (clients[i].id == socket.id) {
-
-//                    clients.splice(i, 1);
-//                    break;
-//                }
-
-//            }
-
-//            console.log(clients);
-//            socket.broadcast.emit('addUserNameToList', clients);
-
-//

@@ -1,15 +1,27 @@
 extends layout
 
 block content
-  img(src='/images/battleshipmainLogo.png' height="400" width="1500")
-  div(id='greeting')    
-    input(type="text",class='login-submit',id="username", name="username" placeholder="enter username")
-    input(id="submitNewUser" type="button", value='submit')
+  img(src='/images/battleships-header.jpg')
+  div(id='greeting' class="login")
+    h2 Log In
+    fieldset
+      input(type="text",id="username", name="username", placeholder="enter username")
+    input(id="submitNewUser" type="submit", value='submit')
   div(id='playerlistDiv')
-    h3 Players list
-    select(id="playerList", name="playerList")
-    input(id="selectInput" type="button", value='Play')
-  canvas(id="canvas" width="1500" height="500")
+    table
+      tr
+        th
+          h2 Players list
+        th
+          h2 Player Status
+      tr
+        td
+          ul#playerList
+            //- li Moshe Online Just For Test
+        td
+          ul#playerStatus
+    button(class='start-game' id="selectInput" type="button", value='Play') Start Game
+  canvas(id="canvas" width="100%" height="500")
   script(src="/socket.io/socket.io.js")
   script(src="/javascripts/clientMCLogics.js")
   script(src="/javascripts/clientCM.js")
