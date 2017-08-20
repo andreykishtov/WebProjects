@@ -9,12 +9,12 @@ class Communication {
     startComunication() {
         this.socket.emit('startConnection');
         this.socket.on('connection Established', (usersObject) => { //connected
-            if (usersObject.length) {
+            if (usersObject.users.length) {
                 cmlogic.firstTimeGetUsersFromServer(usersObject); //function outside
             }
             this.socket.on('connetionBeforeGame', (ships, draw, username) => { //connected to game
                 if (draw) {
-                    startGame(username); //only second Player
+                    cmlogic.startGame(username); //only second Player
                     battleshipGame.drawText('Game Started Wait For It!', 'black', 100, 200);
                 }
                 cmlogic.playGame(ships);
@@ -67,5 +67,3 @@ class Communication {
     }
 
 }
-
-var communication = new Communication;

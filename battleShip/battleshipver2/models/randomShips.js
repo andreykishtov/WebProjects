@@ -1,5 +1,5 @@
 function rand(min, max) {
-    return Math.floor(Math.random() * (max - min) + min);
+    return Math.floor(Math.random() * max + min);
 }
 
 function rand09() {
@@ -22,10 +22,14 @@ function randomShips(shipmaxsize) {
             let Y = rand09();
             let index = 0;
             while (index < shipmaxsize && board["" + (X + index) + "" + Y]) {
-                ship[index] = "" + (X + index) + "" + Y;
-                board["" + (X + index++) + "" + Y] = false;
+                index++;
             }
             if (index < shipmaxsize) {} else {
+                index = 0;
+                while (index < shipmaxsize && board["" + (X + index) + "" + Y]) {
+                    ship[index] = "" + (X + index) + "" + Y;
+                    board["" + (X + index++) + "" + Y] = false;
+                }
                 addDots(ship, 1);
                 ships.push(ship);
                 if (ships.length === 1) {
@@ -49,10 +53,14 @@ function randomShips(shipmaxsize) {
             let X = rand09();
             let index = 0;
             while (index < shipmaxsize && board["" + X + "" + (Y + index)]) {
-                ship[index] = "" + X + "" + (Y + index);
-                board["" + X + "" + (Y + index++)] = false;
+                index++
             }
             if (index < shipmaxsize) {} else {
+                index = 0;
+                while (index < shipmaxsize && board["" + X + "" + (Y + index)]) {
+                    ship[index] = "" + X + "" + (Y + index);
+                    board["" + X + "" + (Y + index++)] = false;
+                }
                 addDots(ship, 0);
                 ships.push(ship);
                 if (ships.length === 1) {

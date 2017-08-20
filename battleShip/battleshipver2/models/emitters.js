@@ -30,8 +30,6 @@ function waitingForGame(socket, io) {
         let game = CurrentGame.objOfPlayers; //first player that started the game is first playing player0
         users.currentGame.push(CurrentGame);
         CurrentGame.currentPlayer = game[0].id;
-        // console.log(JSON.stringify(game[0].board));
-        // console.log(JSON.stringify(game[1].board));
         io.to(game[0].id).emit('connetionBeforeGame', game[0].board);
         io.to(game[1].id).emit('connetionBeforeGame', game[1].board, true, newUsername);
         io.to(game[0].id).emit('2playersPlaying', myUsername, newUsername);

@@ -50,18 +50,3 @@ class GameLogics extends BattleShip {
         }
     }
 }
-
-var battleshipGame;
-var gameLogics;
-
-
-function startGame(username) { //Creates Canvas
-    let playerList = document.getElementById('playerlistDiv');
-    playerList.style.display = 'none';
-    battleshipGame = new BattleShip('canvas');
-    gameLogics = new GameLogics();
-    gameLogics.createCells(40);
-    let length = document.body.offsetWidth / 2;
-    gameLogics.createCells(length + (length - battleshipGame.sizeofcell * 10 - battleshipGame.sizeofcell * 1));
-    gameLogics.draw(2);
-}

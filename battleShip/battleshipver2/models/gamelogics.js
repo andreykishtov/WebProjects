@@ -1,4 +1,4 @@
-var randomships = require('./randomShips')
+var randomships = require('./random3');
 
 class Game {
     constructor(id1, id2) {
@@ -6,11 +6,13 @@ class Game {
         this.player2 = id2;
         this.gameInit();
         this.currentPlayer;
-        this.objOfPlayers[0].board = randomships(4);
-        this.objOfPlayers[1].board = randomships(4);
+        this.board1 = new randomships;
+        this.board2 = new randomships;
         this.winners = {};
         this.winners[this.player1] = 0;
         this.winners[this.player2] = 0;
+        this.objOfPlayers[0].board = this.board1.createShips(4);
+        this.objOfPlayers[1].board = this.board2.createShips(4);
     }
 
     gameInit() {
@@ -78,10 +80,6 @@ class Game {
     }
 
     FindOtherPlayer(socketid, ishit) {
-        // if (ishit) {
-        //     return socketid;
-        // }
-
         if (socketid === this.player1) { //uses board of other player!//
             return this.player2;
         } else {
@@ -91,7 +89,7 @@ class Game {
 
     gameEnds(IfHit, socketid) {
         if (IfHit) {
-            return (++this.winners[socketid] === 20) //no more ships
+            return (++this.winners[socketid] === 1) //no more ships
         }
     }
 }

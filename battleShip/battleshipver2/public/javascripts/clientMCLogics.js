@@ -4,8 +4,12 @@ class CommunicationLogic {
     }
 
     firstTimeGetUsersFromServer(usersFromServer) {
-        usersFromServer.forEach((element) => {
+        console.log(usersFromServer);
+        usersFromServer.users.forEach((element) => {
             this.createOption(element, 'Online');
+        });
+        usersFromServer.usersinGame.forEach((element) => {
+            this.UsernameChangeStatus(element, 'Playing');
         });
     }
 
@@ -44,7 +48,6 @@ class CommunicationLogic {
         alert(`UserName Allready Exsists: ${username}`); //doesn`t work
         document.getElementById("greeting").style.display = 'block';
         document.getElementById("playerlistDiv").style.display = 'none';
-        //document.getElementById("greeting").style.display = 'block'; change to block after
     }
 
     waitForPlayers() {
@@ -79,7 +82,7 @@ class CommunicationLogic {
                     }
                 }
             }
-            startGame(username); //creates Canvas
+            this.startGame(username); //creates Canvas
             communication.startGame(username); //STARTS GAME
         });
     }
@@ -134,9 +137,26 @@ class CommunicationLogic {
             cmlogic.UsernameChangeStatus(NameOfloser, 'Online');
         }
     }
+
+    startGame(username) { //Creates Canvas
+        let playerList = document.getElementById('playerlistDiv');
+        playerList.style.display = 'none';
+        battleshipGame = new BattleShip('canvas');
+        gameLogics = new GameLogics();
+        gameLogics.createCells(40);
+        let length = document.body.offsetWidth / 2;
+        gameLogics.createCells(length + (length - battleshipGame.sizeofcell * 10 - battleshipGame.sizeofcell * 1));
+        gameLogics.draw(2);
+    }
+
 }
 
+///global varibles
+var communication = new Communication;
 var cmlogic = new CommunicationLogic;
+
+var battleshipGame;
+var gameLogics;
 
 
 window.onload = function() {

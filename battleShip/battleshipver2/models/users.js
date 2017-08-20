@@ -5,7 +5,12 @@ class Users {
         this.currentGame = [];
     }
     getUsers() {
-        return this.users;
+        let usersinGame = [];
+        for (var user of this.currentGame) {
+            usersinGame.push(this.findUserName(user.player1));
+            usersinGame.push(this.findUserName(user.player2));
+        }
+        return { users: this.users, usersinGame: usersinGame };
     }
 
     addUser(username, socketid) {
@@ -56,7 +61,4 @@ class Users {
     }
 }
 
-var users = new Users;
-
-
-module.exports = users;
+module.exports = new Users;

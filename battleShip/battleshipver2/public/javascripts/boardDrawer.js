@@ -10,7 +10,7 @@ class BattleShip {
         this.ctx.canvas.width = window.innerWidth;
         this.ctx.canvas.height = window.innerHeight / 2;
         // this.ctx.canvas.width = document.body.offsetWidth;
-        // this.ctx.canvas.height = document.body.offsetHeight ;
+        // this.ctx.canvas.height = document.body.offsetHeight / 2.2;
         this.sizeofcell = Math.floor(Math.min(this.canvas.clientHeight, this.canvas.clientWidth) / (size));
     }
 
@@ -46,7 +46,7 @@ class BattleShip {
     }
 
     drawShip(cell) {
-        if (cell === undefined) {
+        if (!cell) {
             return;
         }
 
@@ -63,7 +63,7 @@ class BattleShip {
     drawText(text, fill, textwidth, textheight) {
         this.ctx.beginPath(); //added
         this.ctx.clearRect(this.sizeofcell * 10 + 41, 0, this.canvas.width - (this.sizeofcell * 23), this.canvas.height);
-        this.ctx.font = "40px verdana";
+        this.ctx.font = "20px verdana";
         this.ctx.fillStyle = fill;
         this.ctx.lineWidth = 4;
         this.ctx.fillText(text, (canvas.width / 2) - 200, (canvas.height / 2) - 100);
@@ -73,7 +73,6 @@ class BattleShip {
 }
 
 class Cell {
-
     constructor(x, y, w, h) {
         this.x = x;
         this.y = y;
