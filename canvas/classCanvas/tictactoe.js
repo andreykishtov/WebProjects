@@ -50,17 +50,19 @@ class Game {
     }
 
     move(cell) {
-        if (cell !== undefined) {
-            let cellObj = this.board[cell];
-            let current = cellObj.getState()
-            if (current === 'X' || current === 'O') {
-                return;
-            }
+        if (cell === undefined) {
+            return;
         }
-        if (this.turn % 2)
+        let cellObj = this.board[cell];
+        let current = cellObj.getState()
+        if (current === 'X' || current === 'O') {
+            return;
+        }
+        if (this.turn % 2) {
             cellObj.setState(this.currentX);
-        else
+        } else {
             cellObj.setState(this.currentO);
+        }
         cellObj.draw(this.ctx);
         this.turn++;
     }
