@@ -12,7 +12,9 @@ class Game {
         this.winners[this.player1] = 0;
         this.winners[this.player2] = 0;
         this.objOfPlayers[0].board = this.board1.createShips(4);
+        this.board1.printBoard();
         this.objOfPlayers[1].board = this.board2.createShips(4);
+        //this.board2.printBoard();
     }
 
     gameInit() {
