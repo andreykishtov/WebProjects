@@ -48,6 +48,7 @@ class Communication {
     }
 
     fromServerIfHit(cell) {
+        console.log('x');
         this.socket.emit('checkifHit', cell);
     }
 

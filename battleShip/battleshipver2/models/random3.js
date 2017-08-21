@@ -2,6 +2,7 @@ class Random {
     constructor() {
         this.ships = [];
         this.board = this.randomBoard(10, 10);
+        this.countsteps = 0;
     }
 
     rand(min, max) {
@@ -50,59 +51,56 @@ class Random {
     }
 
     XshipState(howBig) {
+        console.log('start X');
         var ship;
         do {
+            var index = howBig;
             ship = [];
-            let X = this.rand(0, 10 - howBig);
-            let Y = this.rand(0, 10);
-            for (var index = 0; index < howBig; index++) {
-                ship[index] = "" + ((X + index) * 10 + Y);
+            let x = this.rand(0, 10 - howBig);
+            let y = this.rand(0, 10);
+            while (index--) {
+                ship.push({ x, y });
+                x++;
             }
         } while (this.checkShip(ship));
         this.changeBoardStateAfterShip(ship);
+        console.log('end X');
         return ship;
     }
 
     YShipState(howBig) {
+        console.log('start Y');
         var ship;
         do {
+            var index = howBig;
             ship = [];
-            let X = this.rand(0, 10);
-            let Y = this.rand(0, 10 - howBig);
-            for (var index = 0; index < howBig; index++) {
-                ship[index] = "" + (X * 10 + (Y + index));
+            var x = this.rand(0, 10);
+            var y = this.rand(0, 10 - howBig);
+            while (index--) {
+                ship.push({ x, y });
+                y++;
             }
-        } while (this.checkShip(ship));
+        }
+        while (this.checkShip(ship));
         this.changeBoardStateAfterShip(ship);
+        console.log('end Y');
         return ship;
     }
 
     changeBoardStateAfterShip(ship) {
-        var x = 0;
-        var y = 0;
-        ship.forEach(xy => {
-            if (xy < 10) {
-                x = 0;
-                y = parseInt(xy);
-            } else {
-                xy.split('');
-                x = parseInt(xy[0]);
-                y = parseInt(xy[1]);
-            }
-            this.putMiss(x, y);
-        }, null);
+        for (var xy of ship) {
+            this.putMiss(xy.x, xy.y);
+        };
     }
 
     putMiss(x, y) {
-        x = parseInt(x);
-        y = parseInt(y);
-        let xar = [x, x + 1, x - 1];
+        var xar = [x, x + 1, x - 1];
         var yar = [y, y + 1, y - 1];
-        xar.forEach(function(xelement) {
-            yar.forEach(function(yelement) {
+        for (var xelement of xar) {
+            for (var yelement of yar) {
                 this.putdotsaroundShip(xelement, yelement);
-            }, this);
-        }, this);
+            };
+        };
     }
 
     putdotsaroundShip(x, y) {
@@ -111,40 +109,31 @@ class Random {
         }
     }
 
-    checkShip(ship) {
-        ship.forEach(xy => {
-            xy.split('');
-            var x = xy[0];
-            var y = xy[1];
-            if (!y) {
-                y = x;
-                x = 0;
+    checkShip(ship) { //while true dont stop
+        for (let xy of ship) {
+            if (this.checkAroundDot(xy.x, xy.y)) { //while true ends loop
+                return false;
             }
-            x = parseInt(x);
-            y = parseInt(y);
-            if (this.checkAroundDot(x, y)) {
-                return true;
-            }
-        }, this);
-        return false;
+        };
+        return true;
     }
 
-    checkAroundDot(x, y) {
-        var something = false;
-        let xar = [x, x + 1, x - 1];
+    checkAroundDot(x, y) { //returns true ends loop
+        var xar = [x, x + 1, x - 1];
         var yar = [y, y + 1, y - 1];
-        xar.forEach(function(Xelement) {
-            yar.forEach(function(Yelement) {
-                if (this.checkBoardforFalse(Xelement, Yelement)) { something = true; }
-            }, this);
-        }, this);
-        return something;
+        for (var Xelement of xar) {
+            for (var Yelement of yar) {
+                if (this.checkDot(Xelement, Yelement)) return false;
+            };
+        };
+        return true;
     }
 
-    checkBoardforFalse(x, y) { //return true if there is false in board x y
-        if (x >= 0 && y >= 0 && y <= 9 && x <= 9) {
+    checkDot(x, y) { //return true if there is false in board x y
+        if (x >= 0 && y >= 0 && y <= 9 && x <= 9) { //while false end
             return (this.board[x][y] === false);
         }
+        return false;
     }
 
     printBoard() {
@@ -155,11 +144,11 @@ class Random {
 
 }
 
-//var random = new Random;
+var random = new Random;
 
-//var ships = random.createShips(4);
-//random.printBoard();
-//console.log(ships)
-//console.log(JSON.stringify(ships));
-//module.exports = random.createShips;
-module.exports = Random;
+var ships = random.createShips(4);
+random.printBoard();
+console.log(ships)
+    //console.log(JSON.stringify(ships));
+    //module.exports = random.createShips;
+    // module.exports = Random;

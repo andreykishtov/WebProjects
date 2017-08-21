@@ -5,7 +5,7 @@ class GameLogics extends BattleShip {
     }
 
     registerEventListener() { //add listener on canvas
-        this.canvas.addEventListener("click", event => this.onClick(event))
+        this.canvas.addEventListener("click", event => this.onClick(event)) //change for second time
     }
 
     onClick(event) { //starts from 100 because i want to click on other user board
