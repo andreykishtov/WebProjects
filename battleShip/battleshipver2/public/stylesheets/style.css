@@ -125,3 +125,7 @@ h1,
 p {
     text-align: center;
 }
+
+#nameDiv {
+    display: none;
+}

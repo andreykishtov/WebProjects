@@ -4,7 +4,6 @@ class CommunicationLogic {
     }
 
     firstTimeGetUsersFromServer(usersFromServer) {
-        console.log(usersFromServer);
         usersFromServer.users.forEach((element) => {
             this.createOption(element, 'Online');
         });
@@ -19,7 +18,7 @@ class CommunicationLogic {
         let li = document.createElement("li");
         li.addEventListener('click', function(event) {
             this.classList.toggle("highlight");
-        })
+        });
         li.appendChild(document.createTextNode(playerName));
         ul.appendChild(li);
         let liStatus = document.createElement("li");
@@ -37,28 +36,24 @@ class CommunicationLogic {
                 return;
             }
             communication.sendUserToPlayer(username);
+            this.makeNameTag(username);
             document.getElementById("greeting").style.display = 'none';
             document.getElementById("playerlistDiv").style.display = 'flex';
             this.changeStatus(username);
-            // this.waitForPlayers();
         });
+    }
+
+    makeNameTag(username) {
+        let namediv = document.getElementById("nameDiv");
+        namediv.style.display = 'block';
+        namediv.style.textAlign = 'center';
+        document.getElementById("name").innerHTML = `Hello ${username}!`;
     }
 
     usernameIsBad(username) {
         alert(`UserName Allready Exsists: ${username}`); //doesn`t work
         document.getElementById("greeting").style.display = 'block';
         document.getElementById("playerlistDiv").style.display = 'none';
-    }
-
-    waitForPlayers() {
-        let select = document.getElementById("playerList");
-        let div = document.createElement("div");
-        let body = document.getElementsByTagName("body");
-        div.style.backgroundColor = "grey";
-        div.style.zIndex = 2;
-        div.style.width = '2000px';
-        div.style.height = '2000px';
-        body[0].prepend(div);
     }
 
     createGame() {
