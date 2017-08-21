@@ -92,7 +92,7 @@ class Game {
 
     gameEnds(IfHit, socketid) {
         if (IfHit) {
-            return (++this.winners[socketid] === 1) //no more ships
+            return (++this.winners[socketid] === 20) //no more ships
         }
     }
 }
