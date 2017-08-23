@@ -87,6 +87,11 @@ class Random {
         return ship;
     }
 
+
+    
+    for()
+
+
     changeBoardStateAfterShip(ship) {
         for (var xy of ship) {
             this.putMiss(xy.x, xy.y);

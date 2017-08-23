@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../angular.min.js"></script>
+    <script src="script.js"></script>
+</head>
+<style>
+    h1 {
+        border-bottom: 1px solid black;
+        width: 90px;
+    }
+    
+    .robot {
+        display: inline-flex;
+    }
+</style>
+
+<body>
+    <h1>Users</h1>
+    <div ng-app="MyApp">
+        <div ng-controller="roboListCtrl as myRobot">
+            <div ng-repeat="item in myRobot.items track by $index">
+                <div remove-me class='robot'>
+                    <p>{{$index}}</p>
+                    <img ng-src="{{item.image}}" alt="">
+                    <p>{{item.fname}} {{item.lname}}</p>
+                    <div ng-controller="checkedCrtl">
+                        <button type="button" ng-click='checked= !checked'>X</button>
+                        <p ng-show='checked'>{{item.Phone}}</p>
+                    </div>
+                    <button type="button" ng-click='myRobot.remove(item)'>X</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
