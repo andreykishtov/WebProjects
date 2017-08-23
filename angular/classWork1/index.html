@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../angular.min.js"></script>
+    <script src="index.js"></script>
+    <link href="style.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+
+<body>
+    <div ng-app='ToDo'>
+        <div ng-controller="toDolistCtrl as reftodolist">
+            <input type="text" name="" value="" ng-model="reftodolist.task">
+            <button type="submit" ng-click="reftodolist.send()">submit</button>
+            <!-- ng-repeat="task in reftodolist.tasks track by $index" -->
+            <div>
+                <h1>{{title}}</h1>
+                <p>Number Of Task{{taskid}} and UserID: {{userid}}</p>
+                <p>{{body}}</p>
+                <input type="radio" name="priority" value="Bike">
+                <input type="radio" name="priority" value="Car">
+                <input type="radio" name="priority" value="Car">
+                <input type="radio" name="priority" value="Car">
+                <input type="radio" name="priority" value="Car"><br>{{priority}}
+                <input type="radio" name="importance" value="Bike">
+                <input type="radio" name="importance" value="Car">
+                <input type="radio" name="importance" value="Car">
+                <input type="radio" name="importance" value="Car">number (how urgent) 1-5
+                <input type="radio" name="importance" value="Car">{{importance}}
+                <p>completed (0-100%) (can change during work)</p>
+                <p>{{task}}</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div> tasts
+        <ul>
+            <li>
+
+            </li>
+        </ul>
+    </div>
+
+    </div>
+</body>
+
+</html>
