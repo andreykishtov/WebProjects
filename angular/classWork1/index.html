@@ -14,37 +14,40 @@
 
 <body>
     <div ng-app='ToDo'>
-        <div ng-controller="toDolistCtrl as reftodolist">
-            <input type="text" name="" value="" ng-model="reftodolist.task">
-            <button type="submit" ng-click="reftodolist.send()">submit</button>
-            <!-- ng-repeat="task in reftodolist.tasks track by $index" -->
+        <div id='taskDiv' ng-controller="toDolistCtrl as reftodolist">
+
             <div>
-                <h1>{{title}}</h1>
-                <p>Number Of Task{{taskid}} and UserID: {{userid}}</p>
-                <p>{{body}}</p>
-                <input type="radio" name="priority" value="Bike">
-                <input type="radio" name="priority" value="Car">
-                <input type="radio" name="priority" value="Car">
-                <input type="radio" name="priority" value="Car">
-                <input type="radio" name="priority" value="Car"><br>{{priority}}
-                <input type="radio" name="importance" value="Bike">
-                <input type="radio" name="importance" value="Car">
-                <input type="radio" name="importance" value="Car">
-                <input type="radio" name="importance" value="Car">number (how urgent) 1-5
-                <input type="radio" name="importance" value="Car">{{importance}}
-                <p>completed (0-100%) (can change during work)</p>
-                <p>{{task}}</p>
+                <label for="id">Enter Id:</label>
+                <input type="text" name="id" value="" placeholder="Enter id" ng-model="task.userid">
+                <br>
+                <label for="title">Enter text:</label>
+                <input type="text-area" name="title" value="" placeholder="Enter Title" ng-model="task.text">
+                <br>
+                <label for="title">Enter Title:</label>
+                <input type="text" name="title" value="" placeholder="Enter Title" ng-model="task.title">
+                <br>
+                <label for="priority">Priority:</label>
+                <input type="radio" name="priority" value="1" ng-model="task.priority">1
+                <input type="radio" name="priority" value="2" ng-model="task.priority">2
+                <input type="radio" name="priority" value="3" ng-model="task.priority">3
+                <input type="radio" name="priority" value="4" ng-model="task.priority">4
+                <input type="radio" name="priority" value="5" ng-model="task.priority">5
+                <br>
+                <label for="importance">Importance:</label>
+                <input type="radio" name="importance" value="1" ng-model="task.importance">1
+                <input type="radio" name="importance" value="2" ng-model="task.importance">2
+                <input type="radio" name="importance" value="3" ng-model="task.importance">3
+                <input type="radio" name="importance" value="4" ng-model="task.importance">4
+                <input type="radio" name="importance" value="5" ng-model="task.importance">5
+                <br>
+                <button type="submit" ng-click="reftodolist.maketasks(task)">submit</button>
             </div>
         </div>
     </div>
 
 
-    <div> tasts
-        <ul>
-            <li>
-
-            </li>
-        </ul>
+    <div id='userDiv'>
+        <p></p>
     </div>
 
     </div>

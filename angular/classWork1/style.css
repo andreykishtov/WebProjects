@@ -1,8 +1,13 @@
 body {
     margin: 0px;
+    background-color: lightblue;
 }
 
-div {
-    margin: 0px auto;
+#taskDiv,
+#userDiv {
+    padding: 4px;
+    border-radius: 5px;
+    background-color: white;
+    margin: 10px auto;
     width: 400px;
 }
