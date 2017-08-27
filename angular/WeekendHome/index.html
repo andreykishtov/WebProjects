@@ -5,33 +5,155 @@
     <title></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/css/bulma.css">
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="css/bulma.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body>
+<body ng-app="googleMaps" ng-controller="usersController as users">
+    <div ng-controller="homesController as homePlacer">
+        <!-- <nav class="column"> -->
+        <nav class="column pagination" role="navigation" aria-label="pagination">
+            <a class="pagination-previous" ng-click="homePlacer.hidemap = !homePlacer.hidemap">Show On Map</a>
+            <a class="pagination-previous" ng-click="homePlacer.hidelist = !homePlacer.hidelist">Show List</a>
+            <a class="pagination-previous" ng-click="homePlacer.sortBy('Rooms')">SortByRoom</a>
+            <a class="pagination-previous" ng-click="homePlacer.sortBy('price')">SortByPrice</a>
+            <a class="pagination-previous" ng-disabled="homePlacer.currentPage == 0" ng-click="homePlacer.currentPage=homePlacer.currentPage - 1">Previous</a>
+            <a class="pagination-next" ng-disabled="homePlacer.currentPage >= homePlacer.homes.length/homePlacer.pageSize - 1" ng-click="homePlacer.currentPage=homePlacer.currentPage + 1">Next page</a>
+        </nav>
+        <div class="columns">
 
+            <main class="column">
+                <div ng-class="{'hide': homePlacer.hidemap}">
+                    <h3>My Google Maps Demo</h3>
+                    <div id="map"></div>
+                </div>
+                <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsfhVBe4fsLGIbUeRa-meCSSygEsDXPYw">
+                </script>
+
+                <!-- googleapi -->
+
+                <div ng-class="{'hide': homePlacer.hidelist}">
+                    <div class="hide tile is-ancestor" ng-repeat="home in homePlacer.homes | orderBy:homePlacer.propertyName:reverse | startFrom: homePlacer.currentPage*homePlacer.pageSize | limitTo:homePlacer.pageSize">
+                        <div class="tile is-vertical">
+                            <div class="tile">
+                                <div class="tile is-parent is-vertical">
+                                    <article class="tile is-child box">
+                                        <p>Number Of Rooms Are: {{home.Rooms}}</p>
+                                    </article>
+                                    <article class="tile is-child box">
+                                        <p>The Price Of The Appartment Is: {{home.price}} Dollars</p>
+                                    </article>
+                                    <article class="tile is-child box">
+                                        <p>Home Is Owned By:{{users.users[home.ownerId].first_name + " "+ users.users[home.ownerId].last_name}}</p>
+                                    </article>
+                                </div>
+                                <div class="tile is-parent">
+                                    <article class="tile is-child box">
+                                        <img ng-src="{{users.users[home.ownerId].image}}" alt="none">
+                                    </article>
+                                </div>
+                            </div>
+                            <div class="tile is-parent">
+                                <article class="tile is-child box">
+                                    {{home.description}}
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+
+            <aside class="column">
+                <div class="field">
+                    <div class="control">
+                        <label class="label">Please Select Rooms</label>
+                        <div class="select">
+                            <select ng-model="homePlacer.Rooms">
+                <option>1 Room</option>
+                <option>2 Room</option>
+                <option>3 Room</option>
+                <option>4 Room</option>
+                <option>More</option>
+                </select>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="control">
+                            <label class="label">Input Price Per Day</label>
+                            <input class="input is-primary" type="text" placeholder="Please Enter Price" ng-model="homePlacer.price">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <label class="label">Please Select Owner</label>
+                        <div class="select">
+                            <select ng-model="homePlacer.ownerId">
+                        <option ng-repeat="user in users.users">{{user.UserId}}</option>
+                    </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="columns">
+                    <div class="column">
+                        <div class="field">
+                            <div class="control">
+                                <label class="label">Input Longitude</label>
+                                <input ng-model="homePlacer.longitude" class="input is-primary" type="text" placeholder="Longitude">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="field">
+                            <div class="control">
+                                <label class="label">Input Latitude</label>
+                                <input ng-model="homePlacer.latitude" class="input is-primary" type="text" placeholder="Latitude">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <textarea ng-model="homePlacer.description" class="textarea is-primary" type="text" placeholder="Please Enter Description For Your House"></textarea>
+                    </div>
+                </div>
+                <div class="field">
+                    <p class="control">
+                        <button class="button is-success" ng-click="homePlacer.addHome()">
+                        Add House
+                    </button>
+                    </p>
+                </div>
+
+            </aside>
+        </div>
+    </div>
 </body>
+<!-- browser-sync start --server --files "css/*.css" -->
 
-
+<!-- jsonFiles -->
+<script src="/services/homes/homesjsom.js"></script>
+<script src="/services/users/users.js"></script>
 
 <!-- vendors -->
-<script src="/app/vendors/angular.js"></script>
-<script src="/app/vendors/lodash.js"></script>
+<script src="/vendors/angular.js"></script>
+<script src="/vendors/lodash.js"></script>
 
 <!-- ng-app -->
-
+<script src="/app.js"></script>
 
 <!-- ng-controllers -->
-
-
-
+<!-- <script src="/controllers/user-controller.js"></script> -->
+<script src="/controllers/homes-Controller.js"></script>
+<script src="/controllers/users-Controller.js"></script>
 <!-- ng-services -->
-
-
+<script src="/services/homes-factory.js"></script>
+<script src="/services/users-factory.js"></script>
 <!-- ng-directives -->
-
-
 
 
 
