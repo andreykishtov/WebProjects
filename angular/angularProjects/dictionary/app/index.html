@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bulma.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body ng-app="Dictionary" ng-controller="DictionaryController">
+    <input type="input" name="" value="" ng-change="getInputFromUsers()" ng-model="keyword">
+    <p>translated Word Is: {{translation}}</p>
+    <p> and It Was Seached {{searchCounter}}</p>
+</body>
+<!-- browser-sync start --server --files "css/*.css" -->
+
+<!-- vendors -->
+<script src="vendors/angular.js"></script>
+<script src="vendors/lodash.js"></script>
+
+<!-- ng-app -->
+<script src="app.js"></script>
+
+<!-- ng-controllers -->
+<script src="translator/translator-Controller.js"></script>
+
+<!-- ng-services -->
+<script src="translator/translator-Service.js"></script>
+<script src="translator/counter-Service.js"></script>
+
+<!-- ng-directives -->
+
+
+
+</html>
