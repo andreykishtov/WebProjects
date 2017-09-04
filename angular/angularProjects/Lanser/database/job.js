@@ -3,7 +3,7 @@ var db = require('./db');
 function getJob(callback) {
     var query = `Select job.title, job.description ,job.publish_date, user.first_name, user.last_name, location.location from job
     join user on job.publisher_id = user.user_id 
-    join location on location.id=job.location;`
+    join location on location.id = job.location_id;`
 
     db.query(query, function(err, sendresult, fields) {
         if (err) throw err;

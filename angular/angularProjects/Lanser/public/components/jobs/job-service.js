@@ -3,7 +3,7 @@
 
     angular
         .module('lanser')
-        .factory('jobService', Service);
+        .factory('JobService', Service);
 
     Service.$inject = ['$http'];
 
@@ -13,7 +13,7 @@
         service.httprequestFunc = function(callback) {
             $http({
                 method: 'GET',
-                url: 'http://localhost:3000/api'
+                url: 'http://localhost:3000/api/jobs'
             }).then(function successCallback(response) {
                 callback(response, 'jobs');
             }, function errorCallback(response) {

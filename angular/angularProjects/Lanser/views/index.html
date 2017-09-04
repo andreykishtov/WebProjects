@@ -9,12 +9,17 @@
 </head>
 
 <body ng-app="lanser">
-    <div ng-controller="mainCtrl as mCtrl">
-        <!-- <p>data from maincontroller: {{mCtrl.jobs}}</p> -->
-        <!-- <div > -->
-        <job ng-repeat="job in mCtrl.jobs" jobs-obj='job' show-test='mCtrl.showtest()'></job>
-        <!-- </div> -->
-    </div>
+
+    <main-nav></main-nav>
+    <ui-view></ui-view>
+
+
+    <!-- <div ng-controller="mainCtrl as mCtrl"> -->
+    <!-- <p>data from maincontroller: {{mCtrl.jobs}}</p> -->
+    <!-- <div > -->
+    <!-- <job ng-repeat="job in mCtrl.jobs" jobs-obj='job' show-test='mCtrl.showtest()'></job> -->
+    <!-- </div> -->
+    <!-- </div> -->
 
 
 
@@ -24,15 +29,19 @@
 
 
     <!-- vendors -->
-    <script src="./angular.js"></script>
+    <script src="./vendors/angular.js"></script>
+    <script src="./vendors/angular-ui-router.js"></script>
 
     <!-- main Files -->
     <script src="./app.js"></script>
 
+    <!-- job-services -->
+    <script src="./components/jobs-list/job-service.js"></script>
+
     <!-- job -->
-    <script src="./jobs/job-controller.js"></script>
-    <script src="./jobs/job-service.js"></script>
-    <script src="./jobs/job-component.js"></script>
+    <script src="./components/nav/main-nav.js"></script>
+    <script src="./components/jobs-list/jobs-list.js"></script>
+    <script src="./components/job/job.js"></script>
 
 
 </body>
