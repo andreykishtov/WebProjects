@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="stylesheets/style.css" rel="stylesheet">
+</head>
+
+<body ng-app="lanser">
+    <div ng-controller="mainCtrl as mCtrl">
+        <!-- <p>data from maincontroller: {{mCtrl.jobs}}</p> -->
+        <!-- <div > -->
+        <job ng-repeat="job in mCtrl.jobs" jobs-obj='job' show-test='mCtrl.showtest()'></job>
+        <!-- </div> -->
+    </div>
+
+
+
+
+
+
+
+
+    <!-- vendors -->
+    <script src="./angular.js"></script>
+
+    <!-- main Files -->
+    <script src="./app.js"></script>
+
+    <!-- job -->
+    <script src="./jobs/job-controller.js"></script>
+    <script src="./jobs/job-service.js"></script>
+    <script src="./jobs/job-component.js"></script>
+
+
+</body>
+
+</html>
