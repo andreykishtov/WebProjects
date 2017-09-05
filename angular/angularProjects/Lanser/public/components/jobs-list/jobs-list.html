@@ -1,0 +1,32 @@
+<div>
+    <p>Job List Component</p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Job Title</th>
+                <th>Publish Date</th>
+                <th>Publisher</th>
+                <th>Location</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="job in vm.jobs">
+                <td>{{job.title}}</td>
+                <td ng-show="showDesc">{{job.description}}</td>
+                <td>{{job.publish_date}}</td>
+                <td>{{job.first_name}}</td>
+                <td>{{job.last_name}}</td>
+                <td>{{job.location}}</td>
+                <td>{{job.location}}</td>
+                <td ng-show="job.showSkill">{{vm["skills"+job.id]}}</td>
+                <td>
+                    <button ng-click='vm.getSkills(job.id); job.showSkill=!job.showSkill' class="button">Show skills</button>
+                    <button ng-click="showDesc=!showDesc" class="button">Description</button>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+
+</div>

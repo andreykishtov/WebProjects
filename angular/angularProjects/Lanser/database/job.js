@@ -1,7 +1,7 @@
 var db = require('./db');
 
 function getJob(callback) {
-    var query = `Select job.title, job.description ,job.publish_date, user.first_name, user.last_name, location.location from job
+    var query = `Select job.id, job.title, job.description ,job.publish_date, user.first_name, user.last_name, location.location from job
     join user on job.publisher_id = user.user_id 
     join location on location.id = job.location_id;`
 
@@ -10,6 +10,21 @@ function getJob(callback) {
         callback(sendresult);
     });
 }
+
+function getSkillsByJobId(callback, id) {
+    var query = `SELECT skills.title FROM job_skills
+    join skills on skills.id=job_skills.skill_id
+    where job_id= ${id}`
+
+    db.query(query, function(err, sendresult, fields) {
+        if (err) throw err;
+        callback(sendresult);
+    });
+}
+
+
+
+
 
 //insert into job_applicant values (2,2)
 
@@ -24,4 +39,4 @@ function getJob(callback) {
 
 
 
-module.exports = getJob;
+module.exports = { getJob, getSkillsByJobId };
