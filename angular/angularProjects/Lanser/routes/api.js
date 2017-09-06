@@ -4,6 +4,7 @@ const job = require('../database/job');
 /* GET users listing. */
 router.get('/jobs', getJobs);
 router.get('/skills/:id', getSkills);
+router.get('/skills', getSkillsforalljobs);
 
 function getJobs(req, res, next) {
     function getJobFromDB(whatToGet) {
@@ -17,5 +18,12 @@ function getSkills(req, res, next) {
         res.json(whatToGet);
     }
     job.getSkillsByJobId(getSkillsFromServer, req.params.id);
+}
+
+function getSkillsforalljobs(req, res, next) {
+    function getSkillsJobFromServer(whatToGet) {
+        res.json(whatToGet);
+    }
+    job.getSkillsforJobs(getSkillsJobFromServer);
 }
 module.exports = router;

@@ -9,20 +9,20 @@
             template: '<jobs-list></jobs-list>'
         }
 
-        var about = {
-            name: 'about',
-            url: '/about',
-            template: '<h3>Its the UI-Router hello world app!</h3>'
+        var login = {
+            name: 'login',
+            url: '/login',
+            template: '<login></login>'
         }
 
-        // var jobView = {
-        //     name: 'jobView',
-        //     url: '/job/:id',
-        //     template: '<job-view></job-view>'
-        // }
+        var profile = {
+            name: 'profile',
+            url: '/profile',
+            template: '<profile></profile>'
+        }
 
         $stateProvider.state(home);
-        $stateProvider.state(about);
+        $stateProvider.state(login);
     });
 
 

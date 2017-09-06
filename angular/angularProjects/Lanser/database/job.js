@@ -22,6 +22,25 @@ function getSkillsByJobId(callback, id) {
     });
 }
 
+function getSkillsforJobs(callback) {
+    var query = `SELECT skills.title, job.id as job_id FROM job_skills
+    join skills on skills.id=job_skills.skill_id
+    join job on job.id=job_skills.job_id
+    order by job.id;`
+
+    db.query(query, function(err, sendresult, fields) {
+        if (err) throw err;
+        callback(sendresult);
+    });
+}
+
+
+
+module.exports = { getJob, getSkillsByJobId,getSkillsforJobs };
+
+
+
+
 
 
 
@@ -37,6 +56,3 @@ function getSkillsByJobId(callback, id) {
 //     });
 // };
 
-
-
-module.exports = { getJob, getSkillsByJobId };
