@@ -1,4 +1,4 @@
-var db = require('./db');
+var db = require('../config/db');
 
 function getAllJob(callback) {
     var query = `Select job.id, job.title, job.description ,job.publish_date, user.first_name, user.last_name, location.location from job
@@ -32,7 +32,7 @@ function getAllSkills(callback) {
     });
 }
 
-module.exports = { getAllJob,getSkillsforJobs,getAllSkills };
+module.exports = { getAllJob, getSkillsforJobs, getAllSkills };
 
 
 

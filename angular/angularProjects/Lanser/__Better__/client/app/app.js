@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    angular.module('lanser', ['ui.router'])
+    angular.module('lanser', ['ui.router', 'LocalStorageModule'])
 
     .config(function($stateProvider) {
         var home = {
@@ -23,6 +23,12 @@
 
         $stateProvider.state(home);
         $stateProvider.state(login);
+    })
+    .run(['$state', function ($state) {
+        $state.go('home');
+     }])
+    .constant('API', {
+        'URL': 'http://localhost:7575/api'
     });
 
 

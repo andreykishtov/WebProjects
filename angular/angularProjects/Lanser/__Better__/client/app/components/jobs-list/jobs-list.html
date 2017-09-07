@@ -18,13 +18,18 @@
                 <th ng-click="vm.sortBy('Description')">Description
                     <span class="sortorder" ng-show="vm.propertyName === 'Description'" ng-class="{reverse: vm.reverse}"></span>
                 </th>
-                <th ng-click="vm.sortBy('Skills')">Skills
-                    <span class="sortorder" ng-show="vm.propertyName === 'Skills'" ng-class="{reverse: vm.reverse}"></span>
+                <th>
+                    <span ng-click="showSkill=!showSkill">Skill</span>
+                    <div ng-if="showSkill" class="select">
+                        <select ng-init="skill.title" ng-options="skill as skill.title for skill in vm.skillsObj" ng-model="vm.searchText">
+                            </select>
+                    </div>
                 </th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="job in vm.jobs | orderBy:vm.propertyName:vm.reverse">
+            <tr ng-repeat="job in vm.jobs | orderBy:vm.propertyName:vm.reverse | filter:vm.searchText.title">
                 <td>{{job.title}}</td>
                 <td>{{job.publish_date}}</td>
                 <td>{{job.first_name}} {{job.last_name}}</td>
@@ -32,10 +37,7 @@
                 <br>
                 <td>{{job.description}}</td>
                 <td><span class='skill' ng-repeat="skill in job.skills">{{skill}}</span></td>
-                <!-- <td> -->
-                    <!-- <button ng-click='vm.getSkills(job.id); job.showSkill=!job.showSkill' class="button">Show skills</button>
-                    <button ng-click="showDesc=!showDesc" class="button">Description</button> -->
-                <!-- </td> -->
+                <td ng-show="vm.apply"><button ng-click="vm.applyToJob(job.id,1)" class="button is-success">Apply</button></td>
             </tr>
         </tbody>
     </table>
