@@ -37,7 +37,7 @@
                 <br>
                 <td>{{job.description}}</td>
                 <td><span class='skill' ng-repeat="skill in job.skills">{{skill}}</span></td>
-                <td ng-show="vm.apply"><button ng-click="vm.applyToJob(job.id,1)" class="button is-success">Apply</button></td>
+                <td ng-show="vm.apply"><button ng-click="vm.applyToJob(job.id)" class="button is-success">Apply</button></td>
             </tr>
         </tbody>
     </table>

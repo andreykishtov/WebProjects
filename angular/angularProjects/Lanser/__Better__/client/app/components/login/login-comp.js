@@ -18,16 +18,24 @@
     function ControllerController($rootScope, $state, localStorageService, loginService) {
         var vm = this;
         vm.loggedIn = function() {
-            loginService(afterLoginCheck, vm.email, vm.password);
+            loginService.CheckUser(vm.email, vm.password).then(function(responseFromServer) {
+                console.log(responseFromServer.data);
+                if (responseFromServer.data.length) {
+                    localStorageService.set("userId", responseFromServer.data[0]);
+                } else {
+                    alert("User Not Found");
+                }
+            });
         };
-
-        function afterLoginCheck(responce) {
-            console.log(responce);
-            if (vm.email === "111" && vm.password === "222") {
-                $rootScope._currentUser = { user: 1, nam: "bob" };
-                localStorageService.set("token", "shit");
-                $state.go("home");
-            }
-        }
     }
 })();
+
+//     $rootScope._currentUser = {
+//         user: 1,
+//         nam: 'bob'
+//     }
+//
+//     $state.go('home');
+// } else {
+//     alert('Wrong username or password');
+// }

@@ -41,13 +41,13 @@
                 vm.propertyName = propertyName;
             };
 
-            vm.applyToJob = function(job_id, user_id) {
-                if (!$rootScope._currentUser) {
+            vm.applyToJob = function(job_id) {
+                var user_Id = localStorageService.get("userId");
+                if (!user_Id) {
                     $log.log("no user");
                     return $state.go("login");
                 }
-                // console.log('shit is on');
-                $log.log($rootScope._currentUser);
+
                 // JoblistService.httpreqApply(job_id,user_id);
             };
 

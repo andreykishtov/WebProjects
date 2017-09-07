@@ -3,13 +3,13 @@
 
     angular.module("lanser").factory("loginService", Service);
 
-    Service.$inject = ["API"];
+    Service.$inject = ["API", "$http"];
 
-    function Service(API) {
+    function Service(API, $http) {
         var service = {};
 
-        service.CheckUser = function(callback, email, password) {
-            $http({
+        service.CheckUser = function(email, password) {
+            return $http({
                 method: "POST",
                 url: `${API.URL}/users/checkUser`,
                 data: {
@@ -18,7 +18,7 @@
                 }
             }).then(
                 function successCallback(response) {
-                    callback(response);
+                    return response;
                 },
                 function errorCallback(response) {
                     if (response) {
