@@ -14,7 +14,7 @@
                 // $rootScope._currentUser = null
                 $state.go("login");
             };
-            $scope.$watch("loginHeader", function(newValue, oldValue) {
+            $scope.$watch("vm.loginHeader", function(newValue, oldValue) {
                 vm.loginHead = false;
             });
 
