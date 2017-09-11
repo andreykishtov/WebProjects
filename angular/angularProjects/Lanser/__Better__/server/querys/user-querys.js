@@ -22,5 +22,11 @@ module.exports = {
         db.query(queryUser, function(err, result, field) {
             callback(err, result);
         });
+    },
+    getLocations: (req, callback) => {
+        var queryUser = `SELECT location FROM location`;
+        db.query(queryUser, function(err, result, field) {
+            callback(err, result);
+        });
     }
 };

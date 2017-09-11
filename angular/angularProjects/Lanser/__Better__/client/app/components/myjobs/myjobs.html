@@ -21,7 +21,7 @@
                     <span ng-click="showSkill=!showSkill">Skill</span>
                     <div ng-if="showSkill" class="select">
                         <select ng-init="skill.title" ng-options="skill as skill.title for skill in vm.skillsObj" ng-model="vm.searchText">
-                            </select>
+                                </select>
                     </div>
                 </th>
                 <th></th>
@@ -40,5 +40,3 @@
             </tr>
         </tbody>
     </table>
-
-</div>

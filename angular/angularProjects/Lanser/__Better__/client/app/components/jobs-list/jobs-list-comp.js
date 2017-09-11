@@ -1,16 +1,19 @@
 (function() {
     "use strict";
 
-    angular.module("lanser").component("jobsList", component());
+    angular
+        .module("lanser")
+        .component("jobsList", component())
+        .constant("options", {
+            method: { get: "GET", post: "POST" },
+            URL: {
+                skills: "/jobs/skills/",
+                allSkills: "/jobs/skills/"
+            }
+        });
 
     function component() {
-        function componentController(
-            JoblistService,
-            $rootScope,
-            $log,
-            $state,
-            localStorageService
-        ) {
+        function componentController(JobListService, $rootScope, $log, $state, localStorageService, options) {
             init();
             function init() {
                 if (!localStorageService.get("token")) {
@@ -32,7 +35,7 @@
             vm.getSkills = function(id) {
                 let where = "skills" + id;
                 if (!vm[where]) {
-                    JoblistService.httprequestSkills(callback, where, id);
+                    JobListService.requestService(callback, options.URL.skills, options.method.get, where, id);
                 }
             };
 
@@ -42,34 +45,29 @@
             };
 
             vm.applyToJob = function(job_id) {
-                var user_Id = localStorageService.get("userId");
-                if (!user_Id) {
+                let user = localStorageService.get("userId");
+                if (!user) {
                     $log.log("no user");
                     return $state.go("login");
                 }
-
-                // JoblistService.httpreqApply(job_id,user_id);
+                JobListService.httpreqApply(job_id, user.user_id).then(function(response) {
+                    console.log(response);
+                });
             };
 
-            JoblistService.httprequestJob(callback, vm.title);
+            JobListService.httprequestJob(callback, vm.title);
+            console.log(options.URL.allSkills, options.method.get);
+            JobListService.requestService(callback, options.URL.allSkills, options.method.get, "skillsObj");
 
             function callback(resdata, where) {
                 vm[where] = resdata.data;
             }
-
-            JoblistService.httpreqgetAllSkills(callback, "skillsObj");
+            //JobListService.httpreqgetAllSkills(callback, "skillsObj");
         }
 
         return {
             bindings: {},
-            controller: [
-                "JoblistService",
-                "$rootScope",
-                "$log",
-                "$state",
-                "localStorageService",
-                componentController
-            ],
+            controller: ["JobListService", "$rootScope", "$log", "$state", "localStorageService", "options", componentController],
             controllerAs: "vm",
             templateUrl: "/components/jobs-list/jobs-list.html"
         };

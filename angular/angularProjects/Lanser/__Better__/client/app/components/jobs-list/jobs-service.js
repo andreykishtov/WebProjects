@@ -1,7 +1,7 @@
 (function() {
     "use strict";
 
-    angular.module("lanser").factory("JoblistService", Service);
+    angular.module("lanser").factory("JobListService", Service);
 
     Service.$inject = ["$http", "API"];
 
@@ -35,21 +35,50 @@
             );
         };
 
-        service.httprequestSkills = function(callback, where, id) {
+        service.requestService = function(callback, Url, method, where, id) {
             $http({
-                method: "GET",
-                url: `${API.URL}/jobs/skills/${id}`
-            }).then(
-                function successCallback(response) {
+                method: method,
+                url: `${API.URL}${Url}${id}`
+            })
+                .then(function(response) {
                     callback(response, where);
-                },
-                function errorCallback(response) {
-                    if (response) {
-                        throw response;
-                    }
-                }
-            );
+                })
+                .catch(function(error) {
+                    throw error;
+                });
         };
+
+        // service.httprequestSkills = function(callback, Url, method, where, id) {
+        //     $http({
+        //         method: method,
+        //         url: `${API.URL}${Url}${id}`
+        //     }).then(
+        //         function successCallback(response) {
+        //             callback(response, where);
+        //         },
+        //         function errorCallback(response) {
+        //             if (response) {
+        //                 throw response;
+        //             }
+        //         }
+        //     );
+        // };
+
+        // service.httprequestSkills = function(callback, where, id) {
+        //     $http({
+        //         method: method,
+        //         url: `${API.URL}/jobs/skills/${id}`
+        //     }).then(
+        //         function successCallback(response) {
+        //             callback(response, where);
+        //         },
+        //         function errorCallback(response) {
+        //             if (response) {
+        //                 throw response;
+        //             }
+        //         }
+        //     );
+        // };
 
         service.httpreqgetJobSkills = function(callback, where) {
             $http({
@@ -67,33 +96,33 @@
             );
         };
 
-        service.httpreqgetAllSkills = function(callback, where) {
-            $http({
-                method: "GET",
-                url: `${API.URL}/jobs/skills/`
-            }).then(
-                function successCallback(response) {
-                    callback(response, where);
-                },
-                function errorCallback(response) {
-                    if (response) {
-                        throw response;
-                    }
-                }
-            );
-        };
+        // service.httpreqgetAllSkills = function(callback, where) {
+        //     $http({
+        //         method: "GET",
+        //         url: `${API.URL}/jobs/skills/`
+        //     }).then(
+        //         function successCallback(response) {
+        //             callback(response, where);
+        //         },
+        //         function errorCallback(response) {
+        //             if (response) {
+        //                 throw response;
+        //             }
+        //         }
+        //     );
+        // };
 
         service.httpreqApply = function(job_id, user_id) {
-            $http({
+            return $http({
                 method: "POST",
-                url: "http://localhost:3000/api/apply/",
+                url: `${API.URL}/jobs/apply/`,
                 data: {
                     job_id: job_id,
                     user_id: user_id
                 }
             }).then(
                 function successCallback(response) {
-                    callback(response, where);
+                    return response;
                 },
                 function errorCallback(response) {
                     if (response) {

@@ -19,9 +19,10 @@
         var vm = this;
         vm.loggedIn = function() {
             loginService.CheckUser(vm.email, vm.password).then(function(responseFromServer) {
-                console.log(responseFromServer.data);
                 if (responseFromServer.data.length) {
                     localStorageService.set("userId", responseFromServer.data[0]);
+                    $state.go("home");
+                    $rootScope.$broadcast("userIsLoggedIn");
                 } else {
                     alert("User Not Found");
                 }
