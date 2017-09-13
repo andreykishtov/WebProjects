@@ -3,8 +3,6 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 
-
-
 var app = express();
 
 // view engine setup
@@ -15,10 +13,9 @@ var app = express();
 app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'app')));
 
-app.use('/', function(req, res){
+app.use('/', function(req, res) {
     res.sendFile(path.join(__dirname, '/app/main.html'));
-})
-
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -26,7 +23,6 @@ app.use(function(req, res, next) {
     // err.status = 404;
     // next(err);
     res.redirect('/login');
-    
 });
 
 // error handler

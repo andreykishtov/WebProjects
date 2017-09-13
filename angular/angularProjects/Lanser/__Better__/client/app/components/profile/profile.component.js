@@ -1,15 +1,15 @@
 (function() {
-    "use strict";
+    'use strict';
 
     // Usage:
     //
     // Creates:
     //
 
-    angular.module("lanser").component("profile", {
-        templateUrl: "/components/profile/profile.html",
+    angular.module('lanser').component('profile', {
+        templateUrl: '/components/profile/profile.html',
         controller: ControllerController,
-        controllerAs: "$ctrl",
+        controllerAs: '$ctrl',
         bindings: {
             // Binding: '=',
         }

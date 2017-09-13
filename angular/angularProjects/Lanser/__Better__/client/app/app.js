@@ -1,36 +1,36 @@
 (function() {
-    "use strict";
+    'use strict';
     angular
-        .module("lanser", ["ui.router", "LocalStorageModule"])
+        .module('lanser', ['ui.router', 'LocalStorageModule'])
         .config(function($stateProvider) {
             var home = {
-                name: "home",
-                url: "/",
-                template: "<jobs-list></jobs-list>"
+                name: 'home',
+                url: '/',
+                template: '<job-list></job-list>'
             };
 
             var login = {
-                name: "login",
-                url: "/login",
-                template: "<login></login>"
+                name: 'login',
+                url: '/login',
+                template: '<login></login>'
             };
 
             var profile = {
-                name: "profile",
-                url: "/profile",
-                template: "<profile></profile>"
+                name: 'profile',
+                url: '/profile',
+                template: '<profile></profile>'
             };
 
             var register = {
-                name: "register",
-                url: "/register",
-                template: "<register></register>"
+                name: 'register',
+                url: '/register',
+                template: '<register></register>'
             };
 
             var register = {
-                name: "my-jobs",
-                url: "/myApplications",
-                template: "<my-jobs></my-jobs>"
+                name: 'my-jobs',
+                url: '/myApplications',
+                template: '<my-jobs></my-jobs>'
             };
 
             $stateProvider.state(home);
@@ -39,24 +39,12 @@
             $stateProvider.state(profile);
         })
         .run([
-            "$state",
+            '$state',
             function($state) {
-                $state.go("home");
+                $state.go('home');
             }
         ])
-        .constant("API", {
-            URL: "http://localhost:7575/api"
+        .constant('API', {
+            URL: 'http://localhost:7575/api'
         });
-    // .controller("mainCtrl", ControllerController);
-
-    // ControllerController.$inject = ["dependency1"];
-    // function ControllerController() {
-    //     var vm = this;
-
-    //     activate();
-
-    //     ////////////////
-
-    //     function activate() {}
-    // }
 })();

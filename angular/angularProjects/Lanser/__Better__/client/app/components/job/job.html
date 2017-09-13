@@ -1,0 +1,4 @@
+<div class="columns">
+    <div class="column" ng-repeat="item in vm.job">{{item}}</div>
+    <div class="column"><button ng-disabled="vm.buttonClicked" ng-click="vm.clickFunc(); vm.clicked()">{{vm.buttonName}}</button></div>
+</div>
