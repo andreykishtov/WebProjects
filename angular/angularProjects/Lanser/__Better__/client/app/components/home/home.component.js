@@ -6,8 +6,8 @@
     // Creates:
     //
 
-    angular.module('lanser').component('jobList', {
-        templateUrl: '/components/jobs-list/job-list.html',
+    angular.module('lanser').component('home', {
+        templateUrl: '/components/home/home.html',
         controller: ControllerController,
         controllerAs: 'vm',
         bindings: {
@@ -15,30 +15,32 @@
         }
     });
 
-    ControllerController.$inject = ['localStorageService', 'jobListService'];
-    function ControllerController(localStorageService, jobListService) {
+    ControllerController.$inject = ['jobService'];
+    function ControllerController(jobService) {
         var vm = this;
-        vm.applyToJob = applyToJob;
-        vm.disabled = false;
+        vm.clicked = '';
         activate();
+        vm.change = function() {
+            vm.jobDescription = !vm.jobDescription;
+        };
 
         ////////////////
 
         function activate() {
-            return jobListService.getJobs().then(data => {
-                vm.jobsObj = data.data;
-                vm.titles = Object.keys(vm.jobsObj[0], 1);
+            jobService.getJobs().then(function() {
+                vm.jobs = jobService.jobs;
+                vm.titles = Object.keys(vm.jobs[0], 1);
             });
         }
 
-        function applyToJob(job_id, applicant_id) {
+        function applyToJob(job_id) {
             let user = localStorageService.get('userId');
             if (!user) {
                 $log.log('no user');
                 return $state.go('login');
             }
-            jobListService.applyToJob(job_id, applicant_id).then(data => {
-                //vm.applied = data.data;
+
+            jobService.applyToJob(job_id, user.id).then(data => {
                 if (!data.data.job.nModified) {
                     alert('All ready Applied'); //change to div
                 }

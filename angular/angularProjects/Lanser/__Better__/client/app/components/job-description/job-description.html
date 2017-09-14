@@ -1,0 +1,52 @@
+<div class="tile is-ancestor">
+    <div class="tile is-vertical is-8">
+        <div class="tile">
+            <div class="tile is-parent is-vertical">
+                <article class="tile is-child notification is-primary">
+                    <p class="title">Title</p>
+                    <p class="subtitle">{{vm.job.title}}</p>
+                </article>
+                <article class="tile is-child notification is-warning">
+                    <p class="title">...tiles</p>
+                    <p class="subtitle">Bottom tile</p>
+                </article>
+            </div>
+            <div class="tile is-parent">
+                <article class="tile is-child notification is-info">
+                    <p class="title">Image</p>
+                    <p class="subtitle">With an image</p>
+                    <figure class="image is-4by3">
+                        <img src="http://bulma.io/images/placeholders/640x480.png">
+                    </figure>
+                </article>
+            </div>
+        </div>
+        <div class="tile is-parent">
+            <article class="tile is-child notification is-danger">
+                <p class="title">Skills</p>
+                <p class="subtitle">{{vm.job.skills}}</p>
+                <div class="content">
+                    <!-- Content -->
+                </div>
+            </article>
+        </div>
+    </div>
+    <div class="tile is-parent">
+        <article class="tile is-child notification is-success">
+            <div class="content">
+                <p class="title">Description</p>
+                <p class="subtitle">{{vm.job.description}}</p>
+                <div class="content">
+                    <!-- Content -->
+                </div>
+            </div>
+        </article>
+    </div>
+</div>
+<!-- id: element._id,
+title: element.title,
+publisher: element.publisher,
+publishDate: new Date(element.publishedDate).toDateString(),
+skills: element.skills,
+description: element.description,
+location: element.location -->

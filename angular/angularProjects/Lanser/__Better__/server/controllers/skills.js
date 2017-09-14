@@ -3,6 +3,9 @@ const mongoDbUrl = require('../helpers/db');
 
 module.exports = {
     createSkill: (req, res, next) => {
+        if (!req.body.title) {
+            throw res.status(403).json({ error: 'Title is mandatory' });
+        }
         let database;
         MongoClient.connect(mongoDbUrl)
             .then(db => {
@@ -10,10 +13,6 @@ module.exports = {
                 return db.collection('skills');
             })
             .then(skills => {
-                if (!req.body.title) {
-                    throw res.status(403).json({ error: 'Title is mandatory' });
-                }
-
                 let skill = {
                     title: req.body.title
                 };

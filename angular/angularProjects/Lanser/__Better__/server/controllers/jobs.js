@@ -19,6 +19,15 @@ module.exports = {
             .catch(err => console.log(err));
     },
     createJob: (req, res, next) => {
+        if (!req.body.title) {
+            throw res.status(403).json({ error: 'Title is mandatory' });
+        }
+        if (!req.body.email) {
+            throw res.status(403).json({ error: 'Publisher email is mandatory' });
+        }
+        if (!req.body.location) {
+            req.body.location = {};
+        }
         let database;
         MongoClient.connect(mongoDbUrl)
             .then(db => {
@@ -26,16 +35,6 @@ module.exports = {
                 return db.collection('jobs');
             })
             .then(jobs => {
-                if (!req.body.title) {
-                    throw res.status(403).json({ error: 'Title is mandatory' });
-                }
-                if (!req.body.email) {
-                    throw res.status(403).json({ error: 'Publisher email is mandatory' });
-                }
-                if (!req.body.location) {
-                    req.body.location = {};
-                }
-
                 let job = {
                     title: req.body.title,
                     publisher: req.body.email,
@@ -79,21 +78,17 @@ module.exports = {
     },
     applyToJob: (req, res, next) => {
         //////////////////////
+        if (!req.body.job_id) {
+            throw res.status(403).json({ error: 'job_id is mandatory' });
+        }
+        if (!req.body.applicant_id) {
+            throw res.status(403).json({ error: 'applicant_id email is mandatory' });
+        }
         let database;
         MongoClient.connect(mongoDbUrl)
             .then(db => {
                 database = db;
                 return db.collection('jobs');
-            })
-            .then(jobs => {
-                if (!req.body.job_id) {
-                    throw res.status(403).json({ error: 'job_id is mandatory' });
-                }
-                if (!req.body.applicant_id) {
-                    throw res.status(403).json({ error: 'applicant_id email is mandatory' });
-                }
-
-                return jobs;
             })
             .then(jobs => {
                 return jobs.update(

@@ -20,9 +20,7 @@
             /////////////////////
             function init() {
                 let login = localStorageService.get('userId');
-                vm.loginHeader = login
-                    ? `hello ${login.first_name} ${login.last_name} you Are logged In`
-                    : '';
+                vm.loginHeader = login ? `hello ${login.name} you Are logged In` : '';
             }
 
             function logout() {

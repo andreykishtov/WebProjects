@@ -1,0 +1,4 @@
+<job-title class="row" clicked="vm.clicked" titles='vm.titles'></job-title>
+<div class="row">
+    <job ng-repeat="job in vm.jobsObj" job='job' click-func="vm.applyToJob(job._id)" button-name="'apply'"></job>
+</div>

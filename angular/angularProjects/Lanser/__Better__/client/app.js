@@ -14,7 +14,7 @@ app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'app')));
 
 app.use('/', function(req, res) {
-    res.sendFile(path.join(__dirname, '/app/main.html'));
+    res.sendFile(path.join(__dirname, '/app/index.html'));
 });
 
 // catch 404 and forward to error handler

@@ -1,5 +1,5 @@
 <div class="columns">
-    <div ng-repeat="time in vm.titles" ng-click="vm.clickTitle()" class="column">{{time}}</div>
-    <div class="column"></div>
+    <div ng-repeat="title in vm.titles" ng-click="vm.clickTitle(title);vm.sortBy(title)" class="jobTable column job-{{title}}">
+        {{title}}<span class="sortorder" ng-show="vm.propertyName === title" ng-class="{reverse: vm.reverse}"></span>
+    </div>
 </div>
-<!-- ng-if="time.hide" -->

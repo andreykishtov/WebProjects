@@ -6,7 +6,7 @@
             var home = {
                 name: 'home',
                 url: '/',
-                template: '<job-list></job-list>'
+                template: '<home></home>'
             };
 
             var login = {

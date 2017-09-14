@@ -3,6 +3,15 @@ const mongoDbUrl = require('../helpers/db');
 
 module.exports = {
     createUser: (req, res, next) => {
+        if (!req.body.name) {
+            throw res.status(403).json({ error: 'Name is mandatory' });
+        }
+        if (!req.body.location) {
+            req.body.location = {};
+        }
+        if (!req.body.description) {
+            req.body.description = {};
+        }
         let database;
         MongoClient.connect(mongoDbUrl)
             .then(db => {
@@ -21,16 +30,6 @@ module.exports = {
                 return users;
             })
             .then(users => {
-                if (!req.body.name) {
-                    throw res.status(403).json({ error: 'Name is mandatory' });
-                }
-                if (!req.body.location) {
-                    req.body.location = {};
-                }
-                if (!req.body.description) {
-                    req.body.description = {};
-                }
-
                 let user = {
                     name: {
                         first: req.body.name.first,
@@ -77,20 +76,17 @@ module.exports = {
             .catch(err => console.log(err));
     },
     validate: (req, res, next) => {
+        if (!req.body.email) {
+            throw res.status(403).json({ error: 'Email is mandatory' });
+        }
+        if (!req.body.password) {
+            throw res.status(403).json({ error: 'Password is mandatory' });
+        }
         let database;
         MongoClient.connect(mongoDbUrl)
             .then(db => {
                 database = db;
                 return db.collection('users');
-            })
-            .then(users => {
-                if (!req.body.email) {
-                    throw res.status(403).json({ error: 'Email is mandatory' });
-                }
-                if (!req.body.password) {
-                    throw res.status(403).json({ error: 'Password is mandatory' });
-                }
-                return users;
             })
             .then(users => {
                 return users.findOne(

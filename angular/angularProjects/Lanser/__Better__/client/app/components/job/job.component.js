@@ -13,19 +13,25 @@
         bindings: {
             job: '<',
             buttonName: '<',
-            clickFunc: '&',
-            buttonClicked: '<'
+            clickFunc: '&'
         }
     });
 
     // ControllerController.$inject = ['dependency1'];
     function ControllerController() {
         var vm = this;
+        vm.showDescription = showDescription;
         vm.buttonClicked = false;
-        vm.clicked = function() {
-            vm.buttonClicked = !vm.buttonClicked;
-        };
-        // vm.disable = false;
+        vm.clicked = clicked;
+        vm.description = false;
         ////////////////
+
+        function clicked(param) {
+            vm.buttonClicked = !vm.buttonClicked;
+        }
+
+        function showDescription() {
+            vm.description = !vm.description;
+        }
     }
 })();

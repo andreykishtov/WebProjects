@@ -12,14 +12,26 @@
         controllerAs: 'vm',
         bindings: {
             titles: '<',
-            clickedTitle: '&'
+            clicked: '='
         }
     });
 
-    // ControllerController.$inject = [''];
+    // ControllerController.$inject = ['$event'];
     function ControllerController() {
         var vm = this;
+        vm.clickTitle = clickTitle;
+        vm.sortBy = sortBy;
+        vm.reverse = true;
+        // vm.hide = `tile !== '_id'`;
 
         ////////////////
+        function clickTitle(name) {
+            vm.clicked = name;
+        }
+
+        function sortBy(propertyName) {
+            vm.reverse = vm.propertyName === propertyName ? !vm.reverse : false;
+            vm.propertyName = propertyName;
+        }
     }
 })();

@@ -21,7 +21,10 @@
             };
             return $http.post(`${API.URL}/user/validate`, data).then(function(user) {
                 if (user.data) {
-                    localStorageService.set('userId', user.data._id);
+                    localStorageService.set('userId', {
+                        id: user.data._id,
+                        name: user.data.name.first + ' ' + user.data.name.last
+                    });
                     $rootScope.$broadcast('userIsLoggedIn');
                 }
                 return user.data;
