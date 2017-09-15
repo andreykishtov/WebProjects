@@ -12,8 +12,7 @@
         controllerAs: 'vm',
         bindings: {
             job: '<',
-            buttonName: '<',
-            clickFunc: '&'
+            buttonName: '<'
         }
     });
 
@@ -22,13 +21,8 @@
         var vm = this;
         vm.showDescription = showDescription;
         vm.buttonClicked = false;
-        vm.clicked = clicked;
         vm.description = false;
         ////////////////
-
-        function clicked(param) {
-            vm.buttonClicked = !vm.buttonClicked;
-        }
 
         function showDescription() {
             vm.description = !vm.description;

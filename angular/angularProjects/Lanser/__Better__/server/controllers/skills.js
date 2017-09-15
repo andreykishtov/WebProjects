@@ -44,5 +44,21 @@ module.exports = {
                 res.status(200).json({ successes: 'ok', skill });
             })
             .catch(err => console.log(err));
+    },
+    getAllSkills: (req, res, next) => {
+        let database;
+        MongoClient.connect(mongoDbUrl)
+            .then(db => {
+                database = db;
+                return db.collection('skills');
+            })
+            .then(skills => {
+                return skills.find().toArray();
+            })
+            .then(skills => {
+                database.close();
+                res.status(200).json(skills);
+            })
+            .catch(err => console.log(err));
     }
 };

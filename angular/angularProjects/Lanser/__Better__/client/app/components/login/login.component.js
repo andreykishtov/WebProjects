@@ -13,14 +13,14 @@
         bindings: {}
     });
 
-    ControllerController.$inject = ['$state', 'loginService'];
+    ControllerController.$inject = ['$state', 'userService'];
 
-    function ControllerController($state, loginService) {
+    function ControllerController($state, userService) {
         var vm = this;
         vm.loggedIn = loggedIn;
 
         function loggedIn() {
-            loginService.validate(vm.email, vm.password).then(function(user) {
+            userService.validate(vm.email, vm.password).then(function(user) {
                 user ? $state.go('home') : alert('User Not Found');
             });
         }

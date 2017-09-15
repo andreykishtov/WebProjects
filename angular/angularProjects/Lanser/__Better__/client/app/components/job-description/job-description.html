@@ -2,22 +2,28 @@
     <div class="tile is-vertical is-8">
         <div class="tile">
             <div class="tile is-parent is-vertical">
-                <article class="tile is-child notification is-primary">
-                    <p class="title">Title</p>
-                    <p class="subtitle">{{vm.job.title}}</p>
-                </article>
+                <!--  -->
+                <div class="tile">
+                    <article class="tile is-child notification is-primary">
+                        <p class="title">job Name</p>
+                        <p class="subtitle">{{vm.job.title}}</p>
+                    </article>
+                </div>
+                <a class="button tile is-child notification is-success is-outlined" ng-disabled="vm.buttonClicked" ng-click="vm.clickFunc(); vm.clicked()">Apply To Job</a>
+
                 <article class="tile is-child notification is-warning">
-                    <p class="title">...tiles</p>
-                    <p class="subtitle">Bottom tile</p>
+                    <p class="title">Publisher Email</p>
+                    <p class="subtitle">{{vm.job.publisher}}</p>
                 </article>
             </div>
+
             <div class="tile is-parent">
                 <article class="tile is-child notification is-info">
-                    <p class="title">Image</p>
-                    <p class="subtitle">With an image</p>
-                    <figure class="image is-4by3">
+                    <p class="title">Publish Date</p>
+                    <p class="subtitle">{{vm.job.publishedDate}}</p>
+                    <!-- <figure class="image is-4by3">
                         <img src="http://bulma.io/images/placeholders/640x480.png">
-                    </figure>
+                    </figure> -->
                 </article>
             </div>
         </div>
@@ -31,15 +37,14 @@
             </article>
         </div>
     </div>
-    <div class="tile is-parent">
-        <article class="tile is-child notification is-success">
-            <div class="content">
-                <p class="title">Description</p>
-                <p class="subtitle">{{vm.job.description}}</p>
-                <div class="content">
-                    <!-- Content -->
-                </div>
-            </div>
+    <div class="tile is-parent is-vertical">
+        <article class="tile is-child notification is-primary">
+            <p class="title">job Description</p>
+            <p class="subtitle">{{vm.job.description}}</p>
+        </article>
+        <article class="tile is-child notification is-warning">
+            <p class="title">Publisher Location</p>
+            <p class="subtitle">latitude: {{vm.job.location.lat}} longitude: {{vm.job.location.lng}}</p>
         </article>
     </div>
 </div>

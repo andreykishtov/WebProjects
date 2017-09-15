@@ -8,11 +8,10 @@
         var service = {
             getJobs,
             applyToJob,
-            findJob
+            findJob,
+            getSkills
         };
-        service.jobs = [];
         service.jobsDesc = [];
-        service.original = [];
 
         return service;
 
@@ -27,17 +26,26 @@
 
         function getJobs() {
             return $http.get(`${API.URL}/job`).then(function(data) {
+                service.original = [];
                 service.original = data.data;
                 orderJobsList(data.data);
                 // orderJobsListForDescription(data.data);
             });
         }
+
+        function getSkills() {
+            return $http.get(`${API.URL}/skill`).then(function(data) {
+                service.skills = data.data;
+            });
+        }
+
         function orderJobsList(jobs) {
+            service.jobs = [];
             jobs.forEach(function(element) {
                 let job = {
-                    title: element.title,
+                    ['job Name']: element.title,
                     publisher: element.publisher,
-                    ['publish-Date']: new Date(element.publishedDate).toDateString(),
+                    ['publish Date']: new Date(element.publishedDate).toDateString(),
                     // skills: element.skills,
                     description: element.description
                     // location: element.location

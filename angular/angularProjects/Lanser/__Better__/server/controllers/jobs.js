@@ -106,5 +106,24 @@ module.exports = {
                 res.status(200).json({ job });
             })
             .catch(err => console.log(err));
+    },
+    findJobByApplicant: (req, res, next) => {
+        let database;
+        MongoClient.connect(mongoDbUrl)
+            .then(db => {
+                database = db;
+                return db.collection('jobs');
+            })
+            .then(jobs => {
+                return jobs.find({ applicants: '' + req.params.id }).toArray();
+            })
+            .then(jobs => {
+                if (!jobs) {
+                    return res.status(404).json({ error: 'jobs not found' });
+                }
+                database.close();
+                res.status(200).json(jobs);
+            })
+            .catch(err => console.log(err));
     }
 };

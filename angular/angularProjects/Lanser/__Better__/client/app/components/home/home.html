@@ -1,8 +1,6 @@
 <div class="tile is-ancestor">
     <div class="tile is-4 is-vertical is-parent">
-        <div class="tile is-child box">
-            <sort-field></sort-field>
-        </div>
+        <sort-field class="tile is-child box" titles='vm.titles' search-var="vm.searchText"></sort-field>
         <div class="tile is-child box">
             <p class="title">Two</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum
@@ -11,8 +9,9 @@
     </div>
     <div class="tile is-parent">
         <div class="tile is-child box">
-            <job-title class="row" clicked="vm.clicked" titles='vm.titles'></job-title>
-            <job ng-click="vm.change()" ng-repeat="job in vm.jobs" job='job' click-func="vm.applyToJob(job._id)" button-name="'apply'"></job>
+            <job-title class="row" reverse="vm.reverse" sort-title="vm.propertyName" titles='vm.titles'></job-title>
+            <job ng-click="vm.change()" ng-repeat="job in vm.jobs | orderBy:vm.propertyName:vm.reverse | filter:vm.searchText:strict"
+                job='job' button-name="'apply'"></job>
         </div>
     </div>
 </div>

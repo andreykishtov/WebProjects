@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('lanser').factory('loginService', Service);
+    angular.module('lanser').factory('userService', Service);
 
     Service.$inject = ['API', '$http', '$rootScope', 'localStorageService'];
 

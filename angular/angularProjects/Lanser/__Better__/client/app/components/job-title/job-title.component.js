@@ -2,7 +2,8 @@
     'use strict';
 
     // Usage:
-    //
+    // needs reverse + sort-title:sortBy twoWay dataBinding
+    // titles:is names object
     // Creates:
     //
 
@@ -12,26 +13,25 @@
         controllerAs: 'vm',
         bindings: {
             titles: '<',
-            clicked: '='
+            reverse: '=',
+            sortTitle: '='
         }
     });
 
     // ControllerController.$inject = ['$event'];
     function ControllerController() {
         var vm = this;
-        vm.clickTitle = clickTitle;
-        vm.sortBy = sortBy;
         vm.reverse = true;
-        // vm.hide = `tile !== '_id'`;
-
-        ////////////////
-        function clickTitle(name) {
-            vm.clicked = name;
-        }
+        vm.sortBy = sortBy;
 
         function sortBy(propertyName) {
-            vm.reverse = vm.propertyName === propertyName ? !vm.reverse : false;
-            vm.propertyName = propertyName;
+            vm.reverse = vm.sortTitle === propertyName ? !vm.reverse : false;
+            vm.sortTitle = propertyName;
         }
     }
 })();
+
+////////////////reverse="vm.reverse" sort-title="vm.propertyName"
+// function clickTitle(name) {
+//     vm.clicked = name;
+// }

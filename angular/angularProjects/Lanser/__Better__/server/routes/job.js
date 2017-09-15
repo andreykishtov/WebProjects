@@ -9,4 +9,5 @@ router
     .get(JobController.getJobs);
 router.route('/apply').post(JobController.applyToJob);
 router.route('/:id').get(JobController.findJob);
+router.route('/applicant/:id').get(JobController.findJobByApplicant);
 module.exports = router;
