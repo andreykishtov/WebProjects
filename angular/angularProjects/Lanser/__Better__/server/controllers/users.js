@@ -4,13 +4,16 @@ const mongoDbUrl = require('../helpers/db');
 module.exports = {
     createUser: (req, res, next) => {
         if (!req.body.name) {
-            throw res.status(403).json({ error: 'Name is mandatory' });
+            return res.status(403).json({ error: 'Name is mandatory' });
         }
         if (!req.body.location) {
             req.body.location = {};
         }
         if (!req.body.description) {
             req.body.description = {};
+        }
+        if (!req.body.email) {
+            return res.status(403).json({ error: 'Email is mandatory' });
         }
         let database;
         MongoClient.connect(mongoDbUrl)
@@ -19,12 +22,9 @@ module.exports = {
                 return db.collection('users');
             })
             .then(users => {
-                if (!req.body.email) {
-                    throw res.status(403).json({ error: 'Email is mandatory' });
-                }
                 users.findOne({ email: req.body.email }, function(err, result) {
                     if (result) {
-                        throw res.status(403).json({ error: 'Email is already in use' });
+                        return res.status(403).json({ error: 'Email is already in use' });
                     }
                 });
                 return users;
@@ -57,6 +57,9 @@ module.exports = {
             .catch(err => console.log(err));
     },
     findUser: (req, res, next) => {
+        if (!req.params.email) {
+            return res.status(403).json({ error: 'Email is mandatory' });
+        }
         let database;
         MongoClient.connect(mongoDbUrl)
             .then(db => {
@@ -65,6 +68,28 @@ module.exports = {
             })
             .then(users => {
                 return users.findOne(ObjectId(req.params.email));
+            })
+            .then(user => {
+                if (!user) {
+                    return res.status(404).json({ error: 'User not found' });
+                }
+                database.close();
+                res.status(200).json({ user });
+            })
+            .catch(err => console.log(err));
+    },
+    findUserById: (req, res, next) => {
+        if (!req.params.id) {
+            return res.status(403).json({ error: 'id is mandatory' });
+        }
+        let database;
+        MongoClient.connect(mongoDbUrl)
+            .then(db => {
+                database = db;
+                return db.collection('users');
+            })
+            .then(users => {
+                return users.findOne(ObjectId(req.params.id));
             })
             .then(user => {
                 if (!user) {

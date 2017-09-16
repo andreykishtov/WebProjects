@@ -13,7 +13,8 @@
         bindings: {
             jobId: '<',
             show: '<',
-            clickFunc: '&'
+            clickFunc: '&',
+            buttonName: '<'
         }
     });
 

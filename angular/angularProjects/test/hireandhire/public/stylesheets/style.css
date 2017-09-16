@@ -1,0 +1,39 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.sortorder:after {
+    content: '\25b2';
+}
+
+.sortorder.reverse:after {
+    content: '\25bc';
+}
+
+.skill+.skill:before {
+    content: ', ';
+}
+
+#job-list-table td {
+    min-width: 150px;
+}
+
+#job-list-table th:hover {
+    opacity: 0.8
+}
+
+
+/* 
+select>option:first-child {
+    content: '\25b2';
+    color: red
+} */
+
+
+/* #skillsbtn {
+    z-index: 100;
+}
+
+#skillsdrop {
+    position: absolute;
+} */

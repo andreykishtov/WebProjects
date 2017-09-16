@@ -76,6 +76,29 @@ module.exports = {
             })
             .catch(err => console.log(err));
     },
+    findJobsByEmail: (req, res, next) => {
+        if (!req.params.email) {
+            return res.status(403).json({ error: 'job_id is mandatory' });
+        }
+        let database;
+        MongoClient.connect(mongoDbUrl)
+            .then(db => {
+                database = db;
+                return db.collection('jobs');
+            })
+            .then(jobs => {
+                console.log(req.params.email);
+                return jobs.find({ publisher: req.params.email }).toArray();
+            })
+            .then(job => {
+                if (!job) {
+                    return res.status(404).json({ error: 'Job not found' });
+                }
+                database.close();
+                res.status(200).json(job);
+            })
+            .catch(err => console.log(err));
+    },
     applyToJob: (req, res, next) => {
         //////////////////////
         if (!req.body.job_id) {

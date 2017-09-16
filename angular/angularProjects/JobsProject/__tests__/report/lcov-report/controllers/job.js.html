@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for controllers/job.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">All files</a> / <a href="index.html">controllers</a> job.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">12.5% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>3/24</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/16</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/2</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">12.5% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>3/24</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const { MongoClient, ObjectId } = require('mongodb');
+const mongoDbUrl = require('../helpers/db');
+&nbsp;
+module.exports = {
+  // first we use async here so we could use await in the body of the function
+  createJob: <span class="fstat-no" title="function not covered" >as</span>ync (req, res, next) =&gt; {
+<span class="cstat-no" title="statement not covered" >    if (!req.body.title) {</span>
+<span class="cstat-no" title="statement not covered" >      return res.status(403).json({ error: 'fuck off need title' });</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (!req.body.publisher) {</span>
+<span class="cstat-no" title="statement not covered" >      return res.status(403).json({ error: 'fuck off need we need your email to get back to you' });</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (!req.body.location) {</span>
+<span class="cstat-no" title="statement not covered" >      req.body.location = {};</span>
+    }
+&nbsp;
+    let newJob = <span class="cstat-no" title="statement not covered" >{</span>
+      title: req.body.title || '',
+      publisher: req.body.email,
+      publishedDate: new Date(),
+      skills: [],
+      applicants: [],
+      description: req.body.description || '',
+      location: {
+        lat: req.body.location.lat || '',
+        lng: req.body.location.lng || ''
+      }
+    };
+&nbsp;
+    /** async await example I think this one is the best use it with try catch */
+    // LOOK AT THIS SHIT! SO MUCH LESS CODE ASYNC AWAIT FOR THE WIN!
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    try {</span>
+      const db = <span class="cstat-no" title="statement not covered" >await MongoClient.connect(mongoDbUrl);</span>
+      const job = <span class="cstat-no" title="statement not covered" >await db.collection('jobs').insertOne(newJob);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      db.close();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      res.status(200).json({ successes: 'ok', jobID: job.insertedId });</span>
+    } catch (error) {
+<span class="cstat-no" title="statement not covered" >      console.error(error);</span>
+    }
+  },
+  findJob: <span class="fstat-no" title="function not covered" >as</span>ync (req, res, next) =&gt; {
+<span class="cstat-no" title="statement not covered" >    try {</span>
+      const db = <span class="cstat-no" title="statement not covered" >await MongoClient.connect(mongoDbUrl);</span>
+      const job = <span class="cstat-no" title="statement not covered" >await db.collection('jobs').findOne(ObjectId(req.params.id));</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (!job) {</span>
+<span class="cstat-no" title="statement not covered" >        return res.status(404).json({ error: 'job not found' });</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      db.close();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      res.status(200).json({ successes: 'ok', job });</span>
+    } catch (error) {
+<span class="cstat-no" title="statement not covered" >      console.error(error);</span>
+    }
+  }
+};
+&nbsp;
+/** THIS CODE IS MUCH BETTER THEN CALLBACK ONE!
+   I KNOW YOU DONT WANT TO USE PROMISEE HOWEVER IT IS VERY IMPORTANT TO START
+   IF YOU DONT GIVE MONGODB CALLBACK IT WILL RETURN PROMISEE **/
+//   findJob: (req, res, next) =&gt; {
+//     let database;
+//     MongoClient.connect(mongoDbUrl)
+//       .then(db =&gt; {
+//         database = db;
+//         return db.collection('jobs');
+//       })
+//       .then(jobs =&gt; {
+//         return jobs.findOne(ObjectId(req.params.id));
+//       })
+//       .then(job =&gt; {
+//         if (!job) {
+//           return res.status(404).json({ error: 'job not found' });
+//         }
+//         database.close();
+//         res.status(200).json({ successes: 'ok', job });
+//       })
+//       .catch(err =&gt; console.log(err));
+//   }
+// };
+&nbsp;
+/** OLD CALLBACK SHIT CODE NEVER USE! **/
+&nbsp;
+// createJob: async (req, res, next) =&gt; {
+//   if (!req.body.title) {
+//     return res.status(403).json({ error: 'fuck off need title' });
+//   }
+&nbsp;
+//   if (!req.body.publisher) {
+//     return res.status(403).json({ error: 'fuck off need we need your email to get back to you' });
+//   }
+&nbsp;
+//   if (!req.body.location) {
+//     req.body.location = {};
+//   }
+&nbsp;
+//   let job = {
+//     title: req.body.title || '',
+//     publisher: req.body.email,
+//     publishedDate: new Date(),
+//     skills: [],
+//     applicants: [],
+//     description: req.body.description || '',
+//     location: {
+//       lat: req.body.location.lat || '',
+//       lng: req.body.location.lng || ''
+//     }
+//   };
+&nbsp;
+// MongoClient.connect(mongoDbUrl, function(err, db) {
+//   if (err) throw err;
+//   db.collection('jobs').insertOne(job, function(err, result) {
+//     if (err) throw err;
+&nbsp;
+//     console.log('job is added');
+&nbsp;
+//     db.close();
+&nbsp;
+//     res.status(200).json({ successes: 'ok', jobID: result.insertedId });
+//   });
+// });
+&nbsp;
+// }
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Sep 11 2017 10:12:01 GMT+0300 (IDT)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

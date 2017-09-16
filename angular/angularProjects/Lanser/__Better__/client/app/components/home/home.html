@@ -1,17 +1,18 @@
 <div class="tile is-ancestor">
     <div class="tile is-4 is-vertical is-parent">
-        <sort-field class="tile is-child box" titles='vm.titles' search-var="vm.searchText"></sort-field>
-        <div class="tile is-child box">
+        <sort-field class="tile is-child box notification" titles='vm.titles' search-var="vm.searchText"></sort-field>
+        <div class="tile is-child box notification">
             <p class="title">Two</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum
                 ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.</p>
         </div>
     </div>
     <div class="tile is-parent">
-        <div class="tile is-child box">
+        <div class="tile is-child box notification">
+            <p class="title">Avalible Jobs</p>
             <job-title class="row" reverse="vm.reverse" sort-title="vm.propertyName" titles='vm.titles'></job-title>
             <job ng-click="vm.change()" ng-repeat="job in vm.jobs | orderBy:vm.propertyName:vm.reverse | filter:vm.searchText:strict"
-                job='job' button-name="'apply'"></job>
+                job='job' button-name="'Apply To Job'"></job>
         </div>
     </div>
 </div>

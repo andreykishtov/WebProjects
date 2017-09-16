@@ -9,8 +9,7 @@
                         <p class="subtitle">{{vm.job.title}}</p>
                     </article>
                 </div>
-                <a class="button tile is-child notification is-success is-outlined" ng-disabled="vm.buttonClicked" ng-click="vm.clickFunc(); vm.clicked()">Apply To Job</a>
-
+                <a class="button tile is-child notification is-success is-outlined" ng-disabled="vm.buttonClicked" ng-click="vm.clickFunc(); vm.clicked()">{{vm.buttonName}}</a>
                 <article class="tile is-child notification is-warning">
                     <p class="title">Publisher Email</p>
                     <p class="subtitle">{{vm.job.publisher}}</p>

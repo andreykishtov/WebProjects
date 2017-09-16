@@ -7,7 +7,8 @@
 
     function Service(API, $http, $rootScope, localStorageService) {
         var service = {
-            validate
+            validate,
+            FindUserById
         };
 
         return service;
@@ -27,6 +28,12 @@
                     });
                     $rootScope.$broadcast('userIsLoggedIn');
                 }
+                return user.data;
+            });
+        }
+
+        function FindUserById(id) {
+            return $http.get(`${API.URL}/user/id/${id}`).then(function(user) {
                 return user.data;
             });
         }

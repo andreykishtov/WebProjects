@@ -32,19 +32,5 @@
                 vm.titles = Object.keys(vm.jobs[0], 1);
             });
         }
-
-        function applyToJob(job_id) {
-            let user = localStorageService.get('userId');
-            if (!user) {
-                $log.log('no user');
-                return $state.go('login');
-            }
-
-            jobService.applyToJob(job_id, user.id).then(data => {
-                if (!data.data.job.nModified) {
-                    alert('All ready Applied'); //change to div
-                }
-            });
-        }
     }
 })();

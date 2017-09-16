@@ -6,5 +6,6 @@ const UserController = require('../controllers/users');
 router.route('/').post(UserController.createUser);
 router.route('/validate').post(UserController.validate);
 router.route('/:email').get(UserController.findUser);
+router.route('/id/:id').get(UserController.findUserById);
 
 module.exports = router;
