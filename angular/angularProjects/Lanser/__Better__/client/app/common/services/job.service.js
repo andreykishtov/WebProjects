@@ -25,6 +25,7 @@
             return service.original.find(findJobId);
         }
         function findJobFromServer(id) {
+            console.log('id:' + id);
             return $http.get(`${API.URL}/job/${id}`).then(function(data) {
                 return data.data;
             });
@@ -49,9 +50,9 @@
             service.jobs = [];
             jobs.forEach(function(element) {
                 let job = {
-                    ['job Name']: element.title,
+                    ['Name']: element.title,
                     publisher: element.publisher,
-                    ['publish Date']: new Date(element.publishedDate).toDateString(),
+                    ['Date']: new Date(element.publishedDate).toDateString(),
                     // skills: element.skills,
                     description: element.description
                     // location: element.location

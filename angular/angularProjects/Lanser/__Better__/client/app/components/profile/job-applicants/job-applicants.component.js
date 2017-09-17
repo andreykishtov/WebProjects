@@ -11,19 +11,19 @@
         controller: ControllerController,
         controllerAs: 'vm',
         bindings: {
-            jobId: '<'
+            applicantId: '<'
         }
     });
 
-    ControllerController.$inject = ['jobService'];
-    function ControllerController(jobService) {
+    ControllerController.$inject = ['userService'];
+    function ControllerController(userService) {
         var vm = this;
         console.log(jobId);
-        // jobService.findJobFromServer(jobId).then(function(data) {
-        //     console.log(jobId);
-        //     vm.persons = data.data;
-        //     console.log(data);
-        // });
+        userService.findUsers(applicantId).then(function(data) {
+            // console.log(jobId);
+            vm.persons = data.data;
+            // console.log(data);
+        });
         ////////////////
     }
 })();

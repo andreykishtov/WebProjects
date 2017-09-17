@@ -39,6 +39,7 @@
                     publisher: element.publisher,
                     ['publish Date']: new Date(element.publishedDate).toDateString(),
                     // skills: element.skills,
+                    // applicants: element.applicants,
                     description: element.description
                     // location: element.location
                 };
@@ -47,6 +48,12 @@
                     configurable: true,
                     writable: true,
                     value: element._id
+                });
+                Object.defineProperty(job, '_applicants', {
+                    enumerable: false,
+                    configurable: true,
+                    writable: true,
+                    value: element.applicants
                 });
                 service.jobs.push(job);
             });
