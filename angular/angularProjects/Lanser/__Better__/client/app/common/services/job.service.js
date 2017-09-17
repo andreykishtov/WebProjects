@@ -9,7 +9,8 @@
             getJobs,
             applyToJob,
             findJob,
-            getSkills
+            getSkills,
+            findJobFromServer
         };
         service.jobsDesc = [];
 
@@ -22,6 +23,11 @@
                 return job._id === jobId;
             }
             return service.original.find(findJobId);
+        }
+        function findJobFromServer(id) {
+            return $http.get(`${API.URL}/job/${id}`).then(function(data) {
+                return data.data;
+            });
         }
 
         function getJobs() {

@@ -25,7 +25,7 @@
         function activate() {
             let login = localStorageService.get('userId');
             myJobsService.getMyJobs(login.id).then(function() {
-                console.log(myJobsService.jobs);
+                // console.log(myJobsService.jobs[0]._id);
                 vm.jobs = myJobsService.jobs;
                 if (vm.jobs) {
                     vm.titles = Object.keys(vm.jobs[0], 1);
