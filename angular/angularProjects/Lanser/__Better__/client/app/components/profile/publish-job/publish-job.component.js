@@ -37,23 +37,19 @@
         function publishJob() {
             vm.newJob.skill = vm.skillsForSearch;
             if(!vm.newJob.skill.length){
-                vm.message='Please Add Skills To Your Job'
-                vm.activateMessage = 'is-active';    
+                vm.message='Please Add Skills To Your Job'   
                 return;
             }
             if(!vm.newJob.title){
                 vm.message='Please Name Your Job'
-                vm.activateMessage = 'is-active';    
                 return;
             }
             if(!vm.newJob.location.lng){
-                vm.message='Please Add longitude'
-                vm.activateMessage = 'is-active';    
+                vm.message='Please Add longitude'    
                 return;
             }
             if(!vm.newJob.location.lat){
-                vm.message='Please Add latitude'
-                vm.activateMessage = 'is-active';    
+                vm.message='Please Add latitude'    
                 return;
             }
             getUserData().then(function (data) {

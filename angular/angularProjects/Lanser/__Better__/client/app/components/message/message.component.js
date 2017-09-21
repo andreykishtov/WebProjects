@@ -11,16 +11,26 @@
         controller: ControllerController,
         controllerAs: 'vm',
         bindings: {
-             message: '<',
-             activate:'='
+             message: '=',
         }
     });
+    ControllerController.$inject = ['$scope'];
 
-    // ControllerController.$inject = ['dependency1'];
-    function ControllerController() {
+    function ControllerController($scope) {
         var vm = this;
-        //vm.activate = 'is-active';
+        vm.activate='';
+        vm.close=close;
 
+        $scope.$watch('vm.message', function() {
+            if(vm.message){
+                vm.activate = 'is-active';
+            }
+        });
+
+        function close() {
+            vm.activate='';
+            vm.message='';
+        }
         ////////////////
     }
 })();

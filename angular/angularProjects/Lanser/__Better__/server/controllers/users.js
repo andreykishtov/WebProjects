@@ -24,8 +24,8 @@ module.exports = {
             .then(users => {
                 users.findOne({ email: req.body.email }, function(err, result) {
                     if (result) {
-                        return res.status(403).json({ error: 'Email is already in use' });
-                    }
+                        throw res.status(403).json({ error: 'Email is already in use' });//need to change api,problem:when using same email it will throw
+                    }// so i need to use promises resolve reject.
                 });
                 return users;
             })

@@ -44,7 +44,7 @@
 
             jobService.applyToJob(job_id, user.id).then(data => {
                 if (!data.data.job.nModified) {
-                    vm.messageAfterApply ='You Have allready Applied To the Job';
+                    vm.messageAfterApply ='You Have allReady Applied To the Job';
                     vm.allReadyApplied = 'is-active';
                 }else{
                     vm.messageAfterApply ='Thank you For Applying For The Job';

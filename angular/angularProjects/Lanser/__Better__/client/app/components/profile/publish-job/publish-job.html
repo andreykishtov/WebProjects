@@ -1,5 +1,5 @@
 <div>
-        <message activate="vm.activateMessageAfterEdit" message="vm.messageAfterEdit"></message>
+        <message message="vm.messageAfterEdit"></message>
         <button class="button" ng-click="vm.addJob()">Add A new Job</button>
     <div class="modal {{vm.active}}">
         <div class="modal-background"></div>
@@ -47,7 +47,7 @@
                         <textarea ng-model="vm.newJob.description" class="textarea is-primary" type="text" placeholder="Please Enter Description For Your Job"></textarea>
                     </div>
                 </div>
-                <message activate="vm.activateMessage" message="vm.message"></message>
+                <message message="vm.message"></message>
                 <!--  -->
             </section>
             <footer class="modal-card-foot">

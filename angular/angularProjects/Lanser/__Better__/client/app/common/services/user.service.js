@@ -9,12 +9,19 @@
         var service = {
             validate,
             FindUserById,
-            FindUsersByIds
+            FindUsersByIds,
+            addUser
         };
 
         return service;
 
         ////////////////
+
+        function addUser(userObj) {
+            return $http.post(`${API.URL}/user`, userObj).then(function(user) {
+                return user.data;
+            });
+        };
 
         function validate(email, password) {
             let data = {

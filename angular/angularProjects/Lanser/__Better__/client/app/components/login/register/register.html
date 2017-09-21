@@ -1,0 +1,98 @@
+<div>
+    <message message="vm.messageAfterRegister"></message>
+
+    <button ng-click="vm.showRegister()" class="button is-primary is-medium is-fullwidth">
+            <i class="fa fa-user"></i>
+            Create New User
+            </button>
+    <div class="modal {{vm.active}}">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">New User Form</p>
+                <button class="delete" aria-label="close" ng-click="vm.showRegister()"></button>
+            </header>
+            <form>
+            <section class="modal-card-body">
+                <!--  -->
+                <div>
+                    <div class="field">
+                        <label class="label">First Name</label>
+                        <div class="control">
+                            <input class="input" type="text" required placeholder="Please Enter First Name" ng-model="vm.newUser.name.first">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Last Name</label>
+                        <div class="control">
+                            <input class="input" type="text" placeholder="Please Enter Last Name" ng-model="vm.newUser.name.last">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Email Address</label>
+                        <div class="control">
+                            <input class="input" type="mail" placeholder="Please Enter Email Address" ng-model="vm.newUser.email">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Password</label>
+                        <div class="control">
+                            <input class="input" type="password" placeholder="Please Enter Password" ng-model="vm.newUser.password">
+                        </div>
+                    </div>
+
+                    <div class="columns">
+                            <div class="column">
+                                <div class="field">
+                                    <div class="control">
+                                        <label class="label">Input Longitude</label>
+                                        <input class="input is-primary" type="number" placeholder="Longitude" ng-model="vm.newUser.location.lng">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="field">
+                                    <div class="control">
+                                        <label class="label">Input Latitude</label>
+                                        <input class="input is-primary" type="number" placeholder="Latitude" ng-model="vm.newUser.location.lat">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    <div class="field">
+                        <label class="label">Public Description</label>
+                        <div class="control">
+                            <textarea class="textarea" placeholder="Please Enter Text For Public Description" ng-model="vm.newUser.description.public"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Private Description</label>
+                        <div class="control">
+                            <textarea class="textarea" placeholder="Please Enter Text For Private Description" ng-model="vm.newUser.description.private"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="control">
+                            <label class="checkbox">
+                            <input type="checkbox">
+                            I agree to the <a href="#">terms and conditions</a>
+                          </label>
+                        </div>
+                    </div>
+                </div>
+                <!--  -->
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button is-success" type="submit" ng-click="vm.createUser()">Create User</button>
+                <button class="button" ng-click="vm.showRegister()">Cancel</button>
+            </footer>
+        </form>
+        </div>
+    </div>
+</div>

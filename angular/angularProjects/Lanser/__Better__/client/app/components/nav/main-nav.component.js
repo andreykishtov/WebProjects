@@ -7,6 +7,7 @@
         function componentController(localStorageService, $state, $rootScope, $location, $scope) {
             var vm = this;
             vm.title = 'nav';
+            vm.highlighted='';
             //vm.loginHead = true;
             vm.loginHeader = null;
             vm.logout = logout;
@@ -30,7 +31,17 @@
                 // $rootScope._currentUser = null
                 $state.go('login');
             }
+            
+            vm.makeActive =function (nameOfActive) {
+                if(vm.old){
+                    vm[vm.old]='';    
+                }
+                vm[nameOfActive]='navClass';
+                vm.old=nameOfActive;
+            }
         }
+
+
 
         return {
             bindings: {},

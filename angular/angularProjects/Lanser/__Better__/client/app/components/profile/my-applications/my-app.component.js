@@ -18,6 +18,7 @@
     ControllerController.$inject = ['localStorageService', 'myApplicantService'];
     function ControllerController(localStorageService, myApplicantService) {
         var vm = this;
+        vm.removeJob=removeJob;
 
         activate();
         ////////////////
@@ -26,7 +27,7 @@
             let login = localStorageService.get('userId');
             myApplicantService.getMyApplications(login.id).then(function() {
                 vm.jobs = myApplicantService.jobs;
-                if (vm.jobs) {
+                if (vm.jobs.length) {
                     vm.titles = Object.keys(vm.jobs[0], 1);
                 }
             });
@@ -43,11 +44,11 @@
             //     return $state.go('login');
             // }
 
-            jobService.deleteJob(job_id).then(data => {
+            // jobService.deleteJob(job_id).then(data => {
            
                 ///
                 
-            });
+            // });
         }
     }
 })();

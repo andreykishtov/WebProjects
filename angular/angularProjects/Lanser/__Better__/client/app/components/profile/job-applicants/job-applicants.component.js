@@ -15,17 +15,17 @@
         }
     });
 
-    ControllerController.$inject = ['userService','$scope'];
-    function ControllerController(userService,$scope) {
+    ControllerController.$inject = ['userService', '$scope'];
+    function ControllerController(userService, $scope) {
         var vm = this;
-
-
         $scope.$watch('vm.applicantsIdArray', function() {
             userService.FindUsersByIds(vm.applicantsIdArray).then(function(data) {
-                vm.persons = data.user;
+                if (data.user.length) {
+                    vm.text = 'People That Applied:';
+                    vm.persons = data.user;
+                }
             });
         });
-
 
         ////////////////
     }
