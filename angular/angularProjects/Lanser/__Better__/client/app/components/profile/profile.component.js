@@ -9,7 +9,7 @@
     angular.module('lanser').component('profile', {
         templateUrl: '/components/profile/profile.html',
         controller: ControllerController,
-        controllerAs: '$ctrl',
+        controllerAs: 'vm',
         bindings: {
             // Binding: '=',
         }
@@ -17,12 +17,13 @@
 
     // ControllerController.$inject = ['dependency1'];
     function ControllerController() {
-        var $ctrl = this;
+        var vm = this;
+        vm.jobAdded='false';
 
         ////////////////
 
-        $ctrl.$onInit = function() {};
-        $ctrl.$onChanges = function(changesObj) {};
-        $ctrl.$onDestroy = function() {};
+        vm.$onInit = function() {};
+        vm.$onChanges = function(changesObj) {};
+        vm.$onDestroy = function() {};
     }
 })();

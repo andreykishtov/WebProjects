@@ -15,10 +15,11 @@
         }
     });
 
-    ControllerController.$inject = ['jobService'];
-    function ControllerController(jobService) {
+    ControllerController.$inject = ['jobService','localStorageService'];
+    function ControllerController(jobService,localStorageService) {
         var vm = this;
         vm.clicked = '';
+        vm.applyToJob = applyToJob;
         activate();
         vm.change = function() {
             vm.jobDescription = !vm.jobDescription;
@@ -30,6 +31,25 @@
             jobService.getJobs().then(function() {
                 vm.jobs = jobService.jobs;
                 vm.titles = Object.keys(vm.jobs[0], 1);
+            });
+        }
+
+        function applyToJob(job_id) {
+            console.log(job_id);
+            let user = localStorageService.get('userId');
+            if (!user) {
+                $log.log('no user');
+                return $state.go('login');
+            }
+
+            jobService.applyToJob(job_id, user.id).then(data => {
+                if (!data.data.job.nModified) {
+                    vm.messageAfterApply ='You Have allready Applied To the Job';
+                    vm.allReadyApplied = 'is-active';
+                }else{
+                    vm.messageAfterApply ='Thank you For Applying For The Job';
+                    vm.allReadyApplied = 'is-active';
+                }
             });
         }
     }

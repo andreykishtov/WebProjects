@@ -7,5 +7,6 @@ router.route('/').post(UserController.createUser);
 router.route('/validate').post(UserController.validate);
 router.route('/:email').get(UserController.findUser);
 router.route('/id/:id').get(UserController.findUserById);
+router.route('/usersByIds').post(UserController.findUsersByIds);
 
 module.exports = router;

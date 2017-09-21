@@ -12,7 +12,8 @@
             <p class="title">Avalible Jobs</p>
             <job-title class="row" reverse="vm.reverse" sort-title="vm[propertyName]" titles='vm.titles'></job-title>
             <job ng-click="vm.change()" ng-repeat="job in vm.jobs | orderBy:vm[propertyName]:vm.reverse | filter:vm.searchText:strict"
-                job='job' button-name="'Apply To Job'"></job>
+                job='job' click-function="vm.applyToJob(job._id)" button-name="'Apply To Job'"></job>
         </div>
     </div>
+    <message activate="vm.allReadyApplied" message="vm.messageAfterApply"></message>    
 </div>

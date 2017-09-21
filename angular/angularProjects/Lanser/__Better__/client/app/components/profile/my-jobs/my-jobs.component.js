@@ -11,16 +11,20 @@
         controller: ControllerController,
         controllerAs: 'vm',
         bindings: {
-            // Binding: '='
+            jobAdded: '='
         }
     });
 
-    ControllerController.$inject = ['myJobsService', 'localStorageService'];
-    function ControllerController(myJobsService, localStorageService) {
+    ControllerController.$inject = ['myJobsService', 'localStorageService','$scope'];
+    function ControllerController(myJobsService, localStorageService,$scope) {
         var vm = this;
 
         activate();
         ////////////////
+
+        $scope.$watch('vm.jobAdded', function() {
+            activate();
+        });
 
         function activate() {
             let login = localStorageService.get('userId');

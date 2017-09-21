@@ -35,5 +35,19 @@
         vm.change = function() {
             vm.jobDescription = !vm.jobDescription;
         };
+
+        function removeJob(job_id) {
+            //let user = localStorageService.get('userId');
+            // if (!user) {
+            //     $log.log('no user');
+            //     return $state.go('login');
+            // }
+
+            jobService.deleteJob(job_id).then(data => {
+           
+                ///
+                
+            });
+        }
     }
 })();

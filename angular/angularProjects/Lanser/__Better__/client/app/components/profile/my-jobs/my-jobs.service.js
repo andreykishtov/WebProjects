@@ -35,9 +35,9 @@
             service.jobs = [];
             jobs.forEach(function(element) {
                 let job = {
-                    ['job Name']: element.title,
+                    ['Name']: element.title,
                     publisher: element.publisher,
-                    ['publish Date']: new Date(element.publishedDate).toDateString(),
+                    ['Date']: new Date(element.publishedDate).toDateString(),
                     // skills: element.skills,
                     // applicants: element.applicants,
                     description: element.description

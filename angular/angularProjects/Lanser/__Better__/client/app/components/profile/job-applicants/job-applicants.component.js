@@ -7,23 +7,26 @@
     //
 
     angular.module('lanser').component('jobApplicants', {
-        templateUrl: './components/profile/my-applicants/my-applicants.html',
+        templateUrl: './components/profile/job-applicants/job-applicants.html',
         controller: ControllerController,
         controllerAs: 'vm',
         bindings: {
-            applicantId: '<'
+            applicantsIdArray: '<'
         }
     });
 
-    ControllerController.$inject = ['userService'];
-    function ControllerController(userService) {
+    ControllerController.$inject = ['userService','$scope'];
+    function ControllerController(userService,$scope) {
         var vm = this;
-        console.log(jobId);
-        userService.findUsers(applicantId).then(function(data) {
-            // console.log(jobId);
-            vm.persons = data.data;
-            // console.log(data);
+
+
+        $scope.$watch('vm.applicantsIdArray', function() {
+            userService.FindUsersByIds(vm.applicantsIdArray).then(function(data) {
+                vm.persons = data.user;
+            });
         });
+
+
         ////////////////
     }
 })();

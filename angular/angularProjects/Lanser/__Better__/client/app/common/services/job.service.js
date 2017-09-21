@@ -10,22 +10,34 @@
             applyToJob,
             findJob,
             getSkills,
-            findJobFromServer
+            findJobFromServer,
+            addNewJob
         };
         service.jobsDesc = [];
 
         return service;
 
         ////////////////
+        // function findJobId(job) {
+        //     return job._id === jobId;
+        // }
+
+
+        function addNewJob(job) {
+            return $http.post(`${API.URL}/job`, job).then(function(data) {
+                return data;
+            });
+        }
 
         function findJob(jobId) {
-            function findJobId(job) {
-                return job._id === jobId;
-            }
-            return service.original.find(findJobId);
+            return service.original.find(function(job){
+                if(job._id === jobId){
+                    return job;
+                }
+            });
         }
+        
         function findJobFromServer(id) {
-            console.log('id:' + id);
             return $http.get(`${API.URL}/job/${id}`).then(function(data) {
                 return data.data;
             });

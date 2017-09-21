@@ -4,7 +4,7 @@ const mongoDbUrl = require('../helpers/db');
 module.exports = {
     getJobs: (req, res, next) => {
         let database;
-        MongoClient.connect(mongoDbUrl)
+       return MongoClient.connect(mongoDbUrl)
             .then(db => {
                 database = db;
                 return db.collection('jobs');
@@ -14,9 +14,9 @@ module.exports = {
             })
             .then(jobs => {
                 database.close();
-                res.status(200).json(jobs);
+               return res.status(200).json(jobs);
             })
-            .catch(err => console.log(err));
+            .catch(err => res.status(500));
     },
     createJob: (req, res, next) => {
         if (!req.body.title) {
@@ -35,6 +35,7 @@ module.exports = {
                 return db.collection('jobs');
             })
             .then(jobs => {
+                console.log(req.body);
                 let job = {
                     title: req.body.title,
                     publisher: req.body.email,
@@ -47,6 +48,9 @@ module.exports = {
                         lng: req.body.location.lng || ''
                     }
                 };
+                if(req.body.skills){
+                    skills=req.body.skills;
+                }
 
                 jobs.insertOne(job, function(err, result) {
                     if (err) throw err;

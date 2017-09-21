@@ -1,4 +1,5 @@
 <div>
     <p>People That Applied:</p>
-    <p ng-repeat="person in vm.persons">{{person}}</p>
+    <p class="subtitle" ng-repeat="person in vm.persons">{{person.name.first}} {{person.name.last}}
+    </p>
 </div>

@@ -1,16 +1,17 @@
-<div class="modal {{mv.active}}">
+<div class="modal {{vm.activate}}" ng-click="vm.activate=''">
     <div class="modal-background"></div>
-    <div class="modal-card">
-        <header class="modal-card-head">
-            <p class="modal-card-title">Modal title</p>
-            <button class="delete" aria-label="close"></button>
-        </header>
-        <section class="modal-card-body">
-            <!-- Content ... -->
-        </section>
-        <footer class="modal-card-foot">
-            <button class="button is-success">Save changes</button>
-            <button class="button">Cancel</button>
-        </footer>
+    <div class="modal-content">
+        <!-- Any other Bulma elements you want -->
+        <article class="message is-success">
+            <div class="message-header">
+                <p>Message</p>
+                <button class="delete" aria-label="delete" ng-click="vm.active=''"></button>
+            </div>
+            <div class="message-body">
+                <p class>{{vm.message}}</p>
+            </div>
+        </article>
+        <!--  -->
+
     </div>
 </div>

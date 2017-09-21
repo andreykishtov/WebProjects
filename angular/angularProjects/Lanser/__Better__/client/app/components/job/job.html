@@ -1,8 +1,7 @@
 <div class="content rows">
     <div ng-click="vm.showDescription()" class="columns row">
         <div class="column" ng-repeat="item in vm.job">{{item}}</div>
-        <!-- <div class="column"><button class="button" ng-disabled="vm.buttonClicked" ng-click="vm.clickFunc(); vm.clicked()">{{vm.buttonName}}</button></div> -->
     </div>
-    <job-description job-id="vm.job._id" button-name="vm.buttonName" click-func="vm.applyToJob(vm.job._id)" show="vm.description"
+    <job-description job-id="vm.job._id" button-name="vm.buttonName" click-func="vm.clickFunction()" show="vm.description"
         ng-show="vm.description" class="row"></job-description>
 </div>

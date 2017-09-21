@@ -100,6 +100,33 @@ module.exports = {
             })
             .catch(err => console.log(err));
     },
+    findUsersByIds: (req, res, next) => {
+        if (!req.body.array) {
+            return res.status(403).json({ error: 'ids is mandatory' });
+        }
+        let database;
+        MongoClient.connect(mongoDbUrl)
+            .then(db => {
+                database = db;
+                return db.collection('users');
+            })
+            .then(users => {
+                console.log('before:', req.body.array);
+                let array = req.body.array.map(ele => {
+                    return ObjectId(ele);
+                });
+                console.log(array);
+                return users.find({ _id: { $in: array } }, { password: 0 }).toArray();
+            })
+            .then(user => {
+                if (!user) {
+                    return res.status(404).json({ error: 'User not found' });
+                }
+                database.close();
+                res.status(200).json({ user });
+            })
+            .catch(err => console.log(err));
+    },
     validate: (req, res, next) => {
         if (!req.body.email) {
             throw res.status(403).json({ error: 'Email is mandatory' });

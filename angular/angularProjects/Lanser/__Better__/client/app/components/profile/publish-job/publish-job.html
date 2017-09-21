@@ -1,0 +1,59 @@
+<div>
+        <message activate="vm.activateMessageAfterEdit" message="vm.messageAfterEdit"></message>
+        <button class="button" ng-click="vm.addJob()">Add A new Job</button>
+    <div class="modal {{vm.active}}">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Publish A New Job</p>
+                <button class="delete" aria-label="close" ng-click="vm.addJob()"></button>
+            </header>
+            <section class="modal-card-body">
+                <!--  -->
+                <div class="field">
+                    <div class="control">
+                        <label class="label">Job title</label>
+                        <input class="input is-primary" type="text" placeholder="Please Enter Job title" ng-model="vm.newJob.title">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <label class="label">Skills Needed</label>
+                        <a class="button" ng-class="vm['{{skill._id}}']" ng-click="vm.searchSkills(skill.title);vm.setClass(skill._id)" ng-repeat="skill in vm.skills">{{skill.title}}</a>
+                    </div>
+                </div>
+
+                <div class="columns">
+                    <div class="column">
+                        <div class="field">
+                            <div class="control">
+                                <label class="label">Input Longitude</label>
+                                <input ng-model="vm.newJob.location.lng" class="input is-primary" type="number" placeholder="Longitude">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="field">
+                            <div class="control">
+                                <label class="label">Input Latitude</label>
+                                <input ng-model="vm.newJob.location.lat" class="input is-primary" type="number" placeholder="Latitude">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <textarea ng-model="vm.newJob.description" class="textarea is-primary" type="text" placeholder="Please Enter Description For Your Job"></textarea>
+                    </div>
+                </div>
+                <message activate="vm.activateMessage" message="vm.message"></message>
+                <!--  -->
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button is-success" ng-click="vm.publishJob()">Publish Job</button>
+                <button class="button" ng-click="vm.addJob()">Cancel</button>
+            </footer>
+        </div>
+    </div>
+</div>

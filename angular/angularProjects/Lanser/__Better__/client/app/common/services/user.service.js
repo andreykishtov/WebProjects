@@ -8,7 +8,8 @@
     function Service(API, $http, $rootScope, localStorageService) {
         var service = {
             validate,
-            FindUserById
+            FindUserById,
+            FindUsersByIds
         };
 
         return service;
@@ -36,6 +37,16 @@
             return $http.get(`${API.URL}/user/id/${id}`).then(function(user) {
                 return user.data;
             });
+        }
+
+        function FindUsersByIds(array) {
+            return $http
+                .post(`${API.URL}/user/usersByIds`, {
+                    array: array
+                })
+                .then(function(user) {
+                    return user.data;
+                });
         }
     }
 })();

@@ -4,6 +4,6 @@
         <a class="navbar-item" ng-hide="vm.loggedIn" ui-sref="login" ui-sref-active="active">Login</a>
         <a class="navbar-item" ng-show="vm.loggedIn" ui-sref="profile" ui-sref-active="active">Profile</a>
         <a class="navbar-item" ng-show="vm.loggedIn" ng-click="vm.logout()">Logout</a>
-        <p class="navbar-item">{{vm.loginHeader}}</p>
+        <p class="navbar-item title">{{vm.loginHeader}}</p>
     </div>
 </nav>

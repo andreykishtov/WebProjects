@@ -11,20 +11,16 @@
         controller: ControllerController,
         controllerAs: 'vm',
         bindings: {
-            Binding: '='
+             message: '<',
+             activate:'='
         }
     });
 
-    ControllerController.$inject = ['dependency1'];
-    function ControllerController(dependency1) {
+    // ControllerController.$inject = ['dependency1'];
+    function ControllerController() {
         var vm = this;
-
-        vm.active = 'is-active';
+        //vm.activate = 'is-active';
 
         ////////////////
-
-        // $ctrl.$onInit = function() {};
-        // $ctrl.$onChanges = function(changesObj) {};
-        // $ctrl.$onDestroy = function() {};
     }
 })();
