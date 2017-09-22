@@ -1,8 +1,8 @@
 <div class="content">
     <job-title class="row" reverse="vm.reverse" sort-title="vm.propertyName" titles='vm.titles'></job-title>
     <div ng-repeat="job in vm.jobs | orderBy:vm.propertyName:vm.reverse | filter:vm.searchText:strict">
-        <job ng-click="vm.change()" job='job' button-name="'Delete Job'"></job>
+        <job ng-click="vm.change()" job='job' click-function="vm.deleteJob(job._id)" button-name="'Delete Job'"></job>
         <job-applicants applicants-id-array="job._applicants"></job-applicants>
     </div>
-</div>
+    <message message="vm.messageAfterUnApply"></message>
 </div>

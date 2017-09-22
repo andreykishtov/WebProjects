@@ -1,5 +1,5 @@
-<div class="content rows">
-    <div ng-click="vm.showDescription()" class="columns row">
+<div class="content panel rows">
+    <div ng-click="vm.showDescription()" class="job columns row panel-block">
         <div class="column" ng-repeat="item in vm.job">{{item}}</div>
     </div>
     <job-description job-id="vm.job._id" button-name="vm.buttonName" click-func="vm.clickFunction()" show="vm.description"

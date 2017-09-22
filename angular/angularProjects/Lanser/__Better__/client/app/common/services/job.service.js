@@ -11,7 +11,9 @@
             findJob,
             getSkills,
             findJobFromServer,
-            addNewJob
+            addNewJob,
+            unApply,
+            deleteJob
         };
         service.jobsDesc = [];
 
@@ -48,7 +50,6 @@
                 service.original = [];
                 service.original = data.data;
                 orderJobsList(data.data);
-                // orderJobsListForDescription(data.data);
             });
         }
 
@@ -101,6 +102,21 @@
             };
 
             return $http.post(`${API.URL}/job/apply`, data).then(function(data) {
+                return data;
+            });
+        }
+
+        function unApply(job_id, applicant_id) {
+            let data = {
+                job_id: job_id,
+                applicant_id: applicant_id
+            };
+            return $http.post(`${API.URL}/job/unapply`, data).then(function(data) {
+                return data;
+            });
+        }
+        function deleteJob(id) {
+            return $http.delete(`${API.URL}/job/${id}`).then(function(data) {
                 return data;
             });
         }

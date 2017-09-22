@@ -15,11 +15,12 @@
         }
     });
 
-    ControllerController.$inject = ['myJobsService', 'localStorageService','$scope'];
-    function ControllerController(myJobsService, localStorageService,$scope) {
+    ControllerController.$inject = ['myJobsService', 'localStorageService', '$scope','jobService'];
+    function ControllerController(myJobsService, localStorageService, $scope,jobService) {
         var vm = this;
-
+        vm.deleteJob = deleteJob;
         activate();
+        vm.change = change;
         ////////////////
 
         $scope.$watch('vm.jobAdded', function() {
@@ -37,8 +38,15 @@
             });
         }
 
-        vm.change = function() {
+        function change() {
             vm.jobDescription = !vm.jobDescription;
-        };
+        }
+
+        function deleteJob(id) {
+            jobService.deleteJob(id).then(data => {
+                vm.messageAfterUnApply = 'Job Deleted';
+                activate();
+            });
+        }
     }
 })();

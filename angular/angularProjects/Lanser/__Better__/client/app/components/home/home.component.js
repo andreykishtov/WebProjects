@@ -6,26 +6,46 @@
     // Creates:
     //
 
-    angular.module('lanser').component('home', {
-        templateUrl: '/components/home/home.html',
-        controller: ControllerController,
-        controllerAs: 'vm',
-        bindings: {
-            // Binding: '='
-        }
-    });
+    angular
+        .module('lanser')
+        .component('home', {
+            templateUrl: '/components/home/home.html',
+            controller: ControllerController,
+            controllerAs: 'vm',
+            bindings: {
+                // Binding: '='
+            }
+        })
+        .filter('startFrom', Filter);
 
-    ControllerController.$inject = ['jobService','localStorageService'];
-    function ControllerController(jobService,localStorageService) {
+    function Filter() {
+        return FilterFilter;
+
+        ////////////////
+
+        function FilterFilter(input, start) {
+            if (!input) {
+                return;
+            }
+            start = +start; //parse to int
+            return input.slice(start);
+        }
+    }
+
+    ControllerController.$inject = ['jobService', 'localStorageService'];
+    function ControllerController(jobService, localStorageService) {
         var vm = this;
         vm.clicked = '';
         vm.applyToJob = applyToJob;
         activate();
-        vm.change = function() {
-            vm.jobDescription = !vm.jobDescription;
-        };
+        vm.currentPage = 0;
+        vm.pageSize = 10;
+        vm.change = change;
 
         ////////////////
+        function change() {
+            vm.jobDescription = !vm.jobDescription;
+        }
 
         function activate() {
             jobService.getJobs().then(function() {
@@ -35,7 +55,6 @@
         }
 
         function applyToJob(job_id) {
-            console.log(job_id);
             let user = localStorageService.get('userId');
             if (!user) {
                 $log.log('no user');
@@ -44,10 +63,10 @@
 
             jobService.applyToJob(job_id, user.id).then(data => {
                 if (!data.data.job.nModified) {
-                    vm.messageAfterApply ='You Have allReady Applied To the Job';
+                    vm.messageAfterApply = 'You Have allReady Applied To the Job';
                     vm.allReadyApplied = 'is-active';
-                }else{
-                    vm.messageAfterApply ='Thank you For Applying For The Job';
+                } else {
+                    vm.messageAfterApply = 'Thank you For Applying For The Job';
                     vm.allReadyApplied = 'is-active';
                 }
             });

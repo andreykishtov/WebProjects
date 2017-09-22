@@ -29,7 +29,11 @@
         <div class="tile is-parent">
             <article class="tile is-child notification is-danger">
                 <p class="title">Skills</p>
-                <p class="subtitle">{{vm.job.skills}}</p>
+                <p class="subtitle">
+                    <div ng-repeat="skill in vm.job.skills" >
+                            {{skill}}
+                    </div>
+                </p>
                 <div class="content">
                     <!-- Content -->
                 </div>

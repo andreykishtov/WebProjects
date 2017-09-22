@@ -15,10 +15,11 @@
         }
     });
 
-    ControllerController.$inject = ['localStorageService', 'myApplicantService'];
-    function ControllerController(localStorageService, myApplicantService) {
+    ControllerController.$inject = ['localStorageService', 'myApplicantService','jobService'];
+    function ControllerController(localStorageService, myApplicantService,jobService) {
         var vm = this;
-        vm.removeJob=removeJob;
+        vm.removeApplication=removeApplication;
+        // vm.removeJob=removeJob;
 
         activate();
         ////////////////
@@ -37,18 +38,17 @@
             vm.jobDescription = !vm.jobDescription;
         };
 
-        function removeJob(job_id) {
-            //let user = localStorageService.get('userId');
-            // if (!user) {
-            //     $log.log('no user');
-            //     return $state.go('login');
-            // }
-
-            // jobService.deleteJob(job_id).then(data => {
-           
-                ///
-                
-            // });
+        function removeApplication(job_id) {       
+                let user = localStorageService.get('userId');
+                if (!user) {
+                    $log.log('no user');
+                    return $state.go('login');
+                }
+    
+                jobService.unApply(job_id, user.id).then(data => {
+                        vm.messageAfterUnApply = 'You Have unApplied To A Job';
+                        activate();
+                });
         }
     }
 })();

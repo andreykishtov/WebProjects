@@ -4,7 +4,7 @@ const mongoDbUrl = require('../helpers/db');
 module.exports = {
     getJobs: (req, res, next) => {
         let database;
-       return MongoClient.connect(mongoDbUrl)
+        return MongoClient.connect(mongoDbUrl)
             .then(db => {
                 database = db;
                 return db.collection('jobs');
@@ -14,7 +14,7 @@ module.exports = {
             })
             .then(jobs => {
                 database.close();
-               return res.status(200).json(jobs);
+                return res.status(200).json(jobs);
             })
             .catch(err => res.status(500));
     },
@@ -40,7 +40,7 @@ module.exports = {
                     title: req.body.title,
                     publisher: req.body.email,
                     publishedDate: new Date(),
-                    skills: [],
+                    skills: req.body.skill,
                     applicants: [],
                     description: req.body.description || '',
                     location: {
@@ -48,8 +48,8 @@ module.exports = {
                         lng: req.body.location.lng || ''
                     }
                 };
-                if(req.body.skills){
-                    skills=req.body.skills;
+                if (req.body.skills) {
+                    skills = req.body.skills;
                 }
 
                 jobs.insertOne(job, function(err, result) {
@@ -77,6 +77,22 @@ module.exports = {
                 }
                 database.close();
                 res.status(200).json(job);
+            })
+            .catch(err => console.log(err));
+    },
+    deleteJob: (req, res, next) => {
+        let database;
+        MongoClient.connect(mongoDbUrl)
+            .then(db => {
+                database = db;
+                return db.collection('jobs');
+            })
+            .then(jobs => {
+                return jobs.remove( {"_id": ObjectId(req.params.id)});
+            })
+            .then(job => {
+                database.close();
+                res.status(200).json({result:'job Deleted'});
             })
             .catch(err => console.log(err));
     },
@@ -122,6 +138,38 @@ module.exports = {
                     { _id: ObjectId(req.body.job_id) },
                     {
                         $addToSet: {
+                            applicants: req.body.applicant_id
+                        }
+                    }
+                );
+            })
+            .then(job => {
+                console.log('Job added');
+                database.close();
+                res.status(200).json({ job });
+            })
+            .catch(err => console.log(err));
+    },
+    unApplyToJob: (req, res, next) => {
+        //////////////////////
+        if (!req.body.job_id) {
+            throw res.status(403).json({ error: 'job_id is mandatory' });
+        }
+        if (!req.body.applicant_id) {
+            throw res.status(403).json({ error: 'applicant_id email is mandatory' });
+        }
+        let database;
+        MongoClient.connect(mongoDbUrl)
+            .then(db => {
+                database = db;
+                return db.collection('jobs');
+            })
+            .then(jobs => {
+                console.log(jobs);
+                return jobs.update(
+                    { _id: ObjectId(req.body.job_id) },
+                    {
+                        $pull: {
                             applicants: req.body.applicant_id
                         }
                     }

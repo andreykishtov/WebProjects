@@ -30,7 +30,7 @@ describe('JobService', () => {
 
     describe('Name of the group', () => {
         it(
-            'hit',
+            'found',
             inject($http => {
                 spyOn($http, 'get').and.returnValue({
                     then: function() {
@@ -43,5 +43,25 @@ describe('JobService', () => {
                 expect(result).toEqual({ id: 123 });
             })
         );
+    });
+
+    describe('get all jobs function', () => {
+        it(
+            'check if returns all jobs',
+            inject($http => {
+                spyOn($http, 'get').and.returnValue({
+                    then: function() {
+                        return { id: 123 };
+                    }
+                });
+
+                var result = jobService.getJobs(123);
+
+                expect(result).toEqual({ id: 123 });
+            })
+        );
+        it('should not be empty', () => {
+            expect(jobService.original).toEqual({ id: 123 });
+        });
     });
 });
