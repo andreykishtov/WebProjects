@@ -4,6 +4,8 @@
     "private": true,
     "scripts": {
         "server": "nodemon ./server/app.js",
+        "serverReal": "NODE_ENV=REAL node ./server/app.js",
+        "clientReal": "node ./client/app.js",
         "client": "nodemon ./client/app.js",
         "test": "karma start",
         "test:server": "NODE_ENV=test ava server/__test__/**/*.spec.js --verbose"

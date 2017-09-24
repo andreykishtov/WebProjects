@@ -8,7 +8,6 @@
 
 
 ### Jobs Rest api
-
 ```
 http://Url:port/api
 
@@ -43,4 +42,34 @@ json: {
 /aplicant/:id finds a job by user that applied to that job 
 
 /applicants/:id gives an array of user ids that applied to that job by job id
+```
+
+### User Rest api
+```
+/post create user by json
+json {
+                    name: {
+                        first: "",
+                        last: ""
+                    },
+                    location: {
+                        lng: "",
+                        lat: ""
+                    },
+                    email: "",
+                    password: "",
+                    description: {
+                        public: "",
+                        private: ""
+                    }
+                };
+
+/validate post sends password and email address
+json {
+    
+}
+router.route('/validate').post(UserController.validate);
+router.route('/:email').get(UserController.findUser);
+router.route('/id/:id').get(UserController.findUserById);
+router.route('/usersByIds').post(UserController.findUsersByIds);
 ```
