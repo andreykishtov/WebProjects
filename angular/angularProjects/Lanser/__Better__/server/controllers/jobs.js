@@ -1,22 +1,20 @@
 const { MongoClient, ObjectId } = require('mongodb');
 const mongoDbUrl = require('../helpers/db');
-
+const mongoDbQuery = require('../model/mongoDB/jobs');
 module.exports = {
     getJobs: (req, res, next) => {
-        let database;
-        return MongoClient.connect(mongoDbUrl)
-            .then(db => {
-                database = db;
-                return db.collection('jobs');
-            })
-            .then(jobs => {
-                return jobs.find({}, { applicants: 0 }).toArray();
-            })
-            .then(jobs => {
-                database.close();
-                return res.status(200).json(jobs);
-            })
-            .catch(err => res.status(500));
+        mongoDbQuery.getJobs().then(function(jobs) {
+            res.status(200).json(jobs);
+        });
+    },
+    findJobsByEmail: (req, res, next) => 
+    {
+        if (!req.params.email) {
+            return res.status(403).json({ error: 'job_id is mandatory' });
+        }
+        mongoDbQuery.findJobsByEmail().then(function(job) {
+            job ? res.status(200).json(job) : res.status(404).json({ error: 'Job not found' });
+        });
     },
     createJob: (req, res, next) => {
         if (!req.body.title) {
@@ -88,35 +86,12 @@ module.exports = {
                 return db.collection('jobs');
             })
             .then(jobs => {
-                return jobs.remove({"_id": ObjectId(req.params.id)});
+                return jobs.remove({ _id: ObjectId(req.params.id) });
             })
             .then(job => {
                 // console.log(job);
                 database.close();
-                res.status(200).json({result:'job Deleted'});
-            })
-            .catch(err => console.log(err));
-    },
-    findJobsByEmail: (req, res, next) => {
-        if (!req.params.email) {
-            return res.status(403).json({ error: 'job_id is mandatory' });
-        }
-        let database;
-        MongoClient.connect(mongoDbUrl)
-            .then(db => {
-                database = db;
-                return db.collection('jobs');
-            })
-            .then(jobs => {
-                console.log(req.params.email);
-                return jobs.find({ publisher: req.params.email }).toArray();
-            })
-            .then(job => {
-                if (!job) {
-                    return res.status(404).json({ error: 'Job not found' });
-                }
-                database.close();
-                res.status(200).json(job);
+                res.status(200).json({ result: 'job Deleted' });
             })
             .catch(err => console.log(err));
     },
