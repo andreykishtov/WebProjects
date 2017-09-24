@@ -3,6 +3,7 @@ const mongoDbUrl = require('../helpers/db');
 
 module.exports = {
     createUser: (req, res, next) => {
+        let usersObj;
         if (!req.body.name) {
             return res.status(403).json({ error: 'Name is mandatory' });
         }
@@ -22,14 +23,17 @@ module.exports = {
                 return db.collection('users');
             })
             .then(users => {
-                users.findOne({ email: req.body.email }, function(err, result) {
-                    if (result) {
-                        throw res.status(403).json({ error: 'Email is already in use' });//need to change api,problem:when using same email it will throw
-                    }// so i need to use promises resolve reject.
-                });
-                return users;
+                usersObj = users;
+                return users.findOne({ email: req.body.email });
             })
-            .then(users => {
+            .then((inUse) => {
+                console.log("before if:",JSON.stringify(inUse));
+                
+                if (inUse) {            
+                    console.log("After if", inUse);
+                        return res.status(200).json({ error: 'Email is already in use' }); //need to change api,problem:when using same email it will throw
+                }
+                
                 let user = {
                     name: {
                         first: req.body.name.first,
@@ -47,12 +51,13 @@ module.exports = {
                     }
                 };
 
-                users.insertOne(user, function(err, result) {
+                usersObj.insertOne(user, function(err, result) {
                     if (err) throw err;
                     console.log('User added');
                     database.close();
                     res.status(200).json({ successes: 'ok', userId: result.insertedId });
                 });
+
             })
             .catch(err => console.log(err));
     },
