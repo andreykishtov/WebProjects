@@ -32,8 +32,9 @@
         }
     }
 
-    ControllerController.$inject = ['jobService', 'localStorageService'];
-    function ControllerController(jobService, localStorageService) {
+    ControllerController.$inject = ['jobService', 'localStorageService','$scope'];
+    function ControllerController(jobService, localStorageService,$scope) {
+        // $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
         var vm = this;
         vm.clicked = '';
         vm.applyToJob = applyToJob;
@@ -41,8 +42,17 @@
         vm.currentPage = 0;
         vm.pageSize = 10;
         vm.change = change;
+        vm.changelistormap = changelistormap;
+        vm.listormap = 'Show Map';
 
         ////////////////
+        function changelistormap() {
+            vm.showlistormap = !vm.showlistormap;
+            vm.listormap === 'Show Map'
+                ? (vm.listormap = 'Show List')
+                : (vm.listormap = 'Show On Map');
+        }
+
         function change() {
             vm.jobDescription = !vm.jobDescription;
         }

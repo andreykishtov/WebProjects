@@ -2,6 +2,6 @@
     <div ng-click="vm.showDescription()" class="job columns row panel-block">
         <div class="column" ng-repeat="item in vm.job">{{item}}</div>
     </div>
-    <job-description job-id="vm.job._id" button-name="vm.buttonName" click-func="vm.clickFunction()" show="vm.description"
-        ng-show="vm.description" class="row"></job-description>
+    <job-description publish-name="vm.publishName" job-id="vm.job._id" button-name="vm.buttonName" click-func="vm.clickFunction()" show="vm.description"
+        ng-show="vm.description" job-update="vm.jobUpdate" class="row"></job-description>
 </div>

@@ -2,22 +2,26 @@
     <div class="tile is-4 is-vertical is-parent">
         <sort-field class="tile is-child box notification" titles='vm.titles' search-var="vm.searchText"></sort-field>
         <div class="tile is-child box notification">
-            <p class="title">Two</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum
-                ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.</p>
+            <p class="title">Agent</p>
+            <p>Please Sign In To See Recomended Jobs For You.</p>
         </div>
     </div>
     <div class="tile is-parent">
         <div class="tile is-child box notification">
-            <p class="title">Avalible Jobs</p>
-            <job-title class="row" reverse="vm.reverse" sort-title="vm[propertyName]" titles='vm.titles'></job-title>
+            <div class="columns">           
+                <p class="title column">Avalible Jobs</p><a class="button column" ng-click="vm.changelistormap()">{{vm.listormap}}</a>
+            </div>
+            <div ng-hide="vm.showlistormap">
+                <job-title class="row" reverse="vm.reverse" sort-title="vm[propertyName]" titles='vm.titles'></job-title>
                 <job ng-click="vm.change()" ng-repeat="job in vm.jobs | orderBy:vm[propertyName]:vm.reverse | startFrom: vm.currentPage*vm.pageSize | filter:vm.searchText:strict
-                | limitTo:vm.pageSize"
-                job='job' click-function="vm.applyToJob(job._id)" button-name="'Apply To Job'"></job>
+                | limitTo:vm.pageSize" job='job' click-function="vm.applyToJob(job._id)" button-name="'Apply To Job'"></job>
                 <button class="button pagination-previous" ng-disabled="vm.currentPage == 0" ng-click="vm.currentPage=vm.currentPage - 1">Previous</button>
                 <button class="button pagination-next" ng-disabled="vm.currentPage >= vm.jobs.length/vm.pageSize - 1" ng-click="vm.currentPage=vm.currentPage + 1">Next page</button>
-                
             </div>
+            <div ng-hide="vm.showlistormap">
+                <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+            </div>
+        </div>
     </div>
-    <message message="vm.messageAfterApply"></message>    
+    <message message="vm.messageAfterApply"></message>
 </div>

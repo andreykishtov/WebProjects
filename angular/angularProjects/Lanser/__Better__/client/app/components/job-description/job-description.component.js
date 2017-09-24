@@ -14,7 +14,9 @@
             jobId: '<',
             show: '<',
             clickFunc: '&',
-            buttonName: '<'
+            buttonName: '<',
+            jobUpdate: '<',
+            publishName:'<'
         }
     });
 

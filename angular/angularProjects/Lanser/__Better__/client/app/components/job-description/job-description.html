@@ -20,10 +20,9 @@
                 <article class="tile is-child notification is-info">
                     <p class="title">Publish Date</p>
                     <p class="subtitle">{{vm.job.publishedDate}}</p>
-                    <!-- <figure class="image is-4by3">
-                        <img src="http://bulma.io/images/placeholders/640x480.png">
-                    </figure> -->
-                </article>
+                    <publish-job job-obj="vm.job" publish-name="vm.publishName"></publish-job>
+                    <!-- <job-update ng-if="vm.jobUpdate"></job-update> -->
+                    </article>
             </div>
         </div>
         <div class="tile is-parent">

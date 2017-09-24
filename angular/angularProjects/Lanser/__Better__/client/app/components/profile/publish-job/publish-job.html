@@ -1,6 +1,6 @@
-<div>
+<div ng-show="vm.showPublish">
         <message message="vm.messageAfterEdit"></message>
-        <button class="button" ng-click="vm.addJob()">Add A new Job</button>
+        <button class="button tile notification is-outlined" ng-click="vm.addJob()">{{vm.publishName}}</button>
     <div class="modal {{vm.active}}">
         <div class="modal-background"></div>
         <div class="modal-card">
@@ -8,12 +8,13 @@
                 <p class="modal-card-title">Publish A New Job</p>
                 <button class="delete" aria-label="close" ng-click="vm.addJob()"></button>
             </header>
+            <form ng-submit="vm.publishJob()">
             <section class="modal-card-body">
                 <!--  -->
                 <div class="field">
                     <div class="control">
                         <label class="label">Job title</label>
-                        <input class="input is-primary" type="text" placeholder="Please Enter Job title" ng-model="vm.newJob.title">
+                        <input class="input is-primary" type="text" placeholder="Please Enter Job title" required ng-model="vm.newJob.title">
                     </div>
                 </div>
 
@@ -29,7 +30,7 @@
                         <div class="field">
                             <div class="control">
                                 <label class="label">Input Longitude</label>
-                                <input ng-model="vm.newJob.location.lng" class="input is-primary" type="number" placeholder="Longitude">
+                                <input ng-model="vm.newJob.location.lng" class="input is-primary" type="number" required placeholder="Longitude">
                             </div>
                         </div>
                     </div>
@@ -37,7 +38,7 @@
                         <div class="field">
                             <div class="control">
                                 <label class="label">Input Latitude</label>
-                                <input ng-model="vm.newJob.location.lat" class="input is-primary" type="number" placeholder="Latitude">
+                                <input ng-model="vm.newJob.location.lat" class="input is-primary" type="number" required placeholder="Latitude">
                             </div>
                         </div>
                     </div>
@@ -51,9 +52,10 @@
                 <!--  -->
             </section>
             <footer class="modal-card-foot">
-                <button class="button is-success" ng-click="vm.publishJob()">Publish Job</button>
+                <button class="button is-success type="submit" value="Submit" " >Publish Job</button>
                 <button class="button" ng-click="vm.addJob()">Cancel</button>
             </footer>
+        </form>
         </div>
     </div>
 </div>

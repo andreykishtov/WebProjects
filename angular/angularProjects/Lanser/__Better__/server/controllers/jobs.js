@@ -88,9 +88,10 @@ module.exports = {
                 return db.collection('jobs');
             })
             .then(jobs => {
-                return jobs.remove( {"_id": ObjectId(req.params.id)});
+                return jobs.remove({"_id": ObjectId(req.params.id)});
             })
             .then(job => {
+                // console.log(job);
                 database.close();
                 res.status(200).json({result:'job Deleted'});
             })

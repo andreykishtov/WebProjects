@@ -13,7 +13,9 @@
         bindings: {
             job: '<',
             buttonName: '<',
-            clickFunction:'&'
+            clickFunction:'&',
+            jobUpdate: '<',
+            publishName:'<'
         }
     });
 

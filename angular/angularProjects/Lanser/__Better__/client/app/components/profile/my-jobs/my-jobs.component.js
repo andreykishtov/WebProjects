@@ -32,7 +32,7 @@
             myJobsService.getMyJobs(login.id).then(function() {
                 // console.log(myJobsService.jobs[0]._id);
                 vm.jobs = myJobsService.jobs;
-                if (vm.jobs) {
+                if (vm.jobs.length) {
                     vm.titles = Object.keys(vm.jobs[0], 1);
                 }
             });
