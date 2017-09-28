@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css?family=Griffy|Yanone+Kaffeesatz:400,700');
+
+html,
+body {
+    height: 100%;
+}
+html {
+    font-size: 10px;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: mintcream;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /*border:aqua dashed 3px; */
+    /*color:papayawhip*/
+}
+/*--------------------*/
+.board{
+background-color: #527EC0;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-gap: 5px;
+grid-auto-rows: minmax(5px, auto)
+}
+
+.cell{
+    height: 30px;
+    padding: 0px 5px;
+    background-color: #FFFFFF;
+    font-size: 25px
+}

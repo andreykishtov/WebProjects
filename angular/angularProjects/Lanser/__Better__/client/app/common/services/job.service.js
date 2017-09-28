@@ -76,6 +76,13 @@
                     writable: true,
                     value: element._id
                 });
+
+                Object.defineProperty(job, '_skills', {
+                    enumerable: false,
+                    configurable: true,
+                    writable: true,
+                    value: element.skills
+                });
                 service.jobs.push(job);
             });
         }

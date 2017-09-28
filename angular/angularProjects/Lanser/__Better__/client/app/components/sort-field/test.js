@@ -37,7 +37,6 @@
                 vm.setClass('sort-' + vm.old);
             }
             vm.old = title;
-            vm.title = title;
             if (title === 'skill') {
                 vm.skillSearch = !vm.skillSearch;
                 if (vm.showSearch === true) {
@@ -66,15 +65,7 @@
 
         $scope.$watch('vm.search', function() {
             vm.searchVar = {};
-            if (vm.title != 'skill') {
-                vm.searchVar[vm.title] = vm.search;
-            }
-        });
-
-        $scope.$watch('vm.skillsForSearch.length', function() {
-            vm.searchVar = {};
-            //console.log(vm.skillsForSearch[vm.skillsForSearch.length - 1]); //_skills
-            vm.searchVar[`_${vm.title}s`] = vm.skillsForSearch[0];
+            vm.searchVar[vm.title] = vm.search;
         });
     }
 })();
