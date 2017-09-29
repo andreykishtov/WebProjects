@@ -23,46 +23,11 @@
         vm.skillSearch = false;
         vm.title = '';
         vm.flag = false;
+        vm.searchBy = searchBy;
+        vm.setClass = setClass;
+        vm.searchSkills = searchSkills;
         vm.skillsForSearch = [];
         init();
-        ////////////////
-        function init() {
-            jobService.getSkills().then(() => {
-                vm.skills = jobService.skills;
-            });
-        }
-
-        vm.searchBy = function(title) {
-            if (vm.old) {
-                vm.setClass('sort-' + vm.old);
-            }
-            vm.old = title;
-            vm.title = title;
-            if (title === 'skill') {
-                vm.skillSearch = !vm.skillSearch;
-                if (vm.showSearch === true) {
-                    vm.showSearch = !vm.showSearch;
-                }
-            } else {
-                if (vm.skillSearch === true) {
-                    vm.skillSearch = !vm.skillSearch;
-                }
-                if (vm.showSearch === false) {
-                    vm.showSearch = !vm.showSearch;
-                }
-            }
-        };
-        vm.setClass = function(name) {
-            vm[name] = vm[name] === 'is-primary' ? '' : 'is-primary';
-        };
-
-        vm.searchSkills = function(skill) {
-            let index = vm.skillsForSearch.findIndex(isBigEnough);
-            index == -1 ? vm.skillsForSearch.push(skill) : vm.skillsForSearch.splice(index, 1);
-            function isBigEnough(element) {
-                return element === skill;
-            }
-        };
 
         $scope.$watch('vm.search', function() {
             vm.searchVar = {};
@@ -76,5 +41,43 @@
             //console.log(vm.skillsForSearch[vm.skillsForSearch.length - 1]); //_skills
             vm.searchVar[`_${vm.title}s`] = vm.skillsForSearch[0];
         });
+
+        ////////////////
+        function init() {
+            jobService.getSkills().then(() => {
+                vm.skills = jobService.skills;
+            });
+        }
+
+        function searchBy(title) {
+            if (vm.old) {
+                vm.setClass('sort-' + vm.old);
+            }
+            vm.old = title;
+            vm.title = title;
+            title === 'skill' ? titleIsSkill() : titleIsNotSkill();
+        }
+
+        function setClass(name) {
+            vm[name] = vm[name] === 'is-primary' ? '' : 'is-primary';
+        }
+
+        function searchSkills(skill) {
+            let index = vm.skillsForSearch.findIndex(isBigEnough);
+            index == -1 ? vm.skillsForSearch.push(skill) : vm.skillsForSearch.splice(index, 1);
+            function isBigEnough(element) {
+                return element === skill;
+            }
+        }
+
+        function titleIsSkill() {
+            vm.skillSearch = !vm.skillSearch;
+            vm.showSearch ? (vm.showSearch = !vm.showSearch) : null;
+        }
+
+        function titleIsNotSkill() {
+            vm.skillSearch ? (vm.skillSearch = !vm.skillSearch) : null;
+            vm.showSearch ? null : (vm.showSearch = !vm.showSearch);
+        }
     }
 })();
