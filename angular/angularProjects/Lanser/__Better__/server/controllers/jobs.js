@@ -12,7 +12,7 @@ module.exports = {
         if (!req.params.email) {
             return res.status(403).json({ error: 'job_id is mandatory' });
         }
-        mongoDbQuery.findJobsByEmail().then(function(job) {
+        mongoDbQuery.findJobsByEmail(req).then(function(job) {
             job ? res.status(200).json(job) : res.status(404).json({ error: 'Job not found' });
         });
     },

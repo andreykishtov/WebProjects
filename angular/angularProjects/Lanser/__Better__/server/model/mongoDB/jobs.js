@@ -19,7 +19,7 @@ module.exports = {
             })
             .catch(err => res.status(500));
     },
-    findJobsByEmail() {
+    findJobsByEmail(req) {
         let database;
         return MongoClient.connect(mongoDbUrl)
             .then(db => {
@@ -27,7 +27,7 @@ module.exports = {
                 return db.collection('jobs');
             })
             .then(jobs => {
-                console.log(req.params.email);
+                // console.log(req.params.email);
                 return jobs.find({ publisher: req.params.email }).toArray();
             })
             .then(job => {

@@ -14,12 +14,18 @@
 
         ////////////////
         function getMyJobs(id) {
-            return getMyEmail(id).then(function(email) {
-                return $http.get(`${API.URL}/job/${email}`).then(function(data) {
+            return getMyEmail(id)
+                .then(function(email) {
+                    return $http.get(`${API.URL}/job/email/${email}`);
+                })
+                .then(function(data) {
                     service.original = data.data;
-                    orderJobsList(data.data);
+                    service.jobs = orderJobsList(data.data);
+                    return data;
+                })
+                .catch(data => {
+                    console.log(data.data);
                 });
-            });
         }
 
         function getMyEmail(id) {
@@ -32,8 +38,7 @@
             if (!jobs) {
                 return;
             }
-            service.jobs = [];
-            jobs.forEach(function(element) {
+            return jobs.map(element => {
                 let job = {
                     ['Name']: element.title,
                     publisher: element.publisher,
@@ -55,7 +60,7 @@
                     writable: true,
                     value: element.applicants
                 });
-                service.jobs.push(job);
+                return job;
             });
         }
     }

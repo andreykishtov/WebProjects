@@ -11,14 +11,13 @@
         controller: ControllerController,
         controllerAs: 'vm',
         bindings: {
-            jobAdded: '=',
             publishName: '<',
-            jobObj:'<'
+            jobObj: '<'
         }
     });
 
-    ControllerController.$inject = ['jobService', 'userService', 'localStorageService','$scope'];
-    function ControllerController(jobService, userService, localStorageService,$scope) {
+    ControllerController.$inject = ['jobService', 'userService', 'localStorageService', '$scope', '$rootScope'];
+    function ControllerController(jobService, userService, localStorageService, $scope, $rootScope) {
         var vm = this;
         vm.active = '';
         vm.message = '';
@@ -32,13 +31,13 @@
 
         vm.addJob = function() {
             vm.active = vm.active === '' ? 'is-active' : '';
-            vm.newJob=vm.jobObj;
+            vm.newJob = vm.jobObj;
             // console.log(vm.jobObj);
         };
 
         $scope.$watch('vm.publishName', function() {
-            if(vm.publishName){
-                vm.showPublish='true';
+            if (vm.publishName) {
+                vm.showPublish = 'true';
             }
         });
 
@@ -58,7 +57,9 @@
                 vm.messageAfterEdit = 'Job Added Successfully';
                 vm.activateMessageAfterEdit = 'is-active';
                 vm.addJob();
-                vm.jobAdded = true;
+                ////
+                $rootScope.$broadcast('Added Job', { text: 'added Job' });
+
                 vm.newJob = { location: {} };
             });
         }
