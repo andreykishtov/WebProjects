@@ -16,6 +16,7 @@
   mainNavController.$inject = ['localStorageService', '$state', '$rootScope', '$location', '$scope'];
   function mainNavController(localStorageService, $state, $rootScope, $location, $scope) {
     let vm = this;
+    vm.navButton=[{title:'home',show:true},{title:'login',show:false},{title:'profile',show:true}];
     vm.title = 'nav';
     vm.loginHeader = null;
     vm.logout = logout;
