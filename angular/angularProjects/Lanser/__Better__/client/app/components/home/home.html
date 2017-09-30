@@ -8,13 +8,14 @@
     </div>
     <div class="tile is-parent">
         <div class="tile is-child box notification">
-            <div class="columns">           
+            <div class="columns">
                 <p class="title column">Avalible Jobs</p><a class="button column" ng-click="vm.changelistormap()">{{vm.listormap}}</a>
             </div>
             <div ng-hide="vm.showlistormap">
                 <job-title class="row" reverse="vm.reverse" sort-title="vm[propertyName]" titles='vm.titles'></job-title>
-                <job ng-click="vm.change()" ng-repeat="job in vm.jobs | selectFilter:vm.searchSkill
-                 | orderBy:vm[propertyName]:vm.reverse | startFrom: vm.currentPage*vm.pageSize | filter:vm.searchText:strict | limitTo:vm.pageSize track by $index" job='job' click-function="vm.applyToJob(job._id)" button-name="'Apply To Job'"></job>
+                <job ng-click="vm.change()" ng-repeat="job in vm.jobs | selectFilter:vm.searchSkill | startFrom: vm.currentPage*vm.pageSize
+                 | orderBy:vm[propertyName]:vm.reverse | filter:vm.searchText:strict | limitTo:vm.pageSize track by $index"
+                    job='job' click-function="vm.applyToJob(job._id)" button-name="'Apply To Job'"></job>
                 <button class="button pagination-previous" ng-disabled="vm.currentPage == 0" ng-click="vm.currentPage=vm.currentPage - 1">Previous</button>
                 <button class="button pagination-next" ng-disabled="vm.currentPage >= vm.jobs.length/vm.pageSize - 1" ng-click="vm.currentPage=vm.currentPage + 1">Next page</button>
             </div>
