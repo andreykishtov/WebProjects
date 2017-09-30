@@ -31,9 +31,9 @@
         init();
 
         $scope.$watch('vm.search', function() {
-            vm.skillSearch = {};
+            vm.searchVar = {};
             if (vm.title != 'skill') {
-                vm.skillSearch[vm.title] = vm.search;
+                vm.searchVar[vm.title] = vm.search;
             }
         });
 
@@ -49,6 +49,7 @@
         }
 
         function searchBy(title) {
+            vm.search='';
             if (vm.old) {
                 vm.setClass('sort-' + vm.old);
             }
