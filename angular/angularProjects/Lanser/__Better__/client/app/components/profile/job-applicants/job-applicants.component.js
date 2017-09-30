@@ -20,9 +20,9 @@
         var vm = this;
         $scope.$watch('vm.applicantsIdArray', function() {
             userService.FindUsersByIds(vm.applicantsIdArray).then(function(data) {
-                if (data.user.length) {
+                if (data.length) {
                     vm.text = 'People That Applied:';
-                    vm.persons = data.user;
+                    vm.persons = data;
                 }
             });
         });

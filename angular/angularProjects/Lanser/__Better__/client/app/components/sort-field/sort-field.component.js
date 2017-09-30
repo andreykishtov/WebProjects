@@ -12,6 +12,7 @@
         controllerAs: 'vm',
         bindings: {
             searchVar: '=',
+            searchArr: '=',
             titles: '<'
         }
     });
@@ -30,16 +31,14 @@
         init();
 
         $scope.$watch('vm.search', function() {
-            vm.searchVar = {};
+            vm.skillSearch = {};
             if (vm.title != 'skill') {
-                vm.searchVar[vm.title] = vm.search;
+                vm.skillSearch[vm.title] = vm.search;
             }
         });
 
         $scope.$watch('vm.skillsForSearch.length', function() {
-            vm.searchVar = {};
-            //console.log(vm.skillsForSearch[vm.skillsForSearch.length - 1]); //_skills
-            vm.searchVar[`_${vm.title}s`] = vm.skillsForSearch[0];
+            vm.searchArr = vm.skillsForSearch;
         });
 
         ////////////////
@@ -71,12 +70,12 @@
         }
 
         function titleIsSkill() {
-            vm.skillSearch = !vm.skillSearch;
+            vm.searchBySkill = !vm.searchBySkill;
             vm.showSearch ? (vm.showSearch = !vm.showSearch) : null;
         }
 
         function titleIsNotSkill() {
-            vm.skillSearch ? (vm.skillSearch = !vm.skillSearch) : null;
+            vm.searchBySkill ? (vm.searchBySkill = !vm.searchBySkill) : null;
             vm.showSearch ? null : (vm.showSearch = !vm.showSearch);
         }
     }

@@ -4,7 +4,7 @@
     <a class="button {{vm['sort-skill']}}" ng-click="vm.searchBy('skill');vm.setClass('sort-skill')">Skill</a>
     <input class="input" type="text" placeholder="Search by {{vm.title}}" ng-show="vm.showSearch" name="" value="" ng-model="vm.search">
     <!-- <a class="button {{vm['sort-Proximity']}}" ng-click="vm.skillSearch=!vm.skillSearch;vm.setClass('sort-Proximity')" >Proximity</a> -->
-    <div ng-show="vm.skillSearch">
+    <div ng-show="vm.searchBySkill">
         <p class="title">Select Skill</p>
         <a class="button" ng-class="vm['{{skill._id}}']" ng-click="vm.searchSkills(skill.title);vm.setClass(skill._id)" ng-repeat="skill in vm.skills">{{skill.title}}</a>
     </div>

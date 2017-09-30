@@ -19,18 +19,18 @@
 
 
 <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-          <a class="navbar-item {{vm.home}}" ng-click="vm.makeActive('home')" ui-sref="home" ui-sref-active="active">Home</a>
-          <a class="navbar-item {{vm.login}}" ng-click="vm.makeActive('login')" ng-hide="vm.loggedIn" ui-sref="login" ui-sref-active="active">Login</a>
-          <a class="navbar-item {{vm.profile}}" ng-click="vm.makeActive('profile')" ng-show="vm.loggedIn" ui-sref="profile" ui-sref-active="active">Profile</a>
-          <a class="navbar-item" ng-show="vm.loggedIn" ng-click="vm.logout()">Logout</a>
-          <a class="navbar-item" href="#">
+    <div class="navbar-brand">
+        <a class="navbar-item {{vm.home}}" ng-click="vm.makeActive('home')" ui-sref="home" ui-sref-active="active">Home</a>
+        <a class="navbar-item {{vm.login}}" ng-click="vm.makeActive('login')" ng-hide="vm.loggedIn" ui-sref="login" ui-sref-active="active">Login</a>
+        <a class="navbar-item {{vm.profile}}" ng-click="vm.makeActive('profile')" ng-show="vm.loggedIn" ui-sref="profile" ui-sref-active="active">Profile</a>
+        <a class="navbar-item" ng-show="vm.loggedIn" ng-click="vm.logout()">Logout</a>
+        <a class="navbar-item" href="#" ng-if="vm.loginHeader">
                 {{vm.loginHeader}}
                       </a>
-          <button class="button navbar-burger">
+        <button class="button navbar-burger">
             <span></span>
             <span></span>
             <span></span>
           </button>
-        </div>
-      </nav>
+    </div>
+</nav>

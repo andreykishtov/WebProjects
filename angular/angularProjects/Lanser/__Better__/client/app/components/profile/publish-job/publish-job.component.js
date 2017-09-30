@@ -51,7 +51,7 @@
             }
 
             getUserData().then(function(data) {
-                let user = data.user;
+                let user = data;
                 vm.newJob.email = user.email;
                 jobService.addNewJob(vm.newJob);
                 vm.messageAfterEdit = 'Job Added Successfully';

@@ -7,7 +7,7 @@
     //
 
     angular.module('lanser').component('message', {
-        templateUrl: './components/message/message.html',
+        templateUrl: 'common/components/message/message.html',
         controller: ControllerController,
         controllerAs: 'vm',
         bindings: {

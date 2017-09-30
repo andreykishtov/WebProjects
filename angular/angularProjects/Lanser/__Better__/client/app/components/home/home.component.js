@@ -6,36 +6,17 @@
     // Creates:
     //
 
-    angular
-        .module('lanser')
-        .component('home', {
-            templateUrl: '/components/home/home.html',
-            controller: ControllerController,
-            controllerAs: 'vm',
-            bindings: {
-                // Binding: '='
-            }
-        })
-        .filter('startFrom', Filter);
+    angular.module('lanser').component('home', {
+        templateUrl: '/components/home/home.html',
+        controller: ControllerController,
+        controllerAs: 'vm'
+    });
 
-    function Filter() {
-        return FilterFilter;
-
-        ////////////////
-
-        function FilterFilter(input, start) {
-            if (!input) {
-                return;
-            }
-            start = +start; //parse to int
-            return input.slice(start);
-        }
-    }
-
-    ControllerController.$inject = ['jobService', 'localStorageService','$scope'];
-    function ControllerController(jobService, localStorageService,$scope) {
+    ControllerController.$inject = ['jobService', 'localStorageService', '$scope'];
+    function ControllerController(jobService, localStorageService, $scope) {
         // $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
         var vm = this;
+        vm.searchSkill=[];
         vm.clicked = '';
         vm.applyToJob = applyToJob;
         activate();
@@ -48,9 +29,7 @@
         ////////////////
         function changelistormap() {
             vm.showlistormap = !vm.showlistormap;
-            vm.listormap === 'Show Map'
-                ? (vm.listormap = 'Show List')
-                : (vm.listormap = 'Show On Map');
+            vm.listormap === 'Show Map' ? (vm.listormap = 'Show List') : (vm.listormap = 'Show On Map');
         }
 
         function change() {
@@ -72,13 +51,9 @@
             }
 
             jobService.applyToJob(job_id, user.id).then(data => {
-                if (!data.data.job.nModified) {
-                    vm.messageAfterApply = 'You Have allReady Applied To the Job';
-                    vm.allReadyApplied = 'is-active';
-                } else {
-                    vm.messageAfterApply = 'Thank you For Applying For The Job';
-                    vm.allReadyApplied = 'is-active';
-                }
+                let message = ['Thank you For Applying For The Job', 'You Have allReady Applied To the Job'];
+                console.log(data.data.nModified);
+                data.data.nModified ? (vm.applyMessage = message[0]) : (vm.applyMessage = message[1]);
             });
         }
     }

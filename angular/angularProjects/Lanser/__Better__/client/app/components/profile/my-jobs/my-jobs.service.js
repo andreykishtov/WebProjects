@@ -30,7 +30,7 @@
 
         function getMyEmail(id) {
             return userService.FindUserById(id).then(function(data) {
-                return data.user.email;
+                return data.email;
             });
         }
 

@@ -1,14 +1,12 @@
 (function() {
-    'use strict';
-
     // Usage:
     //
     // Creates:
     //
 
     angular.module('lanser').component('jobDescription', {
-        templateUrl: '/components/job-description/job-description.html',
-        controller: ControllerController,
+        templateUrl: '/components/job/job-description/job-description.html',
+        controller: jobDescriptionController,
         controllerAs: 'vm',
         bindings: {
             jobId: '<',
@@ -16,14 +14,15 @@
             clickFunc: '&',
             buttonName: '<',
             jobUpdate: '<',
-            publishName:'<'
+            publishName: '<'
         }
     });
 
-    ControllerController.$inject = ['$scope', 'jobService'];
-    function ControllerController($scope, jobService) {
-        var vm = this;
-        $scope.$watch('vm.show', function() {
+    jobDescriptionController.$inject = ['$scope', 'jobService'];
+
+    function jobDescriptionController($scope, jobService) {
+        const vm = this;
+        $scope.$watch('vm.show', () => {
             if (vm.show) {
                 if (!vm.jobId) {
                     return;
@@ -36,6 +35,6 @@
         vm.clicked = function(param) {
             vm.buttonClicked = !vm.buttonClicked;
         };
-        ////////////////
+        // //////////////
     }
 })();

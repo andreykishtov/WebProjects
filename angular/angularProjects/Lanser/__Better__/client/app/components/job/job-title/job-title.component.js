@@ -8,7 +8,7 @@
     //
 
     angular.module('lanser').component('jobTitle', {
-        templateUrl: '/components/job-title/job-title.html',
+        templateUrl: '/components/job/job-title/job-title.html',
         controller: ControllerController,
         controllerAs: 'vm',
         bindings: {
