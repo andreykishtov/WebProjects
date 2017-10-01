@@ -8,7 +8,7 @@
 
     angular.module('lanser').component('job', {
         templateUrl: '/components/job/job.html',
-        controller: ControllerController,
+        controller: jobController,
         controllerAs: 'vm',
         bindings: {
             job: '<',
@@ -19,12 +19,12 @@
         }
     });
 
-    // ControllerController.$inject = ['jobService'];
-    function ControllerController() {
+    // jobController.$inject = ['jobService'];
+    function jobController() {
         var vm = this;
-        vm.showDescription = showDescription;
         vm.buttonClicked = false;
         vm.description = false;
+        vm.showDescription = showDescription;
         ////////////////
 
         function showDescription() {

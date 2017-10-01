@@ -18,32 +18,29 @@
         ////////////////
 
         function addUser(userObj) {
-            return $http.post(`${API.URL}/user`, userObj).then(function(user) {
-                return user.data;
-            });
-        };
+            return $http.post(`${API.URL}/user`, userObj).then(user => user.data);
+        }
 
         function validate(email, password) {
-            let data = {
-                email: email,
-                password: password
-            };
-            return $http.post(`${API.URL}/user/validate`, data).then(function(user) {
-                if (user.data) {
-                    localStorageService.set('userId', {
-                        id: user.data._id,
-                        name: user.data.name.first + ' ' + user.data.name.last
-                    });
-                    $rootScope.$broadcast('userIsLoggedIn');
-                }
-                return user.data;
-            });
+            return $http
+                .post(`${API.URL}/user/validate`, {
+                    email: email,
+                    password: password
+                })
+                .then(user => {
+                    if (user.data) {
+                        localStorageService.set('userId', {
+                            id: user.data._id,
+                            name: user.data.name.first + ' ' + user.data.name.last
+                        });
+                        $rootScope.$broadcast('userIsLoggedIn');
+                    }
+                    return user.data;
+                });
         }
 
         function FindUserById(id) {
-            return $http.get(`${API.URL}/user/id/${id}`).then(function(user) {
-                return user.data;
-            });
+            return $http.get(`${API.URL}/user/id/${id}`).then(user => user.data);
         }
 
         function FindUsersByIds(array) {
@@ -51,9 +48,7 @@
                 .post(`${API.URL}/user/usersByIds`, {
                     array: array
                 })
-                .then(function(user) {
-                    return user.data;
-                });
+                .then(user => user.data);
         }
     }
 })();

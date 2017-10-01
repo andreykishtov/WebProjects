@@ -20,9 +20,9 @@
         vm.loggedIn = loggedIn;
 
         function loggedIn() {
-            userService.validate(vm.email, vm.password).then(function(user) {
-                user ? $state.go('home') : alert('User Not Found');
-            });
+            userService
+                .validate(vm.email, vm.password)
+                .then(user => (user ? $state.go('home') : alert('User Not Found')));
         }
     }
 })();

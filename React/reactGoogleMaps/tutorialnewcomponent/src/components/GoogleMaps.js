@@ -17,12 +17,20 @@ class GoogleMaps extends Component {
 
         this.map.addListener('click', event => {
             let { handleClick } = this.props;
-            handleClick(event.latLng.lat(),event.latLng.lng());
+            let lat = event.latLng.lat();
+            let lng = event.latLng.lng();
+            handleClick(lat, lng);
+            let string = `latitude ${lat} longitude ${lng}`;
+            let div =<p>heysadasdasdsad</p>;
+            this.infoWindow = new google.maps.InfoWindow({
+                content: div
+            });
+            this.infoWindow.open(this.map);
         });
     }
 
     componentWillReceiveProps({ lat, lng }) {
-        this.map.setCenter(lat, lng);
+        // this.map.setCenter(lat, lng);
     }
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -35,18 +43,16 @@ class GoogleMaps extends Component {
 
     componentWillUnmount() {}
 
-
     render() {
         return (
             <div>
-                <div ref={el => (this.$map = el)} style={{ height: '200px', width: '200px' }}>
+                <div>{this.infoWindow}</div>
+                <div className="map" ref={el => (this.$map = el)}>
                     I should be a map!
                 </div>
             </div>
         );
     }
 }
-
-// GoogleMaps.propTypes = {};
 
 export default GoogleMaps;

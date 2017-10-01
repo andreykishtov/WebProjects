@@ -1,18 +1,16 @@
 import React from 'react';
 import Location from './Location';
 const Locations = ({ handleClickLocation, locations }) => {
-    // console.log(locations);
-    let locArr = locations.map(function(location) {
-        let loc = (
-            <div>
-                <Location location={location} />
-                <p onClick={() => handleClickLocation(location)}>X</p>
-            </div>
-        );
-        return loc;
-    });
+    let counter=0;
 
-    return <div className="locations">{locArr}</div>;
+    let locArr = locations.map(location => (
+        <div className="locations" key={counter++}>
+            <Location key={counter++} location={location} />
+            <p key={counter++} onClick={() => handleClickLocation(location)}>X</p>
+        </div>
+    ));
+
+    return <div >{locArr}</div>;
 };
 
 export default Locations;

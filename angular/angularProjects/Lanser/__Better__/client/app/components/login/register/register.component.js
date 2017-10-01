@@ -8,14 +8,14 @@
 
     angular.module('lanser').component('register', {
         templateUrl: '/components/login/register/register.html',
-        controller: ControllerController,
+        controller: registerController,
         controllerAs: 'vm',
         bindings: {}
     });
 
-    ControllerController.$inject = ['userService'];
+    registerController.$inject = ['userService'];
 
-    function ControllerController(userService) {
+    function registerController(userService) {
         let vm = this;
         vm.active = '';
         vm.createUser = createUser;
@@ -29,9 +29,8 @@
         }
 
         function createUser() {
-            userService.addUser(vm.newUser).then(function(data) {
-                //console.log(data);
-                vm.showRegister()
+            userService.addUser(vm.newUser).then(data => {
+                vm.showRegister();
                 vm.messageAfterRegister = 'You Are Registered';
                 vm.newUser = { location: {}, description: {}, name: {} };
             });

@@ -9,9 +9,9 @@
     <div class="tile is-parent">
         <div class="tile is-child box notification">
             <div class="columns">
-                <p class="title column">Avalible Jobs</p><a class="button column" ng-click="vm.changelistormap()">{{vm.listormap}}</a>
+                <p class="title column">Avalible Jobs</p><a class="button column" ng-click="vm.changeListToMap()">{{vm.listOrMap}}</a>
             </div>
-            <div ng-hide="vm.showlistormap">
+            <div ng-hide="vm.showListOrMap">
                 <job-title class="row" reverse="vm.reverse" sort-title="vm[propertyName]" titles='vm.titles'></job-title>
                 <job ng-click="vm.change()" ng-repeat="job in vm.jobs | selectFilter:vm.searchSkill | startFrom: vm.currentPage*vm.pageSize
                  | orderBy:vm[propertyName]:vm.reverse | filter:vm.searchText:strict | limitTo:vm.pageSize track by $index"
@@ -19,7 +19,7 @@
                 <button class="button pagination-previous" ng-disabled="vm.currentPage == 0" ng-click="vm.currentPage=vm.currentPage - 1">Previous</button>
                 <button class="button pagination-next" ng-disabled="vm.currentPage >= vm.jobs.length/vm.pageSize - 1" ng-click="vm.currentPage=vm.currentPage + 1">Next page</button>
             </div>
-            <div ng-hide="vm.showlistormap">
+            <div ng-hide="vm.showListOrMap">
                 <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
             </div>
         </div>

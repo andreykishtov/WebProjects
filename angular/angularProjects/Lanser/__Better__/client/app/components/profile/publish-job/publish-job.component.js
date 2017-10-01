@@ -21,19 +21,14 @@
         var vm = this;
         vm.active = '';
         vm.message = '';
-        vm.setClass = setClass;
         activate();
-        vm.searchSkills = searchSkills;
         vm.skillsForSearch = [];
-        vm.publishJob = publishJob;
         vm.activateMessage = '';
         vm.newJob = { location: {} };
-
-        vm.addJob = function() {
-            vm.active = vm.active === '' ? 'is-active' : '';
-            vm.newJob = vm.jobObj;
-            // console.log(vm.jobObj);
-        };
+        vm.setClass = setClass;
+        vm.searchSkills = searchSkills;
+        vm.publishJob = publishJob;
+        vm.addJob = addJob;
 
         $scope.$watch('vm.publishName', function() {
             if (vm.publishName) {
@@ -43,6 +38,12 @@
 
         ////////////////
 
+        function addJob() {
+            vm.active = vm.active === '' ? 'is-active' : '';
+            vm.newJob = vm.jobObj;
+            // console.log(vm.jobObj);
+        }
+
         function publishJob() {
             vm.newJob.skill = vm.skillsForSearch;
             if (!vm.newJob.skill.length) {
@@ -50,7 +51,7 @@
                 return;
             }
 
-            getUserData().then(function(data) {
+            getUserData().then(data => {
                 let user = data;
                 vm.newJob.email = user.email;
                 jobService.addNewJob(vm.newJob);
@@ -72,6 +73,7 @@
         function searchSkills(skill) {
             let index = vm.skillsForSearch.findIndex(isBigEnough);
             index == -1 ? vm.skillsForSearch.push(skill) : vm.skillsForSearch.splice(index, 1);
+
             function isBigEnough(element) {
                 return element === skill;
             }

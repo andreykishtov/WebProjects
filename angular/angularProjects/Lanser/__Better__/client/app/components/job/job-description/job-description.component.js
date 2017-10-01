@@ -22,6 +22,8 @@
 
     function jobDescriptionController($scope, jobService) {
         const vm = this;
+        vm.clicked = clicked;
+
         $scope.$watch('vm.show', () => {
             if (vm.show) {
                 if (!vm.jobId) {
@@ -32,9 +34,10 @@
             }
         });
 
-        vm.clicked = function(param) {
-            vm.buttonClicked = !vm.buttonClicked;
-        };
         // //////////////
+
+        function clicked() {
+            vm.buttonClicked = !vm.buttonClicked;
+        }
     }
 })();

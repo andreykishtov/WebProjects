@@ -18,9 +18,9 @@
     ControllerController.$inject = ['userService', '$scope'];
     function ControllerController(userService, $scope) {
         var vm = this;
-        $scope.$watch('vm.applicantsIdArray', function() {
-            userService.FindUsersByIds(vm.applicantsIdArray).then(function(data) {
-                if (data.length) {
+        $scope.$watch('vm.applicantsIdArray', () => {
+            userService.FindUsersByIds(vm.applicantsIdArray).then(data => {
+                if (data.length > 0) {
                     vm.text = 'People That Applied:';
                     vm.persons = data;
                 }

@@ -3,7 +3,6 @@ import GoogleMaps from './GoogleMaps.js';
 import Locations from './Locations.js';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
-import Popup from 'react-popup';
 export default class App extends Component {
     constructor() {
         super();
@@ -16,7 +15,6 @@ export default class App extends Component {
         let locations =this.state.locations; 
         locations.push({ lng, lat });
         this.setState(locations);
-        Popup.alert(`longitude:${lng} and latitude:${lat}`);
     }
     onClickLocation({lng, lat}) {
         let locations = this.state.locations.filter(function(element) {
@@ -34,7 +32,6 @@ export default class App extends Component {
         return (
             <div className='App'>
                 <h1>My Map</h1>
-                <Popup />
                 <GoogleMaps handleClick={this.onClickMap} lng={locations[0].lng} lat={locations[0].lat} />
                 <Locations handleClickLocation={this.onClickLocation} locations={locations} />
             </div>

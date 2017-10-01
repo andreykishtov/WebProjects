@@ -20,10 +20,6 @@
         return service;
 
         ////////////////
-        // function findJobId(job) {
-        //     return job._id === jobId;
-        // }
-
 
         function addNewJob(job) {
             return $http.post(`${API.URL}/job`, job).then(function(data) {
@@ -32,21 +28,19 @@
         }
 
         function findJob(jobId) {
-            return service.original.find(function(job){
-                if(job._id === jobId){
+            return service.original.find(job => {
+                if (job._id === jobId) {
                     return job;
                 }
             });
         }
-        
+
         function findJobFromServer(id) {
-            return $http.get(`${API.URL}/job/${id}`).then(function(data) {
-                return data.data;
-            });
+            return $http.get(`${API.URL}/job/${id}`).then(data => data.data);
         }
 
         function getJobs() {
-            return $http.get(`${API.URL}/job`).then(function(data) {
+            return $http.get(`${API.URL}/job`).then(data => {
                 service.original = [];
                 service.original = data.data;
                 orderJobsList(data.data);
@@ -54,14 +48,11 @@
         }
 
         function getSkills() {
-            return $http.get(`${API.URL}/skill`).then(function(data) {
-                service.skills = data.data;
-            });
+            return $http.get(`${API.URL}/skill`).then(data => (service.skills = data.data));
         }
 
         function orderJobsList(jobs) {
-            service.jobs = [];
-            jobs.forEach(function(element) {
+            service.jobs = jobs.map(element => {
                 let job = {
                     ['Name']: element.title,
                     publisher: element.publisher,
@@ -83,49 +74,41 @@
                     writable: true,
                     value: element.skills
                 });
-                service.jobs.push(job);
+                return job;
             });
         }
 
         function orderJobsListForDescription(jobs) {
-            jobs.forEach(function(element) {
-                // service.jobsId.push(element._id);
-                service.jobsDesc.push({
-                    id: element._id,
-                    title: element.title,
-                    publisher: element.publisher,
-                    publishDate: new Date(element.publishedDate).toDateString(),
-                    skills: element.skills,
-                    description: element.description,
-                    location: element.location
-                });
-            });
+            service.jobsDesc = jobs.map(element => ({
+                id: element._id,
+                title: element.title,
+                publisher: element.publisher,
+                publishDate: new Date(element.publishedDate).toDateString(),
+                skills: element.skills,
+                description: element.description,
+                location: element.location
+            }));
         }
 
         function applyToJob(job_id, applicant_id) {
-            let data = {
-                job_id: job_id,
-                applicant_id: applicant_id
-            };
-
-            return $http.post(`${API.URL}/job/apply`, data).then(function(data) {
-                return data;
-            });
+            return $http
+                .post(`${API.URL}/job/apply`, {
+                    job_id: job_id,
+                    applicant_id: applicant_id
+                })
+                .then(data => data);
         }
 
         function unApply(job_id, applicant_id) {
-            let data = {
-                job_id: job_id,
-                applicant_id: applicant_id
-            };
-            return $http.post(`${API.URL}/job/unapply`, data).then(function(data) {
-                return data;
-            });
+            return $http
+                .post(`${API.URL}/job/unapply`, {
+                    job_id: job_id,
+                    applicant_id: applicant_id
+                })
+                .then(data => data);
         }
         function deleteJob(id) {
-            return $http.delete(`${API.URL}/job/${id}`).then(function(data) {
-                return data;
-            });
+            return $http.delete(`${API.URL}/job/${id}`).then(data => data);
         }
     }
 })();

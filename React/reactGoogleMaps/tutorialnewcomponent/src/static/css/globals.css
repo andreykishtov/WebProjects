@@ -42,3 +42,8 @@ grid-auto-rows: minmax(5px, auto)
 .App{
     display: flex;
 }
+
+.map{
+    height: 400px;
+    width: 400px;
+}

@@ -9,7 +9,7 @@
 
     angular.module('lanser').component('jobTitle', {
         templateUrl: '/components/job/job-title/job-title.html',
-        controller: ControllerController,
+        controller: jobTitleController,
         controllerAs: 'vm',
         bindings: {
             titles: '<',
@@ -18,8 +18,8 @@
         }
     });
 
-    // ControllerController.$inject = ['$event'];
-    function ControllerController() {
+    // jobTitleController.$inject = ['$event'];
+    function jobTitleController() {
         var vm = this;
         vm.reverse = true;
         vm.sortBy = sortBy;

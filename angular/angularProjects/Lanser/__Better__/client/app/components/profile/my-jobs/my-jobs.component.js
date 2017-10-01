@@ -23,7 +23,7 @@
         activate();
         ////////////////
 
-        $scope.$on('Added Job', function(evt, data) {
+        $scope.$on('Added Job', (evt, data) => {
             activate();
         });
 
