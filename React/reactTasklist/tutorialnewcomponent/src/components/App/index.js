@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import List from './List';
-import NewTask from './newTask'
+import List from '../List';
+import NewTask from '../NewTask'
 export default class App extends Component {
     constructor () {
         super()
