@@ -22,11 +22,25 @@
 
         function sortItems(items, skill) {
             return items.filter(item => {
+                ////
+                // let item1 = item._skills.reduce((total,amount) => {
+                //     if (amount === skill) {
+                //         total.push(amount);
+                //     }
+                //     return total;
+                // }, []);
+                // if(item1.length >0){
+                //     return item1[0];
+
+                // }
+
                 for (let skillOriginal of item._skills) {
                     if (skillOriginal === skill) {
                         return item;
                     }
                 }
+
+                /////
             });
         }
     }

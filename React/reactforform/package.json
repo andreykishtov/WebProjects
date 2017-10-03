@@ -1,0 +1,23 @@
+{
+  "name": "reactforform",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "enzyme": "^3.0.0",
+    "enzyme-adapter-react-16": "^1.0.0",
+    "faker": "^4.1.0",
+    "jest-cli": "^21.2.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-scripts": "^1.0.14",
+    "react-test-renderer": "^16.0.0",
+    "styled-components": "^2.2.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "t:cover": "react-scripts test --env=jsdom --coverage",
+    "eject": "react-scripts eject"
+  }
+}

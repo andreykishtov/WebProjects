@@ -1,10 +1,6 @@
 import React from 'react';
 import NewTask from './';
 
-// const wrapper = shallow(<NewTask />).key();
-// console.log(wrapper);
-
-// import NewTask from './';
 describe('<NewTask />', () => {    
     it('should have input', () => {
         const wrapper = shallow(<NewTask />);

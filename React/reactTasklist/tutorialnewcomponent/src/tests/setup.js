@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { shallow } from 'enzyme';
+import { render, shallow, mount } from 'enzyme';
 
 // setup file
 import { configure } from 'enzyme';
@@ -12,3 +12,5 @@ global.sinon = sinon;
 // global.spy = spy;
 
 global.shallow = shallow;
+global.render = render;
+global.mount = mount;
