@@ -20,7 +20,6 @@ class App extends Component {
         let reviews = this.state.reviews;
         let item = { id: faker.random.number(), image: faker.image.avatar(), Title: title, reviewText: content, rating: select };
         reviews.push(item);
-        console.log(reviews);
         this.setState(reviews);
     }
 
