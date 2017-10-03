@@ -34,7 +34,7 @@ const Add = styled.button`
 
 const Content = styled.textarea`
     text-align: center;
-    width: 700px;
+    width: 82%;
     height: 50px;
     outline-width: 0;
     padding: 1.05rem 2.75rem;
