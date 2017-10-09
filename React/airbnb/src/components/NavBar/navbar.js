@@ -3,25 +3,18 @@ import { Link } from 'react-router-dom';
 import './navbar.css';
 import styled from 'styled-components';
 import logo from '../../logo.svg';
-const Wrapper = styled.div`
-    display: flex;
-    justify-content: space-between;
-    height: 68px;
-`;
+import {Wrapper} from '../../consts/styledConsts';
 
 const NavInput = styled.input`
-    position: relative;
-    top: -54px;
-    left: 58px;
-    width: 1300px;
+    border: none;
+    width: 1000px;
     height: 64px;
-    padding: 0px 50px;
+    align-self:center;
+    padding: 0px 10px;
 `;
 
 const I = styled.i`
-    position: relative;
-    top: -53px;
-    left: -1327px;
+    align-self:center;
 `;
 
 const Li = styled.li`
@@ -31,30 +24,29 @@ const Li = styled.li`
     }
 `;
 
+const Img = styled.img`
+align-self:center;
+`
+
 const NavBar = () => (
     <Wrapper>
-        <div>
-            <img src={logo} className="App-logo" alt="logo" />
-            <div className="iWrapper">
-                <NavInput />
-                <I className="fa fa-search" aria-hidden="true" />
-            </div>
-        </div>
-
+        <Img src={logo} className="App-logo" alt="logo" />
+        <I className="fa fa-search" aria-hidden="true" />
+        <NavInput placeholder="Search" />
         <div>
             <ul>
-                <li>
+                <Li>
                     <Link to="/Host">Become a Host</Link>
-                </li>
-                <li>
+                </Li>
+                <Li>
                     <Link to="/Help">Help</Link>
-                </li>
-                <li>
+                </Li>
+                <Li>
                     <Link to="/SignUp">Sign Up</Link>
-                </li>
-                <li>
+                </Li>
+                <Li>
                     <Link to="/LogIn">Log In</Link>
-                </li>
+                </Li>
             </ul>
         </div>
     </Wrapper>

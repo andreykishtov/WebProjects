@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import NavBar from '../NavBar/navbar';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Home from '../Home/Home';
+import Home from '../location/Home/Home';
+import Homes from '../homes/Homes/Homes';
 import Host from '../Host/Host';
 import Help from '../Help/Help';
 import SignUp from '../SignUp/SignUp';
@@ -15,7 +16,8 @@ class App extends Component {
                 <Router>
                     <div>
                         <NavBar />
-                        <Route exact path="/" component={Home} />
+                        <Route exact path="/" component={Homes} />
+                        <Route exact path="/home" component={Home} />
                         <Route exact path="/Help" component={Help} />
                         <Route path="/Host" component={Host} />
                         <Route exact path="/SignUp" component={SignUp} />

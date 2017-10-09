@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Navbar from './Navbar/Navbar';
-import Owner from './Owner/Owner'
+import Navbar from '../Navbar/Navbar';
+import Owner from '../Owner/Owner'
 import Reviews from '../Reviews/Reviews'
 const Wrapper = styled.div`
     padding: 0px;

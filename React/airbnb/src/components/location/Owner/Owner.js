@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import StarRatingComponent from 'react-star-rating-component';
-
+import Icons from '../IconsComponent/icons'
 const Wrapper = styled.div`
     display: flex;
     justify-content: space-around;
@@ -14,7 +14,7 @@ const Avatar = styled.img`
     border-radius: 50%;
 `;
 
-const MyP = styled.p`padding: 5px;`;
+const P = styled.p`padding: 5px;`;
 
 const Desc = styled.p`
     width: 600px;
@@ -28,21 +28,12 @@ const Owner = ({ data }) => {
             <div>
                 <h2>{title}</h2>
                 <Wrapper>
-                    <MyP>{type}</MyP> ·
-                    <MyP>{address.city}</MyP>
+                    <P>{type}</P> ·
+                    <P>{address.city}</P>
                     <StarRatingComponent name="rate2" editing={false} starCount={5} value={2} />
-                    <MyP>{reviewsCount} reviews</MyP>
+                    <P>{reviewsCount} reviews</P>
                 </Wrapper>
-                <Wrapper>
-                    <i className="fa fa-users" aria-hidden="true" />
-                    {theSpace.guests} guests
-                    <i className="fa fa-home" aria-hidden="true" />
-                    {theSpace.beds} bedrooms
-                    <i className="fa fa-bed" aria-hidden="true" />
-                    {theSpace.bedrooms} beds
-                    <i className="fa fa-bath" aria-hidden="true" />
-                    {theSpace.bathroom} bathroom
-                </Wrapper>
+                <Icons theSpace={theSpace} />
                 <Desc>{generalDesc}</Desc>
             </div>
             <div>

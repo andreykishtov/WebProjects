@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-// import Rating from '../Rating/Rating';
-
+import {Wrapper} from '../../../consts/styledConsts'
 const Card = styled.div`
     text-align:left;    
     padding: 10px;
@@ -14,9 +13,6 @@ const Avatar = styled.img`
     height: 60px;
     background-color: grey;
 `;
-const Wrapper =styled.div`
-display:flex;
-`
 
 const Text = styled.p`width: 90%;`;
 
@@ -35,5 +31,8 @@ const Review = ({ review }) => {
         </Card>
     );
 };
+
+
+
 
 export default Review;
