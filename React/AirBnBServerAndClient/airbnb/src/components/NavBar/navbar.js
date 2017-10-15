@@ -30,7 +30,7 @@ align-self:center;
 
 const NavBar = () => (
     <Wrapper>
-        <Img src={logo} className="App-logo" alt="logo" />
+        <Link to="/"><Img src={logo} className="App-logo" alt="logo" /></Link>        
         <I className="fa fa-search" aria-hidden="true" />
         <NavInput placeholder="Search" />
         <div>

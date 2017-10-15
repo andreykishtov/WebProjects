@@ -6,9 +6,8 @@ import Home from '../location/Home/Home';
 import Homes from '../homes/Homes/Homes';
 import Host from '../Host/Host';
 import Help from '../Help/Help';
-import SignUp from '../SignUp/SignUp';
-import Login from '../Login/Login';
-
+import Register from '../login/Register/Register';
+import LoginScreen from '../login/LoginScreen/LoginScreen';
 class App extends Component {
     render() {
         return (
@@ -17,11 +16,11 @@ class App extends Component {
                     <div>
                         <NavBar />
                         <Route exact path="/" component={Homes} />
-                        <Route path="/:homeId" component={Home} />
+                        <Route path="/home/:homeId" component={Home} />
                         <Route path="/Help" component={Help} />
                         <Route path="/Host" component={Host} />
-                        <Route path="/SignUp" component={SignUp} />
-                        <Route path="/Login" component={Login} />
+                        <Route path="/SignUp" component={Register} />
+                        <Route path="/Login" component={LoginScreen} />
                     </div>
                 </Router>
             </div>

@@ -10,7 +10,7 @@ const Home = ({ home, index }) => {
 
     return (
         <div key={index} style={{ height: '300px' }}>
-            <Link to={`/${home._id}`}>
+            <Link to={`/home/${home._id}`}>
                 <img src={home.imageUrl} alt="i am background" height="60%" width="100%" />
             </Link>
             <P>
@@ -30,3 +30,4 @@ const Home = ({ home, index }) => {
 };
 
 export default Home;
+

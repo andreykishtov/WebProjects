@@ -29,6 +29,7 @@ class Home extends React.Component {
     componentDidMount() {
         (async () => {
             try {
+                console.log(this.props);
                 let response = await fetch(`http://localhost:3001/api/locations/${this.props.match.params.homeId}`);
                 let json = await response.json();
 
