@@ -16,16 +16,14 @@ class Homes extends React.Component {
         this.FilterByCity = this.FilterByCity.bind(this);
     }
 
-    componentDidMount() {
-        (async () => {
-            try {
-                let response = await fetch('http://localhost:3001/api/locations');
-                let json = await response.json();
-                this.setState({ HomesOriginal: json, HomesFiltered: json });
-            } catch (err) {
-                console.log(err);
-            }
-        })();
+    async componentDidMount() {
+        try {
+            let response = await fetch('http://localhost:3001/api/locations');
+            let json = await response.json();
+            this.setState({ HomesOriginal: json, HomesFiltered: json });
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     FilterByCity(value) {

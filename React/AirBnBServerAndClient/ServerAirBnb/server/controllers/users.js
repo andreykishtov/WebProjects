@@ -47,10 +47,10 @@ module.exports = {
     },
     signIn: async (req, res, next) => {
         // generate token
-        console.log('usercontoller sign in');
+        const token = signToken(req.user);
+        res.status(200).json({ token });
     },
     secret: async (req, res, next) => {
-        console.log('usercontoller secret');
-        res.json({secret:'resource'})
+        res.json({ secret: 'resource' });
     }
 };

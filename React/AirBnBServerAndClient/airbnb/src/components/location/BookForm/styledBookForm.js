@@ -20,7 +20,7 @@ width: 100%;
 export const Submit = styled.input`
 width: 85%;
 height: 50px;
-background-color: #ff5a5f;
+background-color: #FF4963;
 color: #fff;
 border-radius: 4px;
 align-self: center;

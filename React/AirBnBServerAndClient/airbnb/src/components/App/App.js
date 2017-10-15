@@ -8,6 +8,7 @@ import Host from '../Host/Host';
 import Help from '../Help/Help';
 import Register from '../login/Register/Register';
 import LoginScreen from '../login/LoginScreen/LoginScreen';
+import Widget from '../widget/Widget/widget'
 class App extends Component {
     render() {
         return (
@@ -21,6 +22,7 @@ class App extends Component {
                         <Route path="/Host" component={Host} />
                         <Route path="/SignUp" component={Register} />
                         <Route path="/Login" component={LoginScreen} />
+                        <Route path="/widget" component={Widget} />
                     </div>
                 </Router>
             </div>

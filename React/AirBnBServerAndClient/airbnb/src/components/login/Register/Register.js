@@ -39,7 +39,7 @@ class Register extends Component {
                 console.log('registration successfull');
                 // var loginscreen = [];
                 // loginscreen.push(<Login parentContext={this} />);
-                var loginmessage = 'Not Registered yet.Go to registration';
+                // var loginmessage = 'Not Registered yet.Go to registration';
                 // self.props.parentContext.setState({
                 //     loginscreen: loginscreen,
                 //     loginmessage: loginmessage,

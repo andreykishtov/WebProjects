@@ -5,6 +5,8 @@ import './Home.css';
 import Main from '../Main/Main';
 import BookForm from '../BookForm/BookForm';
 import MapWithAMarker from '../../GoogleMaps/GoogleMaps';
+import Sticky from 'react-sticky-el';
+
 const Wrapper = styled.div`
     display: flex;
     justify-content: space-around;
@@ -26,34 +28,29 @@ class Home extends React.Component {
         };
     }
 
-    componentDidMount() {
-        (async () => {
-            try {
-                console.log(this.props);
-                let response = await fetch(`http://localhost:3001/api/locations/${this.props.match.params.homeId}`);
-                let json = await response.json();
+    async componentDidMount() {
+        try {
+            let response = await fetch(`http://localhost:3001/api/locations/${this.props.match.params.homeId}`);
+            let json = await response.json();
 
-                let owner = await fetch(`http://localhost:3001/api/users/${json.ownerId}`); // need to change
-                json.owner = await owner.json();
-                //json.owner = {};
-                this.setState({ homeData: json });
-            } catch (err) {
-                console.log(err);
-            }
-        })();
+            let owner = await fetch(`http://localhost:3001/api/users/${json.ownerId}`); // need to change
+            json.owner = await owner.json();
+            this.setState({ homeData: json });
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     render() {
         let { price, currencyType, imageUrl } = this.state.homeData;
-        console.log(this.state.homeData);
         return (
             <div>
                 <Cover image={imageUrl} />
                 <Wrapper>
                     <Main data={this.state.homeData} />
-                    <aside>
+                    <Sticky>
                         <BookForm price={price} currencyType={currencyType} />
-                    </aside>
+                    </Sticky>
                 </Wrapper>
                 <MapWithAMarker
                     googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdtGPc2gg0Wh8UWRWDGDy8ChwLNyB5DnI"

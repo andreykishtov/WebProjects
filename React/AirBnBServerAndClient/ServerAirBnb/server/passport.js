@@ -38,19 +38,27 @@ passport.use(
             usernameField: 'email'
         },
         async (email, password, done) => {
-            //Find user given the email
-            const user = await User.findOne({ email });
+            try {
+                //Find user given the email
+                const user = await User.findOne({ email });
 
-            //If not handle it
-            if (!user) {
-                return done(null, false);
+                //If not handle it
+                if (!user) {
+                    return done(null, false);
+                }
+
+                // Check if the password is correct
+                const isMatch = await user.isValidPassword(password);
+
+                // if not , handle it
+                if (!isMatch) {
+                    return done(null, false);
+                }
+                //Otherwise, return the user
+                done(null, user);
+            } catch (error) {
+                done(error, false);
             }
-
-            // Check if the password is correct
-
-            // if not , handle it
-
-            //Otherwise, return the user
         }
     )
 );
