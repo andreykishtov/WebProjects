@@ -1,3 +1,7 @@
+
+
+
+
 const counter = (state = '', action) => {
     switch (action.type) {
         case 'INCREMENT':

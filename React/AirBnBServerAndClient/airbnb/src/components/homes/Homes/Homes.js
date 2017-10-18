@@ -38,12 +38,12 @@ class Homes extends React.Component {
                     <Search handleOnChange={this.FilterByCity} />
                     <HomesGrid homes={this.state.HomesFiltered} />
                 </div>
-                <StyledMapWithAMarker
+                {/* <StyledMapWithAMarker
                     googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdtGPc2gg0Wh8UWRWDGDy8ChwLNyB5DnI"
                     loadingElement={<div style={{ height: `100%` }} />}
                     containerElement={<div style={{ width: '800px', margin: '0 auto' }} />}
                     mapElement={<div style={{ height: `100%` }} />}
-                />
+                /> */}
             </Wrapper>
         );
     }

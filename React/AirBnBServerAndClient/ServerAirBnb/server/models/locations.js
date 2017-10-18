@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+
 const LocationsSchema = new Schema({
     title: String,
     type: String,
@@ -16,7 +17,10 @@ const LocationsSchema = new Schema({
     imageUrl: {
         type: String
     },
-    ownerId: String,
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: 'user'
+    },
     address: {
         country: String,
         city: String,
@@ -31,19 +35,15 @@ const LocationsSchema = new Schema({
         beds: Number,
         bedrooms: Number
     },
-    reviews: [
-        {
-            title: String,
-            rating: Number,
-            // userId: Number
-            content: String,
-            rating: Number,
-            date: String
-        }
-    ],
     occupancy: {
         type: String
-    }
+    },
+    reviews: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'review'
+        }
+    ]
 });
 
 const location = mongoose.model('location', LocationsSchema);

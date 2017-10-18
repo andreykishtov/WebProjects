@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Wrapper} from '../../../consts/styledConsts'
+import { Wrapper } from '../../../consts/styledConsts';
 const Card = styled.div`
-    text-align:left;    
-    padding: 10px;
+    text-align: left;
+    padding: 10px 0px;
     margin: 5px;
     width: 400px;
 `;
 
 const Avatar = styled.img`
-    border-radius:50%;
+    border-radius: 50%;
     height: 60px;
     background-color: grey;
 `;
@@ -17,22 +17,21 @@ const Avatar = styled.img`
 const Text = styled.p`width: 90%;`;
 
 const Review = ({ review }) => {
+    review.userId = review.userId ? review.userId : {};
+    console.log(review);
     return (
         <Card>
             <Wrapper>
-            <Avatar src={review.userImageUrl} />
-            <div>
-            <p>{review.name}</p>
-            <p>{review.date}</p>
-            </div>
+                <Avatar src={review.userId.imageUrl} />
+                <div>
+                    <p>{review.name}</p>
+                    <p>{review.date}</p>
+                </div>
             </Wrapper>
             <Text>{review.content}</Text>
             <hr />
         </Card>
     );
 };
-
-
-
 
 export default Review;

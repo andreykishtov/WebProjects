@@ -4,8 +4,22 @@ import StarRatingComponent from 'react-star-rating-component';
 import Icons from '../IconsComponent/icons'
 const Wrapper = styled.div`
     display: flex;
-    justify-content: space-around;
-    padding: 15px;
+    justify-content: left;
+    text-align: start;
+`;
+const WrapperInner = styled.div`
+display: flex;
+justify-content: left;
+// padding: 0px;
+text-align: start;
+> p{
+    padding-top: 0px;
+    padding-left:2em;
+}
+> p:first-child{
+    padding-top: 0px;    
+    padding-left:0px;
+}
 `;
 
 const Avatar = styled.img`
@@ -18,27 +32,37 @@ const P = styled.p`padding: 5px;`;
 
 const Desc = styled.p`
     width: 600px;
-    text-align: start;
+    
 `;
 
+const H3=styled.h3`
+// text-align:left;
+`
+
 const Owner = ({ data }) => {
-    let { theSpace, title, type, address, reviewsCount, owner, generalDesc } = data;
+    let { theSpace, title, type, address, reviewsCount, userId, generalDesc } = data;
     return (
         <Wrapper>
             <div>
                 <h2>{title}</h2>
-                <Wrapper>
+                <WrapperInner>
                     <P>{type}</P> ·
                     <P>{address.city}</P>
                     <StarRatingComponent name="rate2" editing={false} starCount={5} value={2} />
                     <P>{reviewsCount} reviews</P>
-                </Wrapper>
+                </WrapperInner>
                 <Icons theSpace={theSpace} />
                 <Desc>{generalDesc}</Desc>
+                <H3>The space</H3>
+                <H3>Guest access</H3>
+                <H3>Interaction with guests</H3>
+                <H3>Other things to note</H3>
+                <a href-no-hash>Contact host</a>
+                
             </div>
             <div>
-                <Avatar src={owner.imageUrl} />
-                <p>{owner.name}</p>
+                <Avatar src={userId.imageUrl} />
+                <p>{userId.name.first} {userId.name.last}</p>
             </div>
         </Wrapper>
     );

@@ -14,15 +14,15 @@ passport.use(
         },
         async (payLoad, done) => {
             try {
-                //Find the user specified in token
+                // Find the user specified in token
                 const user = await User.findById(payLoad.sub);
 
-                //If user doesn't exists handle it
+                // If user doesn't exists handle it
                 if (!user) {
                     return done(null, false);
                 }
 
-                //Otherwise, return the user
+                // Otherwise, return the user
                 done(null, user);
             } catch (error) {
                 done(error, false);
@@ -39,10 +39,10 @@ passport.use(
         },
         async (email, password, done) => {
             try {
-                //Find user given the email
+                // Find user given the email
                 const user = await User.findOne({ email });
 
-                //If not handle it
+                // If not handle it
                 if (!user) {
                     return done(null, false);
                 }
@@ -54,7 +54,7 @@ passport.use(
                 if (!isMatch) {
                     return done(null, false);
                 }
-                //Otherwise, return the user
+                // Otherwise, return the user
                 done(null, user);
             } catch (error) {
                 done(error, false);

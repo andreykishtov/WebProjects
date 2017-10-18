@@ -3,19 +3,19 @@ import { Link } from 'react-router-dom';
 import './navbar.css';
 import styled from 'styled-components';
 import logo from '../../logo.svg';
-import {Wrapper} from '../../consts/styledConsts';
+import { Wrapper } from '../../consts/styledConsts';
+
+const StyledWrapper = styled(Wrapper)`justify-content: space-between;`;
 
 const NavInput = styled.input`
     border: none;
     width: 1000px;
     height: 64px;
-    align-self:center;
+    align-self: center;
     padding: 0px 10px;
 `;
 
-const I = styled.i`
-    align-self:center;
-`;
+const I = styled.i`align-self: center;`;
 
 const Li = styled.li`
     padding: 0 10px;
@@ -24,19 +24,21 @@ const Li = styled.li`
     }
 `;
 
-const Img = styled.img`
-align-self:center;
-`
+const Img = styled.img`align-self: center;`;
 
 const NavBar = () => (
-    <Wrapper>
-        <Link to="/"><Img src={logo} className="App-logo" alt="logo" /></Link>        
-        <I className="fa fa-search" aria-hidden="true" />
-        <NavInput placeholder="Search" />
+    <StyledWrapper>
+        <Wrapper>
+            <Link to="/">
+                <Img src={logo} className="App-logo" alt="logo" />
+            </Link>
+            <I className="fa fa-search" aria-hidden="true" />
+            <NavInput placeholder="Search" />
+        </Wrapper>
         <div>
             <ul>
                 <Li>
-                    <Link to="/Host">Become a Host</Link>
+                    <Link to="/Host"><button>Become a Host</button></Link>
                 </Li>
                 <Li>
                     <Link to="/Help">Help</Link>
@@ -49,7 +51,7 @@ const NavBar = () => (
                 </Li>
             </ul>
         </div>
-    </Wrapper>
+    </StyledWrapper>
 );
 
 export default NavBar;

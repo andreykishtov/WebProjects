@@ -6,10 +6,15 @@ display: flex;
 flex-direction: column;
 text-align: left;
 width: 400px;
+z-index: 11;
 flex-flow: wrap;
-position: relative;
-top: -70px;
-opacity: 0.8;
+//background:rgba(255,0,0,0.8);
+// position: relative;
+// top: -70px;
+// opacity: 0.8;
+height:300px;
+position:sticky;
+top: 0px;
 `;
 
 export const BorderDiv = styled.div`
@@ -46,5 +51,5 @@ export const Price = styled.div`
 background: #484848;
 width: 100%;
 padding: 10px;
-height: 50px;
+// height: 50px;
 `;

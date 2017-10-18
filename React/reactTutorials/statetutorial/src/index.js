@@ -1,10 +1,15 @@
-import css from './static/css/globals.css';
+import React from 'react'
+import { render } from 'react-dom'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import todoApp from './reducers'
+import App from './components/App'
 
-import React from 'react';
-import ReactDOM from 'react-dom';
+let store = createStore(todoApp)
 
-import App from './components/App';
-
-ReactDOM.render(
+render(
+  <Provider store={store}>
     <App />
-  , document.querySelector('.main'));
+  </Provider>,
+  document.getElementById('root')
+)

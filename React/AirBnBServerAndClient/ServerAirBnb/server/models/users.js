@@ -3,18 +3,31 @@ const bcrypt = require('bcryptjs');
 const Schema = mongoose.Schema;
 
 const Users = new Schema({
+    name: {
+        first: String,
+        last: String
+    },
+    imageUrl: String,
     email: {
         type: String,
-        required: true,
-        unique: true,
-        lowercase: true
+        required: true
     },
     password: {
         type: String,
         required: true
-    }
-    // imageUrl: String,
-    // name: String
+    },
+    reviews: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'review'
+        }
+    ],
+    locations: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'locations'
+        }
+    ]
 });
 
 Users.pre('save', async function(next) {
@@ -22,22 +35,21 @@ Users.pre('save', async function(next) {
         // Generate a salt
         const salt = await bcrypt.genSalt(10);
         // generate a password hash (salt +hash)
-        const passwordHash = await bcrypt.hash(this.password, salt);
+        this.password = await bcrypt.hash(this.password, salt);
         //re-assign hashed version over original, plain text password
-        this.password =passwordHash;
         next();
     } catch (error) {
         next(error);
     }
 });
 
-Users.methods.isValidPassword = async function (newPassword) {
+Users.methods.isValidPassword = async function(newPassword) {
     try {
-        return await bcrypt.compare(newPassword,this.password);
+        return await bcrypt.compare(newPassword, this.password);
     } catch (error) {
         throw new Error(error);
-    }    
-}
+    }
+};
 
 const User = mongoose.model('user', Users);
 

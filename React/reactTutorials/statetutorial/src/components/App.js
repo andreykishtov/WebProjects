@@ -1,9 +1,14 @@
-import React, { Component } from 'react';
-import Counter from './Counter';
-import Name from './Name';
-export default function() {
-    return <div>
-        <Counter/>
-        <Name/>
-    </div>;
-}
+import React from 'react'
+import Footer from './Footer'
+import AddTodo from '../containers/AddTodo'
+import VisibleTodoList from '../containers/VisibleTodoList'
+
+const App = () => (
+  <div>
+    <AddTodo />
+    <VisibleTodoList />
+    <Footer />
+  </div>
+)
+
+export default App

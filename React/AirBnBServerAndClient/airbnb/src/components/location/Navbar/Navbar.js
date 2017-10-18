@@ -12,6 +12,9 @@ const Routes = styled.a`
 const Nav = styled.nav`
     font-size: 20px;
     text-decoration: none;
+    background:white;
+    text-align:left;
+    // margin:15px 0 0 200px;
 `;
 
 const NavBar = () => {
