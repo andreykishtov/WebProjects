@@ -5,22 +5,30 @@ import styled from 'styled-components';
 import logo from '../../logo.svg';
 import { Wrapper } from '../../consts/styledConsts';
 
+const StyledLink=styled(Link)`
+font-size: 14px;
+color: black;
+`
+
 const StyledWrapper = styled(Wrapper)`justify-content: space-between;`;
 
 const NavInput = styled.input`
     border: none;
-    width: 1000px;
+    width: 40em;
     height: 64px;
     align-self: center;
-    padding: 0px 10px;
+    padding: 0px 10px; :focus{
+        outline: none;
+    }
 `;
 
 const I = styled.i`align-self: center;`;
 
+
 const Li = styled.li`
-    padding: 0 10px;
+    padding: 2px 10px;
     :hover {
-        border-bottom: 1px solid black;
+        border-bottom: 2px solid black;
     }
 `;
 
@@ -38,16 +46,16 @@ const NavBar = () => (
         <div>
             <ul>
                 <Li>
-                    <Link to="/Host"><button>Become a Host</button></Link>
+                    <StyledLink to="/Host">Become a Host</StyledLink>
                 </Li>
                 <Li>
-                    <Link to="/Help">Help</Link>
+                    <StyledLink to="/Help">Help</StyledLink>
                 </Li>
                 <Li>
-                    <Link to="/SignUp">Sign Up</Link>
+                    <StyledLink to="/SignUp">Sign Up</StyledLink>
                 </Li>
                 <Li>
-                    <Link to="/LogIn">Log In</Link>
+                    <StyledLink to="/LogIn">Log In</StyledLink>
                 </Li>
             </ul>
         </div>
