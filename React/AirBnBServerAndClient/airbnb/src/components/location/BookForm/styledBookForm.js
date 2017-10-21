@@ -51,5 +51,5 @@ export const Price = styled.div`
 background: #484848;
 width: 100%;
 padding: 10px;
-// height: 50px;
+height: 40px;
 `;

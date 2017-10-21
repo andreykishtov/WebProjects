@@ -81,8 +81,8 @@ class Register extends Component {
                                 floatingLabelText="Password"
                                 onChange={(event, newValue) => this.setState({ password: newValue })}
                             />
-                        </Wrapper>
                         <RaisedButton label="Submit" primary={true} style={style} onClick={event => this.handleClick(event)} />
+                        </Wrapper>
                     </div>
                 </MuiThemeProvider>
             </div>

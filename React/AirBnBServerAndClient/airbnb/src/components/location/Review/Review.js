@@ -17,8 +17,6 @@ const Avatar = styled.img`
 const Text = styled.p`width: 90%;`;
 
 const Review = ({ review }) => {
-    review.userId = review.userId ? review.userId : {};
-    console.log(review);
     return (
         <Card>
             <Wrapper>

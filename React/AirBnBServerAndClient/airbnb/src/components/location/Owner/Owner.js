@@ -1,25 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
 import StarRatingComponent from 'react-star-rating-component';
-import Icons from '../IconsComponent/icons'
+import Icons from '../IconsComponent/icons';
 const Wrapper = styled.div`
     display: flex;
     justify-content: left;
     text-align: start;
 `;
 const WrapperInner = styled.div`
-display: flex;
-justify-content: left;
-// padding: 0px;
-text-align: start;
-> p{
-    padding-top: 0px;
-    padding-left:2em;
-}
-> p:first-child{
-    padding-top: 0px;    
-    padding-left:0px;
-}
+    display: flex;
+    justify-content: left;
+    // padding: 0px;
+    text-align: start;
+    > p {
+        padding-top: 0px;
+        padding-left: 2em;
+    }
+    > p:first-child {
+        padding-top: 0px;
+        padding-left: 0px;
+    }
 `;
 
 const Avatar = styled.img`
@@ -30,17 +30,13 @@ const Avatar = styled.img`
 
 const P = styled.p`padding: 5px;`;
 
-const Desc = styled.p`
-    width: 600px;
-    
-`;
+const Desc = styled.p`width: 600px;`;
 
-const H3=styled.h3`
-// text-align:left;
-`
+const H3 = styled.h3`// text-align:left;`;
 
 const Owner = ({ data }) => {
     let { theSpace, title, type, address, reviewsCount, userId, generalDesc } = data;
+    userId.name = userId.name || {};
     return (
         <Wrapper>
             <div>
@@ -57,12 +53,13 @@ const Owner = ({ data }) => {
                 <H3>Guest access</H3>
                 <H3>Interaction with guests</H3>
                 <H3>Other things to note</H3>
-                <a href-no-hash>Contact host</a>
-                
+                <a href="#">Contact host</a>
             </div>
             <div>
                 <Avatar src={userId.imageUrl} />
-                <p>{userId.name.first} {userId.name.last}</p>
+                <p>
+                    {userId.name.first} {userId.name.last}
+                </p>
             </div>
         </Wrapper>
     );

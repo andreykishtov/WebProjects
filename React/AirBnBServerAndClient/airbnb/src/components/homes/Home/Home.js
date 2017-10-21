@@ -21,13 +21,12 @@ const Home = ({ home, index }) => {
                 {/* {home.type} {home.theSpace.bed} */}
                 {home.type}
             </P>
-            <P>
+            <div>
                 <StarRatingComponent name="rate2" editing={false} starCount={5} value={rating} />
                 {reviewsLength}
-            </P>
+            </div>
         </div>
     );
 };
 
 export default Home;
-

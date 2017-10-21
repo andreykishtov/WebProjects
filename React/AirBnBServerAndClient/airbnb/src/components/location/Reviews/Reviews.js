@@ -4,9 +4,9 @@ import StarRatingComponent from 'react-star-rating-component';
 
 const Reviews = ({ reviewsCount, reviews }) => {
     return (
-        <div>
+        <div id="Reviews">
             {reviewsCount} Reviews <StarRatingComponent name="rate2" editing={false} starCount={5} value={3} />
-            {reviews.map((review) => <Review key={review.id} review={review} />)}
+            {reviews.map((review,index) => <Review key={index} review={review} />)}
         </div>
     );
 };

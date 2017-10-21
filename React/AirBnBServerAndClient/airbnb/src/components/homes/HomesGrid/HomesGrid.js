@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import Home from '../Home/Home';
+import React from "react";
+import styled from "styled-components";
+import Home from "../Home/Home";
 
 const Container = styled.div`
     display: grid;
@@ -8,11 +8,11 @@ const Container = styled.div`
     grid-column-gap: 1em;
     grid-row-gap: 1em;
     width: 1200px;
-    padding:0 20px
+    padding: 0 20px;
 `;
 
 const HomesGrid = ({ homes }) => {
-    return <Container>{homes.map((home, index) => <Home home={home} index={index} />)}</Container>;
+    return <Container> {homes.map((home, index) => <Home key={index} home={home} index={index} />)}</Container>;
 };
 
 export default HomesGrid;

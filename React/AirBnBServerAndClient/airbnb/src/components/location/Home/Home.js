@@ -36,7 +36,7 @@ class Home extends React.Component {
                 address: {},
                 amenities: [],
                 theSpace: {},
-                reviews: [{}],
+                reviews: [{userId:{}}],
                 userId: {name:{}}
             }
         };
@@ -46,7 +46,6 @@ class Home extends React.Component {
         try {
             let response = await fetch(`http://localhost:3001/api/locations/${this.props.match.params.homeId}`);
             let json = await response.json();
-            console.log(json);
             this.setState({ homeData: json });
         } catch (err) {
             console.log(err);
@@ -54,6 +53,7 @@ class Home extends React.Component {
     }
 
     render() {
+        console.log(this.state.homeData);
         let { price, currencyType, imageUrl } = this.state.homeData;
         return (
             <div>
@@ -62,12 +62,12 @@ class Home extends React.Component {
                     <Main data={this.state.homeData} />
                     <BookForm price={price} currencyType={currencyType} />
                 </Wrapper>
-                {/* <MapWithAMarker
+                <MapWithAMarker
                     googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdtGPc2gg0Wh8UWRWDGDy8ChwLNyB5DnI"
                     loadingElement={<div style={{ height: `100%` }} />}
                     containerElement={<div style={{ height: `400px`, width: '800px', margin: '0 auto' }} />}
                     mapElement={<div style={{ height: `100%` }} />}
-                /> */}
+                />
             </div>
         );
     }

@@ -27,7 +27,9 @@ class Homes extends React.Component {
     }
 
     FilterByCity(value) {
-        let filtered = this.state.HomesOriginal.filter(item => item.address.city.toLowerCase().includes(value.toLowerCase()));
+        let filtered = this.state.HomesOriginal.filter(item =>
+            item.address.city.toLowerCase().includes(value.toLowerCase())
+        );
         this.setState({ HomesFiltered: filtered });
     }
 

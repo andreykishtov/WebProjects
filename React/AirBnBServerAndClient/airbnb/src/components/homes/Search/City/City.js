@@ -1,16 +1,16 @@
-import React from 'react';
+import React from "react";
 
 class City extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {value:''};
-        this.handleChange=this.handleChange.bind(this);
+        this.state = { value: "" };
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(event) {
         let value = event.target.value;
-        this.setState({value:value})
+        this.setState({ value: value });
         this.props.handleOnChange(value);
     }
 
