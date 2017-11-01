@@ -1,0 +1,47 @@
+body {
+  margin: 0px;
+}
+
+.sidebar {
+  background: #4177ab;
+}
+
+.content {
+  flex-basis:400px;
+  height: 500px;
+  background: #00a5c3;
+}
+
+.header {
+  height: 100px;
+  background: #0069a5;
+}
+
+.navdiv {
+  height: 70px;
+  background: #004f77;
+}
+
+.footer {
+  height: 200px;
+  background: #4ecee1;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+/* @media screen and (max-width: 900px) {
+  .wrapper {
+  }
+} */
+
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  text-align: center;
+  vertical-align: center;
+}

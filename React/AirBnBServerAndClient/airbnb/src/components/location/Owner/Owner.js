@@ -10,11 +10,10 @@ const Wrapper = styled.div`
 const WrapperInner = styled.div`
     display: flex;
     justify-content: left;
-    // padding: 0px;
     text-align: start;
     > p {
         padding-top: 0px;
-        padding-left: 2em;
+        padding-left: 1em;
     }
     > p:first-child {
         padding-top: 0px;
@@ -28,7 +27,7 @@ const Avatar = styled.img`
     border-radius: 50%;
 `;
 
-const P = styled.p`padding: 5px;`;
+const P = styled.p`padding-top: 1em;`;
 
 const Desc = styled.p`width: 600px;`;
 
@@ -50,10 +49,11 @@ const Owner = ({ data }) => {
                 <Icons theSpace={theSpace} />
                 <Desc>{generalDesc}</Desc>
                 <H3>The space</H3>
+                {theSpace.description}
                 <H3>Guest access</H3>
                 <H3>Interaction with guests</H3>
                 <H3>Other things to note</H3>
-                <a href="#">Contact host</a>
+                <a href="#host">Contact host</a>
             </div>
             <div>
                 <Avatar src={userId.imageUrl} />

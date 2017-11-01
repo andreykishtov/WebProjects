@@ -2,6 +2,7 @@ import React from 'react';
 import StarRatingComponent from 'react-star-rating-component';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+
 const P = styled.p`text-align: left;`;
 
 const Home = ({ home, index }) => {
@@ -14,16 +15,16 @@ const Home = ({ home, index }) => {
                 <img src={home.imageUrl} alt="i am background" height="60%" width="100%" />
             </Link>
             <P>
-                ₪{home.price}
-                {home.title}
+                {home.currency+" "} 
+                {home.price+" "} 
+                {home.title+" "} 
+                {"in " +home.address.city}
             </P>
             <P>
-                {/* {home.type} {home.theSpace.bed} */}
-                {home.type}
+                {home.type} {` with ${home.theSpace.beds} beds`}
             </P>
             <div>
                 <StarRatingComponent name="rate2" editing={false} starCount={5} value={rating} />
-                {reviewsLength}
             </div>
         </div>
     );

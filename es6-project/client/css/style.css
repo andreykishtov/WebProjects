@@ -1,0 +1,46 @@
+body {
+  background: black;
+}
+
+.container {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 20% 1fr;
+  grid-template-rows: 0fr 0fr 1fr;
+  grid-gap: 1rem;
+  grid-template-areas: 'header header' 'aside search' 'aside main';
+}
+
+.search {
+  font-size: 1rem;
+  height: 4vh;
+  grid-area: search;
+}
+
+.header {
+  font-size: 4em;
+  color: white;
+  text-align: center;
+  grid-area: header;
+}
+
+.main {
+  padding: 0 1vw;
+  background: white;
+  text-align: center;
+  grid-area: main;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 1vw;
+}
+
+.main img {
+  width: 100%;
+}
+
+.aside {
+  background-color: black;
+  grid-area: aside;
+  color: white;
+}

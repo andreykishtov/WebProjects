@@ -1,0 +1,42 @@
+body {
+  font-family: 'Avenir Next', 'Helvetica Neue';
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  width: 1250;
+}
+
+p {
+  margin: 0px;
+}
+
+li {
+  flex: 1 0 320px;  
+  width: auto;
+  display: inline-block;
+  text-align: left;
+  font-size: 20px;
+  padding: 0 0 20px 50px;
+  list-style: none;
+  background-image: url('../img/checkmark-icon.png');
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+}
+
+h3 {
+  margin: 0 0 4px 0;
+}
+
+@media screen and (max-width: 1024px) and (min-width: 769px) {
+  li {
+    flex: 1 0 320px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  li {
+    flex: 1 0 320px;
+  }
+}

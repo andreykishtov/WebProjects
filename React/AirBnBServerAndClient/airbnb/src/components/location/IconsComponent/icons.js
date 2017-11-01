@@ -3,20 +3,26 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
     display: flex;
-    justify-content: space-around;
-    padding: 15px;
+    padding-top:1em;
 `;
+
+const I = styled.i`
+padding:0 1em 1em 1em;
+:first-child {
+    padding-left:0px;
+}
+`
 
 const icons = ({theSpace}) => {
     return (
         <Wrapper>
-            <i className="fa fa-users" aria-hidden="true" />
+            <I className="fa fa-users" aria-hidden="true" />
             {theSpace.guests} guests
-            <i className="fa fa-home" aria-hidden="true" />
+            <I className="fa fa-home" aria-hidden="true" />
             {theSpace.beds} bedrooms
-            <i className="fa fa-bed" aria-hidden="true" />
+            <I className="fa fa-bed" aria-hidden="true" />
             {theSpace.bedrooms} beds
-            <i className="fa fa-bath" aria-hidden="true" />
+            <I className="fa fa-bath" aria-hidden="true" />
             {theSpace.bathroom} bathroom
         </Wrapper>
     );

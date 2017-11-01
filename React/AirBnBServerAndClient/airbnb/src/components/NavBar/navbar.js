@@ -10,12 +10,15 @@ font-size: 14px;
 color: black;
 `
 
-const StyledWrapper = styled(Wrapper)`justify-content: space-between;`;
+const StyledWrapper = styled(Wrapper)`
+justify-content: space-between;
+align-items:center;
+`;
 
 const NavInput = styled.input`
     border: none;
     width: 40em;
-    height: 64px;
+    height: 5em;
     align-self: center;
     padding: 0px 10px; :focus{
         outline: none;
@@ -26,13 +29,16 @@ const I = styled.i`align-self: center;`;
 
 
 const Li = styled.li`
-    padding: 2px 10px;
+    padding: 0px 10px;
+    border-bottom: 2px solid white;
     :hover {
         border-bottom: 2px solid black;
     }
 `;
 
-const Img = styled.img`align-self: center;`;
+const Img = styled.img`
+padding:0.5em;
+`;
 
 const NavBar = () => (
     <StyledWrapper>

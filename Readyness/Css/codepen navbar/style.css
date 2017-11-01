@@ -1,0 +1,162 @@
+body {
+  margin: 0px;
+}
+
+.logo {
+  background: url('./images/logo.svg') no-repeat 18px 21px;
+  background-size: 138px 26px;
+  background-position: center center;
+  display: block;
+  width: 180px;
+  height: 65px;
+}
+
+header {
+  padding: 0 5px;
+  display: flex;
+  background: black;
+  color: white;
+  align-items: flex-end;
+}
+
+nav {
+  flex: 3;
+}
+
+a {
+  font-size: 16px;
+}
+
+ul {
+  line-height: 1.5;
+  font-size: 15px;
+  font-weight: 400;
+  color: inherit;
+  display: flex;
+  list-style: none;
+}
+
+li {
+  font-size: 15px;
+  color: inherit;
+  padding-right: 20px;
+}
+a::after {
+  content: '';
+  position: absolute;
+  bottom: 16px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+}
+
+nav a:hover {
+  border-bottom: 2px solid grey;
+}
+
+li:first-child::before {
+  position: absolute;
+  /* font-size: 0.83rem; */
+  display: block;
+  line-height: 20px;
+  top: 12px;
+  content: 'Explore';
+  text-transform: uppercase;
+  color: #f4e17f;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.secondary {
+  color: #94aba0;
+}
+
+.sideBar {
+  align-self: center;
+}
+
+.sideBar i {
+  margin-left: 5px;
+  color: #00d071;
+}
+
+h1 {
+  margin: 0px;
+  padding: 0px;
+}
+
+.primary {
+  font-weight: bold;
+}
+
+li a span {
+  background: #ffca1c;
+  border-radius: 3px;
+  color: black;
+  padding: 1px 3px 1px 3px;
+  font-size: 70%;
+  position: relative;
+  top: -4px;
+}
+
+.sideBar button {
+  background: #343436;
+  margin: 0 10px 0 0;
+  position: relative;
+  padding: 10px 16px;
+  border: 3px solid transparent;
+  color: inherit;
+  border-radius: 3px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.sideBar a {
+  background: #343436;
+  margin: 0 10px 0 0;
+  position: relative;
+  padding: 10px 16px;
+  border: 3px solid transparent;
+  color: inherit;
+  border-radius: 3px;
+  font-size: 1rem;
+}
+
+@media screen and (max-width: 1070px) {
+  nav li:nth-last-child(1) {
+    display: none;
+  }
+  nav li:nth-last-child(2) {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  nav li:nth-last-child(3) {
+    display: none;
+  }
+  nav li:nth-last-child(4) {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 830px) {
+  nav li:nth-last-child(5) {
+    display: none;
+  }
+  nav li:nth-last-child(6) {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 690px) {
+  nav li:nth-last-child(7) {
+    display: none;
+  }
+  nav li:nth-last-child(8) {
+    display: none;
+  }
+}

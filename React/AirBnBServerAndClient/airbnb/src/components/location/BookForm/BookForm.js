@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
-import { Form, BorderDiv, Submit, Label, StyledDatePicker, Wrapper, Price } from './styledBookForm';
+import {
+    PaddingDiv,
+    Select,
+    P,
+    Form,
+    BorderDiv,
+    Submit,
+    Label,
+    StyledDatePicker,
+    Wrapper,
+    Price
+} from './styledBookForm';
 
 class BookForm extends Component {
     constructor(props) {
@@ -21,35 +32,51 @@ class BookForm extends Component {
     }
 
     render() {
-        let { price, currencyType } = this.props;
+        let { price, currency } = this.props;
         let { startDate, endDate, guests } = this.state;
         return (
+            <div style={{ position: "sticky",top: "0px"}}>
             <Form onSubmit={this.handleSubmit}>
                 <Price>
                     <p>
-                        {currencyType}
-                        {price} per night
+                        {price} {' ' + currency + ' '} per night
                     </p>
                 </Price>
-                <BorderDiv>
+                <PaddingDiv>
                     <Wrapper>
                         <Label>
                             Check In
-                            <StyledDatePicker placeholderText="MM/DD/YYYY" selected={startDate} onChange={e => this.handleChange(e, 'startDate')} />
+                            <StyledDatePicker
+                                placeholderText="MM/DD/YYYY"
+                                selected={startDate}
+                                onChange={e => this.handleChange(e, 'startDate')}
+                            />
                         </Label>
                         <Label>
                             Check Out
-                            <StyledDatePicker placeholderText="MM/DD/YYYY" selected={endDate} onChange={e => this.handleChange(e, 'endDate')} />
+                            <StyledDatePicker
+                                placeholderText="MM/DD/YYYY"
+                                selected={endDate}
+                                onChange={e => this.handleChange(e, 'endDate')}
+                            />
                         </Label>
                     </Wrapper>
-                    <div>
+                    <Label>
                         Guests
-                        <input type="text" value={guests} onChange={e => this.handleChange(e.target.value, 'guests')} />
-                    </div>
+                        <Select onChange={e => this.handleChange(e.target.value, 'guests')} value={guests}>
+                            <option>One Guest</option>
+                            <option>Two Guest</option>
+                            <option>Three Guest</option>
+                            <option>Four Guest</option>
+                            <option>Five Guest</option>
+                        </Select>
+                    </Label>
+
                     <Submit type="submit" value="Book" />
-                    <p>You won’t be charged yet</p>
-                </BorderDiv>
+                    <P>You won’t be charged yet</P>
+                </PaddingDiv>
             </Form>
+            </div>
         );
     }
 }

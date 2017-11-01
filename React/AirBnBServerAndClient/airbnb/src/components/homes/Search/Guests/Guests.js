@@ -10,7 +10,6 @@ class Guests extends React.Component {
 
     updateNumberPicker(e) {
         this.setState({ numberPickerValue: e.value + '' });
-        console.log(e.value);
     }
 
     render() {
