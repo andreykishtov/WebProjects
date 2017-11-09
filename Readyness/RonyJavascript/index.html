@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+  <div id="mainContainer">
+    <h1>Clock</h1>
+    <p>Current Time:<div id="currentTime"></div></p>
+    <p>Alarm Time:<div id="alarm"></div></p>
+    <div id="container">
+      <input id="time" type="time" step="1" onchange="clock.alarmSet()">
+      <button onclick="clock.offAlarm()" id="off">Off</button>
+      <button onclick="clock.snooze()" id="snooze">Snooze</button>
+    </div>
+  </div>
+</body>
+<script src="./index.js"></script>
+
+</html>

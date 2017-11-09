@@ -1,0 +1,61 @@
+body {
+  margin: 0px;
+}
+
+#offcanvas {
+  position: fixed;
+  width: 300px;
+  left: -300px;
+  top: 0;
+  bottom: 0px;
+  transition: 300ms ease all;
+  background: grey;
+}
+
+h1,
+h2 {
+  padding-left: 10px;
+}
+
+p {
+  margin: 10px 0 0 0;
+  padding: 0 0 0 10px;
+  max-width: 400px;
+}
+
+nav ul {
+  margin:0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+nav li {
+  margin-right: 10px;
+  list-style: none;
+}
+
+#menu:hover {
+  cursor: pointer;
+}
+
+#main {
+  width: 1024px;
+  margin: 0 auto;
+  background: lightcyan;
+  transition: 300ms ease all;
+  min-height: 100vh;
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+  box-shadow:         3px 3px 5px 6px grey;
+}
+
+.moved {
+  transform: translate(300px);
+}
+
+#container {
+  overflow: hidden;
+  background: lightblue;
+}

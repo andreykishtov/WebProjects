@@ -1,0 +1,27 @@
+h1 {
+  font-size: 35;
+}
+
+#mainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#currentTime {
+  font-size: 30px;
+  border: 2px solid;
+  margin-bottom: 30px;
+}
+
+#alarm {
+  font-size: 30px;
+  border: 2px solid red;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+#container {
+  display: flex;
+  justify-content: center;
+}
