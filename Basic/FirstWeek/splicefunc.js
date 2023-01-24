@@ -4,6 +4,7 @@ function test() {
     var array = [1, 2, 3, 4, 5, 6, 7];
     var stringarray=["moseh","homes","kirtis","forten","sosu","andre"]
     array = splicestring(array, 3, 1, 1,2,3);
+    // change commit
     console.log(array);
     console.log(splicestring(stringarray,3,1,"rigor"))
 }
